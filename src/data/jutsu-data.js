@@ -21,7 +21,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Eine Aschewolke die sich durch das Knirschen der Zähne in Flammen aufgeht Alle Angriffe gegen den Betroffenen haben 1 Runde Vorteil, 5M Flächenschaden Umkreis Chakra: 55 Reichwe",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Eine Aschewolke die sich durch das Knirschen der Zähne in Flammen aufgeht Alle Angriffe gegen den Betroffenen haben 1 Runde Vorteil, 5M Flächenschaden Umkreis Chakra: 55 Reichweite: 30M Schaden: 3W8 Aktuell: Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Aschewolke.png"
+        imagePath: "assets/jutsu/feueraschewolke.png"
     },
     {
         id: "feuer_047",
@@ -37,7 +37,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Mehrere Flammenkugeln in Drachenform Gewinnt 1/3 des Schadens an Lebenspunkte zurück und verursacht 1W8 Schaden pro Runde Chakra: 150 Reichweite: 50M Schaden: 6xW12 Aktuell Chak",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Mehrere Flammenkugeln in Drachenform Gewinnt 1/3 des Schadens an Lebenspunkte zurück und verursacht 1W8 Schaden pro Runde Chakra: 150 Reichweite: 50M Schaden: 6xW12 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Drachenflammen_Freisetzungsgesang.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "feuer_048",
@@ -53,7 +53,7 @@ const JUTSU_DATA = [
         effect: "Verfolgt Ziel, Ausweichen um 4 erschwert Chakra: 90 Reichweite: 30M Schaden: 2x2W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender feuert drachenförmige Flammen ab die den Gegner verfolgen und angreifen",
-        imagePath: "jutsu-images/feuer/Drachenflammenfreisetzung_Flammenregen.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "feuer_049",
@@ -69,7 +69,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Formt riesige feuerspeiende Drachenköpfe, die aus dem Mund geschossen werden Flächenschaden in einem 10M Umkreis Chakra: 60 Reichweite: 30M Schaden: 3x2W4 Aktuell Chakra: Schade",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Formt riesige feuerspeiende Drachenköpfe, die aus dem Mund geschossen werden Flächenschaden in einem 10M Umkreis Chakra: 60 Reichweite: 30M Schaden: 3x2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Feuerversteck_Drachenflammenbombe.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_drachenflammenbombe.png"
     },
     {
         id: "feuer_050",
@@ -85,7 +85,7 @@ const JUTSU_DATA = [
         effect: "R für 3 Runden ignoriert Deckung Chakra: 85 Reichweite: 40M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Erzeugt eine massive Kugel aus Höllenflammen Ziel brennt 1W6 S",
-        imagePath: "jutsu-images/feuer/Feuerversteck_D_monischer_Feuerball_des_H_llenfeuers.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_d_monischer_feuerball_des_h_llenfeuers.png"
     },
     {
         id: "feuer_051",
@@ -101,7 +101,7 @@ const JUTSU_DATA = [
         effect: "1W6 Brandschaden für 2 Runden bei Erfolg Chakra: 70 Reichweite: 45M Schaden: 2W12+1W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Spuckt eine mächtige Flammenfontäne in Drachenformn – große Zerstörungskraft 1W12 wenn 6+ brennt Ziel, unter 6 nicht",
-        imagePath: "jutsu-images/feuer/Feuerversteck_Feuerdrachenflammenprojektil.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_feuerdrachenflammenprojektil.png"
     },
     {
         id: "feuer_052",
@@ -117,7 +117,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Spuckt mehrere feurige Projektile in schneller Folge, diese haben die Form eines Speeres Jedes Projektil kann individuelles Ziel treffen Chakra: 25 Reichweite: 20M Schaden: 2x2W",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Spuckt mehrere feurige Projektile in schneller Folge, diese haben die Form eines Speeres Jedes Projektil kann individuelles Ziel treffen Chakra: 25 Reichweite: 20M Schaden: 2x2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Feuerversteck_Flammenspeer_Jutsu.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_flammenspeer_jutsu.png"
     },
     {
         id: "feuer_053",
@@ -133,7 +133,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Nach mehreren Feuerbällen wird die Luft erhitzt, um eine Explosion ähnlich eine Feuerblume zu erzeugen Die Explosionen haben eine 5M Reichweite Chakra: 65 Reichweite: 25M Schade",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Nach mehreren Feuerbällen wird die Luft erhitzt, um eine Explosion ähnlich eine Feuerblume zu erzeugen Die Explosionen haben eine 5M Reichweite Chakra: 65 Reichweite: 25M Schaden: 1W12+3W6 Aktuell Chakra Schaden",
-        imagePath: "jutsu-images/feuer/Feuerversteck_Gro_e_Flammenblume.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_gro_e_flammenblume.png"
     },
     {
         id: "feuer_054",
@@ -149,7 +149,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt einen rotierenden Feuerwirbel um den Anwender Alle getroffenen Ziele 1W6 Brandschaden Chakra: 30+10 p",
-        imagePath: "jutsu-images/feuer/Feuerversteck_H_llenfeuer_Tornado.png"
+        imagePath: "assets/jutsu/feuerfeuerversteck_h_llenfeuer_tornado.png"
     },
     {
         id: "feuer_055",
@@ -165,7 +165,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang In Flammen gehüllte Shuriken 1W4 Schaden von den Shuriken selbst Chakra: 60 Reichweite: 35M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang In Flammen gehüllte Shuriken 1W4 Schaden von den Shuriken selbst Chakra: 60 Reichweite: 35M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Flammenrotes_Springkraut.png"
+        imagePath: "assets/jutsu/feuerflammenrotes_springkraut.png"
     },
     {
         id: "feuer_056",
@@ -181,7 +181,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Schießt eine große Feuerkugel ab 1W12 bei 6+ brennt Ziel für 2 Runden für 1W6 Brandschaden Chakra: 19 Reichweite: 30M Schaden: 3W6 Aktuell: Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Schießt eine große Feuerkugel ab 1W12 bei 6+ brennt Ziel für 2 Runden für 1W6 Brandschaden Chakra: 19 Reichweite: 30M Schaden: 3W6 Aktuell: Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Jutsu_der_flammenden_Feuerkugel.png"
+        imagePath: "assets/jutsu/feuerjutsu_der_flammenden_feuerkugel.png"
     },
     {
         id: "feuer_057",
@@ -197,7 +197,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Erschafft mehrere kleine Feuerbälle die auf das Ziel schießen 1W12 bei 6+ Erfolg und Ziel brennt für 1 Runde 1W6 Brandschaden Chakra: 20 Reichweite: 30M Schaden: 2x2W4 Aktuell C",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Erschafft mehrere kleine Feuerbälle die auf das Ziel schießen 1W12 bei 6+ Erfolg und Ziel brennt für 1 Runde 1W6 Brandschaden Chakra: 20 Reichweite: 30M Schaden: 2x2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Jutsu_der_Ph_nixblume.png"
+        imagePath: "assets/jutsu/feuerjutsu_der_ph_nixblume.png"
     },
     {
         id: "feuer_058",
@@ -213,7 +213,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Eine riesige Flamme die alles auf dem Weg vernichtet Alle getroffenen Ziele erhalten 1W6 Brandschaden Chakra: 60 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Eine riesige Flamme die alles auf dem Weg vernichtet Alle getroffenen Ziele erhalten 1W6 Brandschaden Chakra: 60 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Jutsu_der_riesigen_Feuerbrunst.png"
+        imagePath: "assets/jutsu/feuerjutsu_der_riesigen_feuerbrunst.png"
     },
     {
         id: "feuer_059",
@@ -229,7 +229,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Ein Schwall von Feuer der einen Faden entlang geht Der Boden entzündet Chakra: 22 Reichweite: 40M Schaden: 2W6+4 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Ein Schwall von Feuer der einen Faden entlang geht Der Boden entzündet Chakra: 22 Reichweite: 40M Schaden: 2W6+4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/Jutsu_des_Drachenfeuers.png"
+        imagePath: "assets/jutsu/feuerjutsu_des_drachenfeuers.png"
     },
     {
         id: "feuer_060",
@@ -245,7 +245,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Erschaffe eine riesige Wand aus loderndem Feuer 30M Wand, Anwenderentscheid wie diese verbraucht werden Chakra: 55 Reichweite: 30M Schaden: 4W8 Aktuell: Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erschaffe eine riesige Wand aus loderndem Feuer 30M Wand, Anwenderentscheid wie diese verbraucht werden Chakra: 55 Reichweite: 30M Schaden: 4W8 Aktuell: Chakra: Schaden:",
-        imagePath: "jutsu-images/feuer/M_chtige_Feuervernichtung.png"
+        imagePath: "assets/jutsu/feuerm_chtige_feuervernichtung.png"
     },
 
     // ==================== WASSER ====================
@@ -263,7 +263,7 @@ const JUTSU_DATA = [
         effect: "H Reichweite: 30M Schaden: 5x1W4 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender berührt eine Wasseroberfläche und beschwört 5 Haie aus Wasser Anwender entscheidet zwischen 1-5 Haien Chakra: 20+5p",
-        imagePath: "jutsu-images/wasser/5_hungrige_Haie.png"
+        imagePath: "assets/jutsu/wasser5_hungrige_haie.png"
     },
     {
         id: "wasser_152",
@@ -279,7 +279,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender speit Wasser aus seinem Mund aus diesem formen sich zerstörerische Wellen Anwender stößt Ziele 10M zurück Chakra: 65 Reichweite: 40M Schaden: 4W6 Aktuell Chakra: Schade",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender speit Wasser aus seinem Mund aus diesem formen sich zerstörerische Wellen Anwender stößt Ziele 10M zurück Chakra: 65 Reichweite: 40M Schaden: 4W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Explodierende_Wasserschockwelle.png"
+        imagePath: "assets/jutsu/wasserexplodierende_wasserschockwelle.png"
     },
     {
         id: "wasser_153",
@@ -295,7 +295,7 @@ const JUTSU_DATA = [
         effect: "Chakra: 23 Reichweite: 30M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender spuckt Wasser auf sein Ziel Im nächsten Rundenzyklus ist der betroffene Spieler als letztes in der Reihenfolge dran",
-        imagePath: "jutsu-images/wasser/Jutsu_der_tobenden_Wasserwellen.png"
+        imagePath: "assets/jutsu/wasserjutsu_der_tobenden_wasserwellen.png"
     },
     {
         id: "wasser_154",
@@ -311,7 +311,7 @@ const JUTSU_DATA = [
         effect: "50-99 trifft den Anwender, 100 trifft kritisch Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Der Anwender formt einen Doppelgänger aus Wasser W100 Wurf, bei 0-49 wird der Doppelgänger getroffen",
-        imagePath: "jutsu-images/wasser/Jutsu_der_Wasserdoppelg_nger.png"
+        imagePath: "assets/jutsu/wasserjutsu_der_wasserdoppelg_nger.png"
     },
     {
         id: "wasser_155",
@@ -327,7 +327,7 @@ const JUTSU_DATA = [
         effect: "Rettungswurf benötigt",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender formt einen Drachen aus Wasser Gegner kann nächste Runde nicht handeln",
-        imagePath: "jutsu-images/wasser/Jutsu_der_Wasserdrachenbombe.png"
+        imagePath: "assets/jutsu/wasserjutsu_der_wasserdrachenbombe.png"
     },
     {
         id: "wasser_156",
@@ -343,7 +343,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender schießt einen Wasserstrahl aus seinem Mund, dieser dient als Barriere Schild von 20-HP, wird der Schaden überschritten springt der Rest-Schaden auf Anwender über Chakra",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender schießt einen Wasserstrahl aus seinem Mund, dieser dient als Barriere Schild von 20-HP, wird der Schaden überschritten springt der Rest-Schaden auf Anwender über Chakra: 75 Reichweite: / Schaden: / Aktuell Chakra: Scha",
-        imagePath: "jutsu-images/wasser/Jutsu_der_Wassermauer.png"
+        imagePath: "assets/jutsu/wasserjutsu_der_wassermauer.png"
     },
     {
         id: "wasser_157",
@@ -359,7 +359,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender spuckt eine klebrige Masse auf den Boden -5 Initiative auf betroffene Person Chakra: 25 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender spuckt eine klebrige Masse auf den Boden -5 Initiative auf betroffene Person Chakra: 25 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Jutsu_der_Zuckersirupfelder.png"
+        imagePath: "assets/jutsu/wasserjutsu_der_zuckersirupfelder.png"
     },
     {
         id: "wasser_158",
@@ -375,7 +375,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender lässt aus dem nichts Wasser aus dem Boden erscheinen Kann 50M Wasser erschaffen, freier Entscheid wo dieses entlang läuft, bei Personenkontakt Rettungswurf sonst wird d",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender lässt aus dem nichts Wasser aus dem Boden erscheinen Kann 50M Wasser erschaffen, freier Entscheid wo dieses entlang läuft, bei Personenkontakt Rettungswurf sonst wird dieser 10M zurück gestoßen Chakra: 18 Reichweite: 5",
-        imagePath: "jutsu-images/wasser/Jutsu_des_gro_en_Wasserfalls.png"
+        imagePath: "assets/jutsu/wasserjutsu_des_gro_en_wasserfalls.png"
     },
     {
         id: "wasser_159",
@@ -391,7 +391,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Ein Wasserstrahl in Form eines Haies schießt auf den Gegner Ziel blutet für 1W4 pro Runde Chakra: 70 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Ein Wasserstrahl in Form eines Haies schießt auf den Gegner Ziel blutet für 1W4 pro Runde Chakra: 70 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Jutsu_des_Haifischgeschosses.png"
+        imagePath: "assets/jutsu/wasserjutsu_des_haifischgeschosses.png"
     },
     {
         id: "wasser_160",
@@ -407,7 +407,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Wasser bildet sich um sein Ziel und schließt es in eine Wasserkugel ein / Anwender muss berühren Das Ziel ist gefangen Chakra: 25+7p",
-        imagePath: "jutsu-images/wasser/Jutsu_des_Wassergef_ngnisses.png"
+        imagePath: "assets/jutsu/wasserjutsu_des_wassergef_ngnisses.png"
     },
     {
         id: "wasser_161",
@@ -423,7 +423,7 @@ const JUTSU_DATA = [
         effect: "befreien Chakra: 24 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender sprüht Unmengen Wasser auf sein Ziel 30 Liter zur Verfügung, 20 Liter Gegner einseifen und AWW um 5 senken für 1 Runde 1 Liter kann 1 Meter Fläche von Öl etc",
-        imagePath: "jutsu-images/wasser/Seifenschaum_Flutwelle.png"
+        imagePath: "assets/jutsu/wasserseifenschaum_flutwelle.png"
     },
     {
         id: "wasser_162",
@@ -439,7 +439,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Verstärkung des eigene Blutflusses um die Leistungsfähigkeit des Körpers zu steigern Anwender fügt bei Taijutsu bei dem Arme/Hände benutzt werden 1W6 Zusatzschaden hinzu Chakra:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Verstärkung des eigene Blutflusses um die Leistungsfähigkeit des Körpers zu steigern Anwender fügt bei Taijutsu bei dem Arme/Hände benutzt werden 1W6 Zusatzschaden hinzu Chakra: 30 Reichweite: / Schaden: / Aktuell Chakra: Schad",
-        imagePath: "jutsu-images/wasser/Starker_Wasserarm.png"
+        imagePath: "assets/jutsu/wasserstarker_wasserarm.png"
     },
     {
         id: "wasser_163",
@@ -455,7 +455,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender erzeugt einen gigantischen Hai Ziel blutet für 1W8 pro Runde Chakra: 90 Reichweite: 40M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender erzeugt einen gigantischen Hai Ziel blutet für 1W8 pro Runde Chakra: 90 Reichweite: 40M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Super_Haibombe.png"
+        imagePath: "assets/jutsu/wassersuper_haibombe.png"
     },
     {
         id: "wasser_164",
@@ -471,7 +471,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender formt seine Hand zu einer Pistole und schießt aus dem Zeigefinger ein Wassergeschoss Ziel blutet für 1W4 pro Runde Chakra: 70 Reichweite: 50M Schaden: 3W10 Aktuell Chak",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender formt seine Hand zu einer Pistole und schießt aus dem Zeigefinger ein Wassergeschoss Ziel blutet für 1W4 pro Runde Chakra: 70 Reichweite: 50M Schaden: 3W10 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Technik_der_Wasserpistole.png"
+        imagePath: "assets/jutsu/wassertechnik_der_wasserpistole.png"
     },
     {
         id: "wasser_165",
@@ -487,7 +487,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Aus dem Wasser entstehen mehrere rotierende Stacheln aus Wasser Ziel blutet 1W4 pro Runde Chakra: 70 Reichweite: 35M Schaden: 3x2W4 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Aus dem Wasser entstehen mehrere rotierende Stacheln aus Wasser Ziel blutet 1W4 pro Runde Chakra: 70 Reichweite: 35M Schaden: 3x2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Wasserfangzahngeschoss.png"
+        imagePath: "assets/jutsu/wasserwasserfangzahngeschoss.png"
     },
     {
         id: "wasser_166",
@@ -519,7 +519,7 @@ const JUTSU_DATA = [
         effect: "Chakra: 80 Reichweite: 50M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt Regen über einem Gebiet, um Bewegungen oder Chakras zu orten Erzeugt einen 40M Kreis, Kreaturen können keinen Vorteil gegen den Anwender erlangen solange dieser sich innerhalb des Kreises befindet",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Regenherbeirufung.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_regenherbeirufung.png"
     },
     {
         id: "wasser_168",
@@ -535,7 +535,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Eine verstärkte Drachenform aus Wasser Alle Personen im Umkreis von 10M erhalten 2W12 Schaden Chakra: 140 Reichweite: 50M Schaden: 8W12 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Eine verstärkte Drachenform aus Wasser Alle Personen im Umkreis von 10M erhalten 2W12 Schaden Chakra: 140 Reichweite: 50M Schaden: 8W12 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wasserdrachengott.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wasserdrachengott.png"
     },
     {
         id: "wasser_169",
@@ -551,7 +551,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Formt eine Peitsche aus Wasser, um Gegner zu fesseln Chakra: 20+10p",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wasserpeitschenfessel.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wasserpeitschenfessel.png"
     },
     {
         id: "wasser_170",
@@ -567,7 +567,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Formt eine Peitsche aus Wasser, um Gegner zu schlagen Chakra: 22 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Formt eine Peitsche aus Wasser, um Gegner zu schlagen Chakra: 22 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wasserpeitschenschlag.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wasserpeitschenschlag.png"
     },
     {
         id: "wasser_171",
@@ -583,7 +583,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Der Anwender erstellt eine kompakte Schutzbarriere aus rotierendem Wasser Schild HP-Wert 10, wird mehr Schaden verursacht springt dieser auf den Anwender über Chakra: 21 Reichwe",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Der Anwender erstellt eine kompakte Schutzbarriere aus rotierendem Wasser Schild HP-Wert 10, wird mehr Schaden verursacht springt dieser auf den Anwender über Chakra: 21 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wasserschild.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wasserschild.png"
     },
     {
         id: "wasser_172",
@@ -599,7 +599,7 @@ const JUTSU_DATA = [
         effect: "Erzeugt bis zu 3 Spiegelbilder, wird der Anwender angegriffen: 1W20 ob ein Spiegelbild getroffen wird Bei 3 Bilder 6+, Bei 2 8+, Bei 1 11+ Chakra: 30 p",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt Spiegelbilder aus Wasser, um Angriffe zu reflektieren",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wasserspiegeltechnik.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wasserspiegeltechnik.png"
     },
     {
         id: "wasser_173",
@@ -615,7 +615,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Bildet scharfe rotierende Wasserblätter Ziel blutet für 1W4 pro Runde Chakra: 75 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Bildet scharfe rotierende Wasserblätter Ziel blutet für 1W4 pro Runde Chakra: 75 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wassers_ge_Jutsu.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wassers_ge_jutsu.png"
     },
     {
         id: "wasser_174",
@@ -631,7 +631,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: 4W8+5 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Erzeugt mächtige Wellen oder Strudel Setzt den Gegner fest, dieser erhält pro Runde 2W8 Schaden Chakra: 70+10p",
-        imagePath: "jutsu-images/wasser/Wasserversteck_Wassers_ule_Jutsu.png"
+        imagePath: "assets/jutsu/wasserwasserversteck_wassers_ule_jutsu.png"
     },
 
     // ==================== ERDE ====================
@@ -649,7 +649,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender zieht eine Mauer vor sich auf Erzeugt ein Schild mit 10HP, sollte ein Angriff mehr Schaden bewirken springt dieser auf den Anwender Chakra: 19 Reichweite: / Schaden: / ",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender zieht eine Mauer vor sich auf Erzeugt ein Schild mit 10HP, sollte ein Angriff mehr Schaden bewirken springt dieser auf den Anwender Chakra: 19 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdaufriss.png"
+        imagePath: "assets/jutsu/erdeerdaufriss.png"
     },
     {
         id: "erde_024",
@@ -665,7 +665,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender löst ein beben aus wodurch der Boden zusammensackt Körperbeherrschung Rettungswurf sonst liegen Chakra: 25 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender löst ein beben aus wodurch der Boden zusammensackt Körperbeherrschung Rettungswurf sonst liegen Chakra: 25 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdbebenschlag.png"
+        imagePath: "assets/jutsu/erdeerdbebenschlag.png"
     },
     {
         id: "erde_025",
@@ -681,7 +681,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender verhärtet seine Körperteile RK+1, Taijutsu +1W6 Schaden Chakra: 50+10p",
-        imagePath: "jutsu-images/erde/Erdspeer.png"
+        imagePath: "assets/jutsu/erdeerdspeer.png"
     },
     {
         id: "erde_026",
@@ -697,7 +697,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Umhüllt Anwender mit schützender Erdkugel Jeder Melee Angriff erleidet 2W6 Schaden Die Kugel hat 20HP, geht diese kaputt geht der restliche Schaden auf den Anwender über Chakra: 75+20p",
-        imagePath: "jutsu-images/erde/Erdversteck_Erddom.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erddom.png"
     },
     {
         id: "erde_027",
@@ -713,7 +713,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Formt einen Drachen aus Erde der Geschosse spuckt Treffer verursacht Flächenschaden (1 Ziel) Bei Gegnern hintereinander +1W8 Schaden Chakra: 75 Reichweite: 30M Schaden: 2x2W6 Ak",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Formt einen Drachen aus Erde der Geschosse spuckt Treffer verursacht Flächenschaden (1 Ziel) Bei Gegnern hintereinander +1W8 Schaden Chakra: 75 Reichweite: 30M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erddrache_Jutsu.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erddrache_jutsu.png"
     },
     {
         id: "erde_028",
@@ -729,7 +729,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Hebt oder senkt den Boden Kann Terrainvorteile schaffen Chakra: 60 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Hebt oder senkt den Boden Kann Terrainvorteile schaffen Chakra: 60 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdfestung.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdfestung.png"
     },
     {
         id: "erde_029",
@@ -745,7 +745,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Verwandelt den Boden in rutschigen Erdfluss Der Ausweichbasiswert des Ziels sinkt für eine Runde um 5 Chakra: 24 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Verwandelt den Boden in rutschigen Erdfluss Der Ausweichbasiswert des Ziels sinkt für eine Runde um 5 Chakra: 24 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdfluss_Jutsu.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdfluss_jutsu.png"
     },
     {
         id: "erde_030",
@@ -761,7 +761,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 25M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Errichtet eine kuppelartige Gefangensstruktur Die Kuppel hat 20HP, fällt diese auf 0 wird das Gefängnis zerstört Chakra: 50+10p",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdgef_ngnis.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdgef_ngnis.png"
     },
     {
         id: "erde_031",
@@ -777,7 +777,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Formt und feuert ein Erdgeschoss ab Greift 1 Ziel an, kann weiter Speere +1 erzeugen Chakra: 75 Reichweite: 40M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Formt und feuert ein Erdgeschoss ab Greift 1 Ziel an, kann weiter Speere +1 erzeugen Chakra: 75 Reichweite: 40M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdgeschoss_Jutsu.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdgeschoss_jutsu.png"
     },
     {
         id: "erde_032",
@@ -793,7 +793,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Anwender erzeugt Erdbeben und Spaltet Erde Trifft alle Gegner im Zielgebiet (30M) Chakra: 150 Reichweite: 80M Schaden: 4x2W12 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Anwender erzeugt Erdbeben und Spaltet Erde Trifft alle Gegner im Zielgebiet (30M) Chakra: 150 Reichweite: 80M Schaden: 4x2W12 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdkernspaltung.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdkernspaltung.png"
     },
     {
         id: "erde_033",
@@ -809,7 +809,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Bildet aus der Erde spitze Pfeiler oder Speere Greift 1 Ziel an, kann weiter Speere +1 erzeugen Chakra: 70 Reichweite: 10M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Bildet aus der Erde spitze Pfeiler oder Speere Greift 1 Ziel an, kann weiter Speere +1 erzeugen Chakra: 70 Reichweite: 10M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdmauer_Speer.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdmauer_speer.png"
     },
     {
         id: "erde_034",
@@ -825,7 +825,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Lässt spitze Erdzähne aus dem Boden schießen Treffer verursacht Flächenschaden (1 Ziel) Bei Gegnern hintereinander +1W8 Schaden Chakra: 75 Reichweite: 30M Schaden: 2x2W6 Aktuell",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Lässt spitze Erdzähne aus dem Boden schießen Treffer verursacht Flächenschaden (1 Ziel) Bei Gegnern hintereinander +1W8 Schaden Chakra: 75 Reichweite: 30M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Erdzahnspeer.png"
+        imagePath: "assets/jutsu/erdeerdversteck_erdzahnspeer.png"
     },
     {
         id: "erde_035",
@@ -841,7 +841,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Löst große Felsmassen auf Gegner herab Treffer auf 1 Ziel, +1 Geschoss möglich Chakra: 90 Reichweite: 40M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Löst große Felsmassen auf Gegner herab Treffer auf 1 Ziel, +1 Geschoss möglich Chakra: 90 Reichweite: 40M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Felsensturz.png"
+        imagePath: "assets/jutsu/erdeerdversteck_felsensturz.png"
     },
     {
         id: "erde_036",
@@ -857,7 +857,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Verhärtet die Haut zu e inem steinartigen Panzer Macht Objekte Federleicht Chakra: 70+20p",
-        imagePath: "jutsu-images/erde/Erdversteck_Felsfaust.png"
+        imagePath: "assets/jutsu/erdeerdversteck_felsfaust.png"
     },
     {
         id: "erde_037",
@@ -873,7 +873,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender senkt Gewicht bis Schwerelosigkeit Das Objekt/Mensch kann nicht ausweichen Chakra: 70+20p",
-        imagePath: "jutsu-images/erde/Erdversteck_Jutsu_der_erleichternden_Erde.png"
+        imagePath: "assets/jutsu/erdeerdversteck_jutsu_der_erleichternden_erde.png"
     },
     {
         id: "erde_038",
@@ -889,7 +889,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender hebt Gewicht von Objekt oder Mensch an Das Objekt/Mensch kann sich nicht bewegen Chakra: 70+20p",
-        imagePath: "jutsu-images/erde/Erdversteck_Jutsu_der_erschwerten_Erde.png"
+        imagePath: "assets/jutsu/erdeerdversteck_jutsu_der_erschwerten_erde.png"
     },
     {
         id: "erde_039",
@@ -905,7 +905,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Verstärkt die Hand oder Faust mit harter Erde Bei Treffer 1W6 Schaden extra Chakra: 22 Reichweite: / Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Verstärkt die Hand oder Faust mit harter Erde Bei Treffer 1W6 Schaden extra Chakra: 22 Reichweite: / Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Steinfaust.png"
+        imagePath: "assets/jutsu/erdeerdversteck_steinfaust.png"
     },
     {
         id: "erde_040",
@@ -921,7 +921,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Lässt den Anwender unter der Erde verschwinden Versteckt das Ziel für eine Runde unter der Erde Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Lässt den Anwender unter der Erde verschwinden Versteckt das Ziel für eine Runde unter der Erde Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Erdversteck_Unterirdisches_Versteck.png"
+        imagePath: "assets/jutsu/erdeerdversteck_unterirdisches_versteck.png"
     },
     {
         id: "erde_041",
@@ -937,7 +937,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: D-Rang Anwender zieht den Gegner in den Boden Ausweichen unmöglich Gegner ist 1 Runde lang gefangen (Rettungswurf) Chakra: 7 Reichweite: 10M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Ninjutsu Stufe: D-Rang Anwender zieht den Gegner in den Boden Ausweichen unmöglich Gegner ist 1 Runde lang gefangen (Rettungswurf) Chakra: 7 Reichweite: 10M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Jutsu_der_seelischen_Enthauptung.png"
+        imagePath: "assets/jutsu/erdejutsu_der_seelischen_enthauptung.png"
     },
     {
         id: "erde_042",
@@ -953,7 +953,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender macht einen Gegenstand leichter Macht Objekte Federleicht Chakra: 50+5p",
-        imagePath: "jutsu-images/erde/Jutsu_des_erleichternden_Felsens.png"
+        imagePath: "assets/jutsu/erdejutsu_des_erleichternden_felsens.png"
     },
     {
         id: "erde_043",
@@ -969,7 +969,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender erschafft eine Klippe Die Klippe hat 20HP, wenn ein Angriff diese 20 überschreitet springt der restliche Schaden auf den Anwender zurück Chakra: 80 Reichweite: / Schade",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender erschafft eine Klippe Die Klippe hat 20HP, wenn ein Angriff diese 20 überschreitet springt der restliche Schaden auf den Anwender zurück Chakra: 80 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Jutsu_des_sich_erhebenden_Erdwalls.png"
+        imagePath: "assets/jutsu/erdejutsu_des_sich_erhebenden_erdwalls.png"
     },
     {
         id: "erde_044",
@@ -985,7 +985,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 50M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender spaltet die Erde in 2 Hälften Anwender spaltet so lange wie seine Hand auf Boden Chakra: 44+5p",
-        imagePath: "jutsu-images/erde/Planetensplitter.png"
+        imagePath: "assets/jutsu/erdeplanetensplitter.png"
     },
     {
         id: "erde_045",
@@ -1001,7 +1001,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender verwandelt Boden in Sumpfläche Ziel wird für 2 Runden festgesetzt Nach Ablauf erstickt das Ziel Chakra: 95 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender verwandelt Boden in Sumpfläche Ziel wird für 2 Runden festgesetzt Nach Ablauf erstickt das Ziel Chakra: 95 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/erde/Sumpf_der_Finsternis.png"
+        imagePath: "assets/jutsu/erdesumpf_der_finsternis.png"
     },
 
     // ==================== WIND ====================
@@ -1019,7 +1019,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender saugt Luft um eine große Kugel zu speien Verursacht bei Treffer Blutung für 1W6 Schaden Chakra: 70 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender saugt Luft um eine große Kugel zu speien Verursacht bei Treffer Blutung für 1W6 Schaden Chakra: 70 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Gro_e_Vakuumkugel.png"
+        imagePath: "assets/jutsu/windgro_e_vakuumkugel.png"
     },
     {
         id: "wind_176",
@@ -1035,7 +1035,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Eine starke Winddruckwelle Richtung Gegner Gegner wird zurück gestoßen Chakra: 22 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Eine starke Winddruckwelle Richtung Gegner Gegner wird zurück gestoßen Chakra: 22 Reichweite: 20M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Gro_er_Durchbruch.png"
+        imagePath: "assets/jutsu/windgro_er_durchbruch.png"
     },
     {
         id: "wind_177",
@@ -1051,7 +1051,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Rasengan Variation kann geworfen werden Schaden immer x2 Chakra: 140 Reichweite: 45M Schaden: 5W20 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Rasengan Variation kann geworfen werden Schaden immer x2 Chakra: 140 Reichweite: 45M Schaden: 5W20 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Rasen_Shuriken.png"
+        imagePath: "assets/jutsu/windrasen_shuriken.png"
     },
     {
         id: "wind_178",
@@ -1067,7 +1067,7 @@ const JUTSU_DATA = [
         effect: "werden durch Wind beschleunigt Nicht ausweichbar Chakra: 20 Reichweite: 25M Schaden: 2W4 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Shuriken etc",
-        imagePath: "jutsu-images/wind/Sturmhand.png"
+        imagePath: "assets/jutsu/windsturmhand.png"
     },
     {
         id: "wind_179",
@@ -1083,7 +1083,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Mehrere Windklingen die abgefeuert werden Verursacht bei Treffer 1W4 Blutungsschaden Chakra: 70 Reichweite: 35M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Mehrere Windklingen die abgefeuert werden Verursacht bei Treffer 1W4 Blutungsschaden Chakra: 70 Reichweite: 35M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Vakuum_Sto__Barrikade.png"
+        imagePath: "assets/jutsu/windvakuum_sto_barrikade.png"
     },
     {
         id: "wind_180",
@@ -1099,7 +1099,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: 1W12 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Die Klinge des Anwenders wird durch Chakra gebufft Schär ft Waffen oder Chakraangriffe Chakra: 70+10p",
-        imagePath: "jutsu-images/wind/Vakuumklinge.png"
+        imagePath: "assets/jutsu/windvakuumklinge.png"
     },
     {
         id: "wind_181",
@@ -1115,7 +1115,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Spuckt eine gewaltige Druckwelle an Chakra aus Wirft Gegner zu Boden Chakra: 50 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Spuckt eine gewaltige Druckwelle an Chakra aus Wirft Gegner zu Boden Chakra: 50 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Gro_e_Windkugel.png"
+        imagePath: "assets/jutsu/windwindversteck_gro_e_windkugel.png"
     },
     {
         id: "wind_182",
@@ -1131,7 +1131,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Bildet einen Tornado aus Windchakra Wirft Gegner in die Luft, solange RK-4 Chakra: 95 Reichweite: 40M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Bildet einen Tornado aus Windchakra Wirft Gegner in die Luft, solange RK-4 Chakra: 95 Reichweite: 40M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Himmelsschneide.png"
+        imagePath: "assets/jutsu/windwindversteck_himmelsschneide.png"
     },
     {
         id: "wind_183",
@@ -1147,7 +1147,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Eine Serie schneidender Windböen Unausweichbar, 1W4 Blutung bei Treffer Chakra: 90 Reichweite: 35M Schaden: 4W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Eine Serie schneidender Windböen Unausweichbar, 1W4 Blutung bei Treffer Chakra: 90 Reichweite: 35M Schaden: 4W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Klingensturm.png"
+        imagePath: "assets/jutsu/windwindversteck_klingensturm.png"
     },
     {
         id: "wind_184",
@@ -1163,7 +1163,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Beschwört Luftwirbel die explodieren können Ausweichen erschwert um 3 Chakra: 60 Reichweite: 40M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Beschwört Luftwirbel die explodieren können Ausweichen erschwert um 3 Chakra: 60 Reichweite: 40M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Luftstr_mungs_Schlag.png"
+        imagePath: "assets/jutsu/windwindversteck_luftstr_mungs_schlag.png"
     },
     {
         id: "wind_185",
@@ -1179,7 +1179,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Spuckt schnell mehrere Windkugel aus Verursacht bei Treffer 1W4 Blutung Chakra: 50 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Spuckt schnell mehrere Windkugel aus Verursacht bei Treffer 1W4 Blutung Chakra: 50 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_schneidende_Luftkugel.png"
+        imagePath: "assets/jutsu/windwindversteck_schneidende_luftkugel.png"
     },
     {
         id: "wind_186",
@@ -1195,7 +1195,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Ruft einen Wirbelwind der Gegner zerschneidet Wirft Gegner auf eine gewünschte Position Chakra: 70 Reichweite: 25M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Ruft einen Wirbelwind der Gegner zerschneidet Wirft Gegner auf eine gewünschte Position Chakra: 70 Reichweite: 25M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Tornado_Klingen.png"
+        imagePath: "assets/jutsu/windwindversteck_tornado_klingen.png"
     },
     {
         id: "wind_187",
@@ -1211,7 +1211,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Eine mächtige Windexplosion Ausweichen um 5 erschwert Chakra: 85 Reichweite: 30M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Eine mächtige Windexplosion Ausweichen um 5 erschwert Chakra: 85 Reichweite: 30M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Vakuumexplosion.png"
+        imagePath: "assets/jutsu/windwindversteck_vakuumexplosion.png"
     },
     {
         id: "wind_188",
@@ -1227,7 +1227,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Nutzt Winddruck um Gegner festzuhalten Gegner ist Handlungsunfähig Chakra: 20+5p",
-        imagePath: "jutsu-images/wind/Windversteck_Windfessel_Jutsu.png"
+        imagePath: "assets/jutsu/windwindversteck_windfessel_jutsu.png"
     },
     {
         id: "wind_189",
@@ -1243,7 +1243,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Erzeugt einen starken Windstoß Wirft Gegner zurück Chakra: 25 Reichweite: 30M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Erzeugt einen starken Windstoß Wirft Gegner zurück Chakra: 25 Reichweite: 30M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Windkugel_Jutsu.png"
+        imagePath: "assets/jutsu/windwindversteck_windkugel_jutsu.png"
     },
     {
         id: "wind_190",
@@ -1259,7 +1259,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Schärft Waffen mit Windenergie Kann auch Chakraangriffe verstärken Chakra: 10 Reichweite: Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Schärft Waffen mit Windenergie Kann auch Chakraangriffe verstärken Chakra: 10 Reichweite: Schaden: 1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Windschneide_Technik.png"
+        imagePath: "assets/jutsu/windwindversteck_windschneide_technik.png"
     },
     {
         id: "wind_191",
@@ -1275,7 +1275,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Erzeugt präzise unsichtbare Schneide aus Wind Wirft Gegner 5M zurück Chakra: 50 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt präzise unsichtbare Schneide aus Wind Wirft Gegner 5M zurück Chakra: 50 Reichweite: 30M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Windsto_.png"
+        imagePath: "assets/jutsu/windwindversteck_windsto_.png"
     },
     {
         id: "wind_192",
@@ -1291,7 +1291,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Eine riesige Winddruckwelle Flächenschaden auf Umkreis von 30M Chakra: 160 Reichweite: 70M Schaden: 6W20 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Eine riesige Winddruckwelle Flächenschaden auf Umkreis von 30M Chakra: 160 Reichweite: 70M Schaden: 6W20 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Windsturm_des_Himmels.png"
+        imagePath: "assets/jutsu/windwindversteck_windsturm_des_himmels.png"
     },
     {
         id: "wind_193",
@@ -1307,7 +1307,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Erzeugt eine Schutzwand aus Windchakra 20HP Schild , wenn ein Angriff die HP überschreitet springt der Schaden auf den Anwender um Chakra: 65 Reichweite: / Schaden: / Aktuell Ch",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt eine Schutzwand aus Windchakra 20HP Schild , wenn ein Angriff die HP überschreitet springt der Schaden auf den Anwender um Chakra: 65 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/wind/Windversteck_Windwand.png"
+        imagePath: "assets/jutsu/windwindversteck_windwand.png"
     },
 
     // ==================== BLITZ ====================
@@ -1325,7 +1325,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Erschafft einen Doppelgänger aus Blitzen Gegner Muss einen W100 werfen 0-49 Doppelgänger, 50-99 den Anwender, 100 kritisch Chakra: 90 Reichweite: / Schaden: / Aktuell Chakra: Sc",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Erschafft einen Doppelgänger aus Blitzen Gegner Muss einen W100 werfen 0-49 Doppelgänger, 50-99 den Anwender, 100 kritisch Chakra: 90 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzdoppelg_nger.png"
+        imagePath: "assets/jutsu/blitzblitzdoppelg_nger.png"
     },
     {
         id: "blitz_002",
@@ -1341,7 +1341,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Entlädt explosionsartig Chakra Jede Person innerhalb von 10M erleidet Schaden Chakra: 70 Reichweite: 40M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Entlädt explosionsartig Chakra Jede Person innerhalb von 10M erleidet Schaden Chakra: 70 Reichweite: 40M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzbombe.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzbombe.png"
     },
     {
         id: "blitz_003",
@@ -1357,7 +1357,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Verstärkte Schläge mit elektrischem Chakra Bei Treffer, kann der Gegner geschockt werden 1W12, 6+ dann geschockt 1W4 Schaden Chakra: 19 Reichweite: / Schaden: 2W6 Aktuell Chakra",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Verstärkte Schläge mit elektrischem Chakra Bei Treffer, kann der Gegner geschockt werden 1W12, 6+ dann geschockt 1W4 Schaden Chakra: 19 Reichweite: / Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzfaust.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzfaust.png"
     },
     {
         id: "blitz_004",
@@ -1373,7 +1373,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Bildet ein Schwert aus Elektrizität Bei Treffer 1W4 Blutungsschaden Chakra: 75 Reichweite: Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Bildet ein Schwert aus Elektrizität Bei Treffer 1W4 Blutungsschaden Chakra: 75 Reichweite: Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzklinge.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzklinge.png"
     },
     {
         id: "blitz_005",
@@ -1389,7 +1389,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Erzeugt mehrere Blitzschläge in schneller Folge Kann mehrere Ziele angreifen Chakra: 90 Reichweite: 40M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Erzeugt mehrere Blitzschläge in schneller Folge Kann mehrere Ziele angreifen Chakra: 90 Reichweite: 40M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzreigen.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzreigen.png"
     },
     {
         id: "blitz_006",
@@ -1405,7 +1405,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Bildet eine Schutzwand aus Chakra Erzeugt ein Schild mit 20-HP, sollte ein Angriff mehr Schaden machen springt der Schaden über Chakra: 80 Reichweite: Schaden: / Aktuell Chakra:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Bildet eine Schutzwand aus Chakra Erzeugt ein Schild mit 20-HP, sollte ein Angriff mehr Schaden machen springt der Schaden über Chakra: 80 Reichweite: Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzschild.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzschild.png"
     },
     {
         id: "blitz_007",
@@ -1421,7 +1421,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: D-Rang Erzeugt einen kleinen Stromschlag Ausweichen wird durch eine Lähmung in der nächsten Runde um 1 erschwert Chakra: 20 Reichweite: / Schaden: 1W8 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Ninjutsu Stufe: D-Rang Erzeugt einen kleinen Stromschlag Ausweichen wird durch eine Lähmung in der nächsten Runde um 1 erschwert Chakra: 20 Reichweite: / Schaden: 1W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Blitzschock.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_blitzschock.png"
     },
     {
         id: "blitz_008",
@@ -1437,7 +1437,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Schießt mehrere Blitze in Speerform vom Himmel Bei Treffer -3 auf Initiative Chakra: 70 Reichweite: 35M Schaden: 3x2W4 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Schießt mehrere Blitze in Speerform vom Himmel Bei Treffer -3 auf Initiative Chakra: 70 Reichweite: 35M Schaden: 3x2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Donnerspeer.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_donnerspeer.png"
     },
     {
         id: "blitz_009",
@@ -1453,7 +1453,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Schießt mehrere Blitze in Form von Drachen Kann mehrere Ziele angreifen Chakra: 80 Reichweite: 30M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Schießt mehrere Blitze in Form von Drachen Kann mehrere Ziele angreifen Chakra: 80 Reichweite: 30M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Falscher_Drache.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_falscher_drache.png"
     },
     {
         id: "blitz_010",
@@ -1469,7 +1469,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Entlädt Strom über den Boden oder Wasser Gegner kann nächste Runde keine Bewegung ausführen Chakra: 25 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Entlädt Strom über den Boden oder Wasser Gegner kann nächste Runde keine Bewegung ausführen Chakra: 25 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_L_hmender_Stromschlag.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_l_hmender_stromschlag.png"
     },
     {
         id: "blitz_011",
@@ -1485,7 +1485,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Eine extrem starke Variante des Blitzchakras Ausweichen unmöglich Chakra: 90 Reichweite: 35M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Eine extrem starke Variante des Blitzchakras Ausweichen unmöglich Chakra: 90 Reichweite: 35M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Blitzversteck_Schwarzer_Blitz.png"
+        imagePath: "assets/jutsu/blitzblitzversteck_schwarzer_blitz.png"
     },
     {
         id: "blitz_012",
@@ -1501,7 +1501,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender leite Chidori in sein Schwert Angriffe mit dem Schwert +4W8 Chakra: 65+20p",
-        imagePath: "jutsu-images/blitz/Chidori_Klinge.png"
+        imagePath: "assets/jutsu/blitzchidori_klinge.png"
     },
     {
         id: "blitz_013",
@@ -1517,7 +1517,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Ein Spieß der aus Blitz geformt ist und Gegner durchdringen kann Bei Treffer verliert Gegner seine nächste Aktion Chakra: 90 Reichweite: 60M Schaden: 4W10 Aktuell Chakra: Schade",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Ein Spieß der aus Blitz geformt ist und Gegner durchdringen kann Bei Treffer verliert Gegner seine nächste Aktion Chakra: 90 Reichweite: 60M Schaden: 4W10 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Chidori_Spie_.png"
+        imagePath: "assets/jutsu/blitzchidori_spie_.png"
     },
     {
         id: "blitz_014",
@@ -1533,7 +1533,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: 4W6 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender umhüllt sich mit Blitzen Trifft zu Rundenbeginn den nächsten Gegner Nahkampfangriff gegen Anwender 2W6 Schaden Chakra: 70+20p",
-        imagePath: "jutsu-images/blitz/Chidori_Str_mung.png"
+        imagePath: "assets/jutsu/blitzchidori_str_mung.png"
     },
     {
         id: "blitz_015",
@@ -1549,7 +1549,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender konzentriert Chakra zu großen Blitzen Ausweichen für das Ziel erschwert um 5 Chakra: 85 Reichweite: / Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender konzentriert Chakra zu großen Blitzen Ausweichen für das Ziel erschwert um 5 Chakra: 85 Reichweite: / Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Chidori_Tausend_V_gel.png"
+        imagePath: "assets/jutsu/blitzchidori_tausend_v_gel.png"
     },
     {
         id: "blitz_016",
@@ -1565,7 +1565,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender schießt einen Blitzhund auf seinen Gegner Bei Treffer Blutung 1W4 pro Runde Chakra: 25 Reichweite: 25M Schaden: 2W8 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender schießt einen Blitzhund auf seinen Gegner Bei Treffer Blutung 1W4 pro Runde Chakra: 25 Reichweite: 25M Schaden: 2W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Donnerbestie.png"
+        imagePath: "assets/jutsu/blitzdonnerbestie.png"
     },
     {
         id: "blitz_017",
@@ -1581,7 +1581,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender schießt einen riesigen Blitzstrahl Flächenschaden 5M Kreis Chakra: 60 Reichweite: 40M Schaden: 2W10 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender schießt einen riesigen Blitzstrahl Flächenschaden 5M Kreis Chakra: 60 Reichweite: 40M Schaden: 2W10 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Dunkele_T_uschung.png"
+        imagePath: "assets/jutsu/blitzdunkele_t_uschung.png"
     },
     {
         id: "blitz_018",
@@ -1597,7 +1597,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Anwender umhüllt sich mit Chakra und schlägt von oben herab auf seinen Gegner Ausweichen erschwert um 1 Chakra: 22 Reichweite: / Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Anwender umhüllt sich mit Chakra und schlägt von oben herab auf seinen Gegner Ausweichen erschwert um 1 Chakra: 22 Reichweite: / Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Horizontaler_Blitzschlag.png"
+        imagePath: "assets/jutsu/blitzhorizontaler_blitzschlag.png"
     },
     {
         id: "blitz_019",
@@ -1613,7 +1613,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Anwender formt riesigen Drachen aus Blitzen Ausweichen unmöglich Bei Gewitter sinkt Chakrakosten um 50 Chakra: 200 Reichweite: 60M Schaden: 8W12 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Anwender formt riesigen Drachen aus Blitzen Ausweichen unmöglich Bei Gewitter sinkt Chakrakosten um 50 Chakra: 200 Reichweite: 60M Schaden: 8W12 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Kirin.png"
+        imagePath: "assets/jutsu/blitzkirin.png"
     },
     {
         id: "blitz_020",
@@ -1629,7 +1629,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: A-Rang Anwender umhüllt sich mit Chakra um einen heftigen Schlag mit seinem Unterarm auszuführen Chakra: 85 Reichweite: / Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Taijutsu Stufe: A-Rang Anwender umhüllt sich mit Chakra um einen heftigen Schlag mit seinem Unterarm auszuführen Chakra: 85 Reichweite: / Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Lariat.png"
+        imagePath: "assets/jutsu/blitzlariat.png"
     },
     {
         id: "blitz_021",
@@ -1645,7 +1645,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Anwender fokussiert Blitze in seine Hand Ausweichen unmöglich Chakra: 140 Reichweite: / Schaden: 6W12 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Anwender fokussiert Blitze in seine Hand Ausweichen unmöglich Chakra: 140 Reichweite: / Schaden: 6W12 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Raikiri.png"
+        imagePath: "assets/jutsu/blitzraikiri.png"
     },
     {
         id: "blitz_022",
@@ -1661,7 +1661,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Entstehung eines schwarzen Panthers aus Blitzen Bei Treffer 1W4 Blutungsschaden Chakra: 70 Reichweite: 20M Schaden: 3W10 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Entstehung eines schwarzen Panthers aus Blitzen Bei Treffer 1W4 Blutungsschaden Chakra: 70 Reichweite: 20M Schaden: 3W10 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/blitz/Schwarzer_Panther.png"
+        imagePath: "assets/jutsu/blitzschwarzer_panther.png"
     },
 
     // ==================== KRISTALL ====================
@@ -1679,7 +1679,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Man formt Drachen aus Kristallen auf dem man reiten kann während des Angriffs Flugbewegung, oder Angriff pro Runde Chakra: 85 Reichweite: 70M Schaden: 3W8 Aktuell Chakra: Schade",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Man formt Drachen aus Kristallen auf dem man reiten kann während des Angriffs Flugbewegung, oder Angriff pro Runde Chakra: 85 Reichweite: 70M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Jutsu_des_gro_en_Kristalldrachens.png"
+        imagePath: "assets/jutsu/kristalljutsu_des_gro_en_kristalldrachens.png"
     },
     {
         id: "kristall_074",
@@ -1695,7 +1695,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Aus dem Kristallspiegel kommen Doppelgänger W100, 0-49 Doppelgänger, 50-99 Anwender 100 trifft den Anwender kritisch Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Aus dem Kristallspiegel kommen Doppelgänger W100, 0-49 Doppelgänger, 50-99 Anwender 100 trifft den Anwender kritisch Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristalldoppelg_nger.png"
+        imagePath: "assets/jutsu/kristallkristalldoppelg_nger.png"
     },
     {
         id: "kristall_075",
@@ -1711,7 +1711,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Dornen aus Kristall wachsen in eine Richtung Gegner festgesetzt für 1 Runde 1W12 bei 6 oder höher blutet das Ziel für 1W4 Chakra: 65 Reichweite: 20M Schaden: 2W8 Aktuell Chakra:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Dornen aus Kristall wachsen in eine Richtung Gegner festgesetzt für 1 Runde 1W12 bei 6 oder höher blutet das Ziel für 1W4 Chakra: 65 Reichweite: 20M Schaden: 2W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristalldornen.png"
+        imagePath: "assets/jutsu/kristallkristalldornen.png"
     },
     {
         id: "kristall_076",
@@ -1727,7 +1727,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Verstärkt Körperteile mit Kristallen RK+1 Alle Erdjutsus halbierter Schaden Chakra: 30+5p",
-        imagePath: "jutsu-images/kristall/Kristallr_stung.png"
+        imagePath: "assets/jutsu/kristallkristallr_stung.png"
     },
     {
         id: "kristall_077",
@@ -1743,7 +1743,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Es wird ein Kristallspiegel erschaffen Blockt 1 Angriff oder reflektiert mit 50% Chance Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Es wird ein Kristallspiegel erschaffen Blockt 1 Angriff oder reflektiert mit 50% Chance Chakra: 25 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallspiegel.png"
+        imagePath: "assets/jutsu/kristallkristallspiegel.png"
     },
     {
         id: "kristall_078",
@@ -1759,7 +1759,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Lässt Kristallblüten wachsen die Gegner zerquetschen oder einschließen &lt;50% HP festgesetzt, Rettungwurf nötig Chakra: 90 Reichweite: 30M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Lässt Kristallblüten wachsen die Gegner zerquetschen oder einschließen &lt;50% HP festgesetzt, Rettungwurf nötig Chakra: 90 Reichweite: 30M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallbl_ten_Jutsu.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallbl_ten_jutsu.png"
     },
     {
         id: "kristall_079",
@@ -1775,7 +1775,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Schneeflockenartige Kristalle umschließen Gegner Ziel fängt an zu Bluten 1W4 pro Runde Chakra: 65 Reichweite: 35M Schaden: 4W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Schneeflockenartige Kristalle umschließen Gegner Ziel fängt an zu Bluten 1W4 pro Runde Chakra: 65 Reichweite: 35M Schaden: 4W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallbl_tensturm.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallbl_tensturm.png"
     },
     {
         id: "kristall_080",
@@ -1791,7 +1791,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Fesselt Gegner mit Kristallsäulen oder Ketten Ziel wird für 1 Runde handlungsunfähig Rettungswurf möglich Chakra: 85 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Fesselt Gegner mit Kristallsäulen oder Ketten Ziel wird für 1 Runde handlungsunfähig Rettungswurf möglich Chakra: 85 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallfessel.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallfessel.png"
     },
     {
         id: "kristall_081",
@@ -1807,7 +1807,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Erschafft Terrain aus Kristall zum einsperren 50M Gebiet, Bewegung halbiert Gegner gefangen Chakra: 160 Reichweite: 60M Schaden: 6W12Fläche Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Erschafft Terrain aus Kristall zum einsperren 50M Gebiet, Bewegung halbiert Gegner gefangen Chakra: 160 Reichweite: 60M Schaden: 6W12Fläche Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallgebirge.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallgebirge.png"
     },
     {
         id: "kristall_082",
@@ -1823,7 +1823,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 10M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Gegner wird in Kristall eingeschlossen Ziel wird für 3 Runden handlungsunfähig Rettungswurf möglich Chakra: 25+7p",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallgef_ngnis.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallgef_ngnis.png"
     },
     {
         id: "kristall_083",
@@ -1839,7 +1839,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Bildet massive Mauer aus Kristall 20HP Mauer, wird HP überschritten mit Schaden, springt der restliche auf Anwender über Chakra: 80 Reichweite: / Schaden: / Aktuell Chakra: Scha",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Bildet massive Mauer aus Kristall 20HP Mauer, wird HP überschritten mit Schaden, springt der restliche auf Anwender über Chakra: 80 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallmauer.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallmauer.png"
     },
     {
         id: "kristall_084",
@@ -1855,7 +1855,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Lässt kleine Kristallsplitter regnen 10M Radius für 1 Runde alle im Bereich Schaden Chakra: 60 Reichweite: 40M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Lässt kleine Kristallsplitter regnen 10M Radius für 1 Runde alle im Bereich Schaden Chakra: 60 Reichweite: 40M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallregen.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallregen.png"
     },
     {
         id: "kristall_085",
@@ -1871,7 +1871,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Erzeugt scharfe Kristallspeere -1 RK Chakra: 25 Reichweite: 35M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Erzeugt scharfe Kristallspeere -1 RK Chakra: 25 Reichweite: 35M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Kristallversteck_Kristallspeer_Jutsu.png"
+        imagePath: "assets/jutsu/kristallkristallversteck_kristallspeer_jutsu.png"
     },
     {
         id: "kristall_086",
@@ -1887,7 +1887,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Kristallspirale die auf Gegner feuert Trifft bis zu 2 nahe Ziele (5M Abstand) Chakra: 22 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Kristallspirale die auf Gegner feuert Trifft bis zu 2 nahe Ziele (5M Abstand) Chakra: 22 Reichweite: 25M Schaden: 2x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kristall/Wilder_Tanz_der_Shuriken.png"
+        imagePath: "assets/jutsu/kristallwilder_tanz_der_shuriken.png"
     },
 
     // ==================== KAGUYA ====================
@@ -1905,7 +1905,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Verstärkt Dichte und Härte der Knochen RK+2, immun gegen Statuseffekte Chakra: 55+10p",
-        imagePath: "jutsu-images/kaguya/Knochenh_rtung.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_063",
@@ -1921,7 +1921,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Knochenstruktur kontrollierbar und zu verhärten Alle Knochenjutsus +1W6 Schaden Chakra: 85 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Knochenstruktur kontrollierbar und zu verhärten Alle Knochenjutsus +1W6 Schaden Chakra: 85 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Knochenmanupulation_Leichenknochen_Puls.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_064",
@@ -1937,7 +1937,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Anwender wächst in alle Richtungen Knochen dreht sich dann um die eigene Achse Gegner in 5M Radius erleiden 1W8 Schaden RK von Anwender für die Runde +3 Chakra: 80 Reichweite: 5",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Anwender wächst in alle Richtungen Knochen dreht sich dann um die eigene Achse Gegner in 5M Radius erleiden 1W8 Schaden RK von Anwender für die Runde +3 Chakra: 80 Reichweite: 5M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/L_rchentanz.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_065",
@@ -1953,7 +1953,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Körper regeneriert gebrochene Knochen Regeneriert +1W8 HP entfern Blutung und Brüche Chakra: 90 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Körper regeneriert gebrochene Knochen Regeneriert +1W8 HP entfern Blutung und Brüche Chakra: 90 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Selbstheilung_durch_Knochenregeneration.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_066",
@@ -1969,7 +1969,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Anwender verwandelt Arm in Knochenspeer Bei Treffer RK halbiert für 1 Runde Chakra: 60 Reichweite: 5M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Anwender verwandelt Arm in Knochenspeer Bei Treffer RK halbiert für 1 Runde Chakra: 60 Reichweite: 5M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Tanz_der_Clemantis_Die_Bl_te.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_067",
@@ -1985,7 +1985,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Anwender zieht Wirbelsäule raus zum angreifen RK+1 Chakra: 40 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Anwender zieht Wirbelsäule raus zum angreifen RK+1 Chakra: 40 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Tanz_der_Clemantis_Die_Ranke.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_068",
@@ -2001,7 +2001,7 @@ const JUTSU_DATA = [
         effect: "R Chakra: 160 Reichweite: 40M Schaden: 6W12 Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Anwender lässt 1000 Knochen aus dem Boden wachsen um Gegner aufzuspießen Gebiet 15M, festsetzten und Blutung 2W8p",
-        imagePath: "jutsu-images/kaguya/Tanz_der_Farnknospe.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_069",
@@ -2017,7 +2017,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: A-Rang Anwender zieht Knochen aus Schulter Jeder Treffer ignoriert Rüstung Chakra: 95 Reichweite: 5M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Taijutsu Stufe: A-Rang Anwender zieht Knochen aus Schulter Jeder Treffer ignoriert Rüstung Chakra: 95 Reichweite: 5M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Tanz_der_Kamelije.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_070",
@@ -2033,7 +2033,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Anwender lässt Knochen aus Handgelenk wachsen Bei Treffer Blutung für 1W6 Schaden pro Runde Chakra: 45 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Anwender lässt Knochen aus Handgelenk wachsen Bei Treffer Blutung für 1W6 Schaden pro Runde Chakra: 45 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Tanz_der_Weide.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_071",
@@ -2049,7 +2049,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Erzeugt dünne scharfe Knochen aus den Armen und den Händen Ignoriert 2 RK Chakra: 18 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Erzeugt dünne scharfe Knochen aus den Armen und den Händen Ignoriert 2 RK Chakra: 18 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Tanz_des_Weidenbaums.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "kaguya_072",
@@ -2065,7 +2065,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Anwender schießt Fingerkuppen auf Gegner Durchdringend, keine Abwehr möglich Chakra: 25 Reichweite: 20M Schaden: 3x1W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Anwender schießt Fingerkuppen auf Gegner Durchdringend, keine Abwehr möglich Chakra: 25 Reichweite: 20M Schaden: 3x1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/kaguya/Zehn_Fingerpistolenkugeln.png"
+        imagePath: "assets/jutsu/default.png"
     },
 
     // ==================== NARA ====================
@@ -2083,7 +2083,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 40M Schaden: 2W10p",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Riesiger Bereich wird in Schatten gehüllt Gebietskontrolle, Nachteil für Gegner, 40M Radius Chakra: 120+20p",
-        imagePath: "jutsu-images/nara/Jutsu_der_Schattenfinsternis.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_088",
@@ -2099,7 +2099,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender nimmt mehrere Feinde mit Schatten gefangen und zieht diese heran Fesselt bist zu 3 Ziele gleichzeitig Chakra: 50 Reichweite: 25M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender nimmt mehrere Feinde mit Schatten gefangen und zieht diese heran Fesselt bist zu 3 Ziele gleichzeitig Chakra: 50 Reichweite: 25M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Jutsu_der_schwarzen_Spinne.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_089",
@@ -2115,7 +2115,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender erschafft Schattenhand die Gegner würgt Ziel kann eine Runde nicht reagieren, kann nur mit Schattenbesitz benutzt werden Chakra: 20 Reichweite: / Schaden: 2W4 Aktuell C",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender erschafft Schattenhand die Gegner würgt Ziel kann eine Runde nicht reagieren, kann nur mit Schattenbesitz benutzt werden Chakra: 20 Reichweite: / Schaden: 2W4 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Jutsu_des_Hals_W_rgegriffs.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_090",
@@ -2131,7 +2131,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender verbindet seinen Schatten mit Gegner Ziel ist bewegungsunfähig, spiegelt Atkionen wieder Chakra: 30+5p",
-        imagePath: "jutsu-images/nara/Jutsu_des_Schattenbesitzes.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_091",
@@ -2147,7 +2147,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender verbindet Schatten mit Gegner um ihn dadurch durch die Luft zu schleudern Ziel wird 10M geworfen Chakra: 45 Reichweite: 25M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender verbindet Schatten mit Gegner um ihn dadurch durch die Luft zu schleudern Ziel wird 10M geworfen Chakra: 45 Reichweite: 25M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Jutsu_des_Schattengriffs.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_092",
@@ -2163,7 +2163,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender lässt Schatten wie Peitschen schwingen Mehrfachtreffer Chakra: 75 Reichweite: 5M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender lässt Schatten wie Peitschen schwingen Mehrfachtreffer Chakra: 75 Reichweite: 5M Schaden: 3x2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Jutsu_des_Schattenn_hens.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_093",
@@ -2179,7 +2179,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Verringert Bewegung des Gegners Bewegungsrate -5M, Ausweichen nicht mehr möglich Chakra: 20 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Verringert Bewegung des Gegners Bewegungsrate -5M, Ausweichen nicht mehr möglich Chakra: 20 Reichweite: 20M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Schatten_Hemmtechnik.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_094",
@@ -2195,7 +2195,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender verbindet Schatten mit Verbündetem der bei Berührung mit Gegner den Schatten überträgt Verbindung mit Schatten des Gegners Chakra: 20+5p",
-        imagePath: "jutsu-images/nara/Schattenbesitz_der_Schattenfessel_Technik.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "nara_095",
@@ -2211,7 +2211,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Legt Schattenfalle wenn Gegner betritt wird aktiviert Fixiert Ziel beim betreten der Falle Chakra: 25 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Legt Schattenfalle wenn Gegner betritt wird aktiviert Fixiert Ziel beim betreten der Falle Chakra: 25 Reichweite: 15M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/nara/Schattenfesselungs_Falle.png"
+        imagePath: "assets/jutsu/default.png"
     },
 
     // ==================== UCHIHA ====================
@@ -2229,7 +2229,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Doujutsu Stufe: C-Rang Der Besitzer kann Chakra fließen sehen +2 Wahrnehmung &amp; Genjutsu Erkennung Rettungswürfe dafür +1 Chakra: 30+10p",
-        imagePath: "jutsu-images/uchiha/Sharingan.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "uchiha_148",
@@ -2245,7 +2245,7 @@ const JUTSU_DATA = [
         effect: "Doujutsu Stufe: B-Rang Anwender kann Bewegungen vorhersehen +2 Ausweichen Chakra: 10 Reichweite: 40M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Doujutsu Stufe: B-Rang Anwender kann Bewegungen vorhersehen +2 Ausweichen Chakra: 10 Reichweite: 40M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/uchiha/Sharingan_Bewegungserkennung.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "uchiha_149",
@@ -2261,7 +2261,7 @@ const JUTSU_DATA = [
         effect: "Doujutsu Stufe: B-Rang Anwender kann mit Augenkontakt Ziel in Genjutsu einfangen Ziel ist verwirrt, Effekt frei definierbar Chakra: Jutsu Reichweite: 40M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Doujutsu Stufe: B-Rang Anwender kann mit Augenkontakt Ziel in Genjutsu einfangen Ziel ist verwirrt, Effekt frei definierbar Chakra: Jutsu Reichweite: 40M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/uchiha/Sharingan_Genjutsu_bei_Augenkontakt.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "uchiha_150",
@@ -2277,7 +2277,7 @@ const JUTSU_DATA = [
         effect: "Doujutsu Stufe: B-Rang Anwender kann wenn Voraussetzungen gegeben sind das Jutsu des Gegners kopieren Elementaffinität muss gegeben sein, Chakra und Schaden hängt vom Jutsu ab Chakra: Jutsu Reichweite",
         modifier: -3,
         description: "Doujutsu Stufe: B-Rang Anwender kann wenn Voraussetzungen gegeben sind das Jutsu des Gegners kopieren Elementaffinität muss gegeben sein, Chakra und Schaden hängt vom Jutsu ab Chakra: Jutsu Reichweite: Blickkontakt Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/uchiha/Sharingan_Jutsu_kopieren.png"
+        imagePath: "assets/jutsu/default.png"
     },
 
     // ==================== PUPPE ====================
@@ -2295,7 +2295,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Anwender übertrag Sinne auf seine Puppe Anwender steuert Puppe wie seinen Körper, Anwender bleibt regungslos liegen Chakra: 30+5p",
-        imagePath: "jutsu-images/puppe/Jutsu_der_lebenden_Marionette.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_137",
@@ -2311,7 +2311,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: 1W6+Waffe Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender fährt Waffe aus Puppe aus Marionette greift mit versteckter Waffe an Chakra: 12p",
-        imagePath: "jutsu-images/puppe/Jutsu_der_Marionetten_Klinge.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_138",
@@ -2327,7 +2327,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Anwender setzt Marionette wieder zusammen Marionette wird wiederhergestellt, Dauer 2 Runden bis vollständig repariert Chakra: 15 Reichweite: 30M Schaden: / Aktuell Chakra: Schad",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender setzt Marionette wieder zusammen Marionette wird wiederhergestellt, Dauer 2 Runden bis vollständig repariert Chakra: 15 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/puppe/Jutsu_der_Marionettenheilung.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_139",
@@ -2343,7 +2343,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: S-Rang Anwender wandelt Leiche in Puppe um Kann alle Jutsus der Leiche anwenden Chakra: 160 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Kenjutsu Stufe: S-Rang Anwender wandelt Leiche in Puppe um Kann alle Jutsus der Leiche anwenden Chakra: 160 Reichweite: / Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/puppe/Jutsu_der_menschen_Marionette.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_140",
@@ -2359,7 +2359,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender nutzt seine Puppe für Nahkampfangriff Anwender schickt seine Marionette in Nahmkampf Chakra: 7p",
-        imagePath: "jutsu-images/puppe/Jutsu_des_Marionetten_Angriffs.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_141",
@@ -2375,7 +2375,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Anwender schließt Gegner in Marionette ein Chakra: 35p",
-        imagePath: "jutsu-images/puppe/Jutsu_des_Marionetten_Gef_ngnisses.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_142",
@@ -2391,7 +2391,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Anwender erzeugt mit Armen ein Chakraschild Schild 25 HP wenn Schaden über HP geht kriegt der Anwender den restlichen Schaden Chakra: 45 Reichweite: 30M Schaden: / Aktuell Chakr",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Anwender erzeugt mit Armen ein Chakraschild Schild 25 HP wenn Schaden über HP geht kriegt der Anwender den restlichen Schaden Chakra: 45 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/puppe/Jutsu_des_Marionetten_Chakraschildes.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_143",
@@ -2407,7 +2407,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Anwender tauscht mit Marionette Platz Chakra: 20 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Anwender tauscht mit Marionette Platz Chakra: 20 Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/puppe/Jutsu_des_Marionettentausches.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_144",
@@ -2423,7 +2423,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender kann mit Puppen die er durch Chakrafäden kontrolliert angreifen Dies ist das Hauptjutsu für Marionettenjutsu Chakra: 12+5p",
-        imagePath: "jutsu-images/puppe/Kunst_der_Marionetten.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_145",
@@ -2439,7 +2439,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Anwender erzeugt eigenes Jutsu aus Marionette Ziel führt Bewegungen und Aktionen des Anwenders aus, für mehr wird höheres Level benötigt Chakra: 10+Jutsu Reichweite: 30M+Jutsu S",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender erzeugt eigenes Jutsu aus Marionette Ziel führt Bewegungen und Aktionen des Anwenders aus, für mehr wird höheres Level benötigt Chakra: 10+Jutsu Reichweite: 30M+Jutsu Schaden: 1W4+Jutsu Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/puppe/Kunst_des_Marionettenschusses.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "puppe_146",
@@ -2455,7 +2455,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 30M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Verbindet Chakrafäden mit einem Menschen Ziel führt Bewegungen und Aktionen des Anwenders aus, für mehr wird höheres Level benötigt Chakra: 50+10p",
-        imagePath: "jutsu-images/puppe/Puppenspiel_gekonnte_Leistung_mit_einem_menschlichen_K_rper.png"
+        imagePath: "assets/jutsu/default.png"
     },
 
     // ==================== NEUTRAL ====================
@@ -2489,7 +2489,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: S-Rang Anwender deutet an sein Schwert zu ziehen doch ist einfach nur zu schnell das man es nicht sieht Unausweichbar und nicht konterbar RK ignoriert Chakra: 140 Reichweite: 40M Schad",
         modifier: -5,
         description: "Kenjutsu Stufe: S-Rang Anwender deutet an sein Schwert zu ziehen doch ist einfach nur zu schnell das man es nicht sieht Unausweichbar und nicht konterbar RK ignoriert Chakra: 140 Reichweite: 40M Schaden: 8W10 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Blitz_Schnitt.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_097",
@@ -2505,7 +2505,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Chakra um die Waffe erzeugt, härte Schläge +1W6 Waffenschaden Chakra: 18+10p",
-        imagePath: "jutsu-images/neutral/Chakra_Klinge.png"
+        imagePath: "assets/jutsu/neutralchakra_klinge.png"
     },
     {
         id: "neutral_098",
@@ -2521,7 +2521,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: A-Rang Gegner wird mit Wucht aus Chakra zerschlitzt die Stoßwellen in alle Richtung erzeugt Angriff trifft mehrere Ziele Chakra: 90 Reichweite: 10M Schaden: 5x1W8 Aktuell Chakra: Schad",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Gegner wird mit Wucht aus Chakra zerschlitzt die Stoßwellen in alle Richtung erzeugt Angriff trifft mehrere Ziele Chakra: 90 Reichweite: 10M Schaden: 5x1W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Chakra_Druckwellenschnitt.png"
+        imagePath: "assets/jutsu/neutralchakra_druckwellenschnitt.png"
     },
     {
         id: "neutral_099",
@@ -2537,7 +2537,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: A-Rang Schwerthieb der Chakraladung auslöst Chakra Wiederstand wird ignoriert Chakra: 85 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Schwerthieb der Chakraladung auslöst Chakra Wiederstand wird ignoriert Chakra: 85 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Hadan.png"
+        imagePath: "assets/jutsu/neutralhadan.png"
     },
     {
         id: "neutral_100",
@@ -2553,7 +2553,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Schwert wird aus der Schwertscheide gezogen und ein vertikaler Hieb ausgeführt Krit bei Überraschung Chakra: 50 Reichweite: 5M Schaden: 4W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Schwert wird aus der Schwertscheide gezogen und ein vertikaler Hieb ausgeführt Krit bei Überraschung Chakra: 50 Reichweite: 5M Schaden: 4W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Iai_Enthauptung.png"
+        imagePath: "assets/jutsu/neutraliai_enthauptung.png"
     },
     {
         id: "neutral_101",
@@ -2569,7 +2569,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Chakraverstärkter Schwerthieb der schießt Chakra: 24 Reichweite: 15M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Chakraverstärkter Schwerthieb der schießt Chakra: 24 Reichweite: 15M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Issen.png"
+        imagePath: "assets/jutsu/neutralissen.png"
     },
     {
         id: "neutral_102",
@@ -2585,7 +2585,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Schwingt Schwert nach vorne, allerdings greift er stattdessen hinter sich an Chakra: 55 Reichweite: 25M Schaden: 3W8 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Schwingt Schwert nach vorne, allerdings greift er stattdessen hinter sich an Chakra: 55 Reichweite: 25M Schaden: 3W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_der_Mondsichel.png"
+        imagePath: "assets/jutsu/neutraljutsu_der_mondsichel.png"
     },
     {
         id: "neutral_103",
@@ -2601,7 +2601,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Anwender atmet tief ein um Sauerstoff zu erhöhen +1W6 Schaden, +3 RK, +3 INI hält 3 Runden Nach gebrauch verliert der Anwender 2 Stamina Chakra: 45 Reichweite: 5M Schaden: / Akt",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Anwender atmet tief ein um Sauerstoff zu erhöhen +1W6 Schaden, +3 RK, +3 INI hält 3 Runden Nach gebrauch verliert der Anwender 2 Stamina Chakra: 45 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_des_ausstr_menden_Atems.png"
+        imagePath: "assets/jutsu/neutraljutsu_des_ausstr_menden_atems.png"
     },
     {
         id: "neutral_104",
@@ -2617,7 +2617,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: A-Rang Erzeugt eine Druckwelle aus Chakra Unausweichbar Chakra: 95 Reichweite: 40M Schaden: 6W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Erzeugt eine Druckwelle aus Chakra Unausweichbar Chakra: 95 Reichweite: 40M Schaden: 6W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_des_Himmelsschnittes.png"
+        imagePath: "assets/jutsu/neutraljutsu_des_himmelsschnittes.png"
     },
     {
         id: "neutral_105",
@@ -2633,7 +2633,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: B-Rang Erzeugt Nachbilder seiner Waffe Gegner muss GW Rettungswurf schaffen um handeln zu dürfen Chakra: 50 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Erzeugt Nachbilder seiner Waffe Gegner muss GW Rettungswurf schaffen um handeln zu dürfen Chakra: 50 Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_des_Spiegel_Schwertes.png"
+        imagePath: "assets/jutsu/neutraljutsu_des_spiegel_schwertes.png"
     },
     {
         id: "neutral_106",
@@ -2649,7 +2649,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Kenjutsu Stufe: B-Rang Anwender lässt Schwert schnell kreisen für ein nahezu perfektes Schild Anwender erhält 2 Schaden weniger und kontert Chakra: 45+8p",
-        imagePath: "jutsu-images/neutral/Jutsu_des_tanzenden_Schwertes.png"
+        imagePath: "assets/jutsu/neutraljutsu_des_tanzenden_schwertes.png"
     },
     {
         id: "neutral_107",
@@ -2665,7 +2665,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Chakra fließt durch klinge für Reichweite und man kann Chakra verschießen Chakra: 30 Reichweite: 5-10M Schaden: 2W8 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Chakra fließt durch klinge für Reichweite und man kann Chakra verschießen Chakra: 30 Reichweite: 5-10M Schaden: 2W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Samura_S_bel_Technik.png"
+        imagePath: "assets/jutsu/neutralsamura_s_bel_technik.png"
     },
     {
         id: "neutral_108",
@@ -2681,7 +2681,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: A-Rang Anwender erschafft 2 Doppelgänger der Abwehr erschwert Unausweichbar und nicht Konterbar -10 RK Chakra: 100 Reichweite: 5M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Kenjutsu Stufe: A-Rang Anwender erschafft 2 Doppelgänger der Abwehr erschwert Unausweichbar und nicht Konterbar -10 RK Chakra: 100 Reichweite: 5M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Tanz_der_Mondsichel.png"
+        imagePath: "assets/jutsu/neutraltanz_der_mondsichel.png"
     },
     {
         id: "neutral_109",
@@ -2697,7 +2697,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Anwender schnellt mit Schwertschlag zum Gegner Ignoriert 1 RK Chakra: 22 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender schnellt mit Schwertschlag zum Gegner Ignoriert 1 RK Chakra: 22 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Tr_be_Mondnacht.png"
+        imagePath: "assets/jutsu/neutraltr_be_mondnacht.png"
     },
     {
         id: "neutral_110",
@@ -2713,7 +2713,7 @@ const JUTSU_DATA = [
         effect: "Kenjutsu Stufe: C-Rang Anwender zieht schnell sein Schwert aus der Scheide und nach jedem Schlag wieder zurück Unausweichbare Attacke Chakra: 20 Reichweite: 5M Schaden: 1W8 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Kenjutsu Stufe: C-Rang Anwender zieht schnell sein Schwert aus der Scheide und nach jedem Schlag wieder zurück Unausweichbare Attacke Chakra: 20 Reichweite: 5M Schaden: 1W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Weg_des_Iai.png"
+        imagePath: "assets/jutsu/neutralweg_des_iai.png"
     },
     {
         id: "neutral_111",
@@ -2729,7 +2729,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: S-Rang Anwender steck Seele in lebenden Körper und übernimmt diesen Ruft Untoten Diener für 3 Runden Chakra: 160 Reichweite: Ritualkreis Schaden: / Aktuell Chakra: Schaden:",
         modifier: -5,
         description: "Ninjutsu Stufe: S-Rang Anwender steck Seele in lebenden Körper und übernimmt diesen Ruft Untoten Diener für 3 Runden Chakra: 160 Reichweite: Ritualkreis Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Edo_Tensei.png"
+        imagePath: "assets/jutsu/neutraledo_tensei.png"
     },
     {
         id: "neutral_112",
@@ -2745,7 +2745,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender erschafft Doppelgänger Angreifer W100=0-49 Doppelgänger, 50-100 Treffer ´ Chakra: 25 Reichweite: 10M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender erschafft Doppelgänger Angreifer W100=0-49 Doppelgänger, 50-100 Treffer ´ Chakra: 25 Reichweite: 10M Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_der_Nebeldoppelg_nger.png"
+        imagePath: "assets/jutsu/neutraljutsu_der_nebeldoppelg_nger.png"
     },
     {
         id: "neutral_113",
@@ -2761,7 +2761,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender kontrolliert die Lichtstrahlen um praktisch unsichtbar zu werden 2 Runden lang unsichtbar Chakra: 95 Reichweite: Selbst Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender kontrolliert die Lichtstrahlen um praktisch unsichtbar zu werden 2 Runden lang unsichtbar Chakra: 95 Reichweite: Selbst Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_der_Tarnung.png"
+        imagePath: "assets/jutsu/neutraljutsu_der_tarnung.png"
     },
     {
         id: "neutral_114",
@@ -2777,7 +2777,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender regeneriert Zellen einer Wunde 4W6 Heilung Chakra: 90 Reichweite: Selbst Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender regeneriert Zellen einer Wunde 4W6 Heilung Chakra: 90 Reichweite: Selbst Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_der_Zellregeneration.png"
+        imagePath: "assets/jutsu/neutraljutsu_der_zellregeneration.png"
     },
     {
         id: "neutral_115",
@@ -2793,7 +2793,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: C-Rang Anwender beschwört Lebewesen mit dem ein Pakt geschlossen wurde Chakra Kosten hängen von Stärke ab ´ Chakra: 30 Reichweite: Ritualkreis Schaden: / Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Ninjutsu Stufe: C-Rang Anwender beschwört Lebewesen mit dem ein Pakt geschlossen wurde Chakra Kosten hängen von Stärke ab ´ Chakra: 30 Reichweite: Ritualkreis Schaden: / Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_des_vertrauten_Geistes.png"
+        imagePath: "assets/jutsu/neutraljutsu_des_vertrauten_geistes.png"
     },
     {
         id: "neutral_116",
@@ -2809,7 +2809,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: B-Rang Anwender wandelt Chakra in Giftige Substanz um 1W4 Giftschaden pro Runde Chakra: 55 Reichweite: 10M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Ninjutsu Stufe: B-Rang Anwender wandelt Chakra in Giftige Substanz um 1W4 Giftschaden pro Runde Chakra: 55 Reichweite: 10M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Ninjakunst_Giftiger_Nebel.png"
+        imagePath: "assets/jutsu/neutralninjakunst_giftiger_nebel.png"
     },
     {
         id: "neutral_117",
@@ -2825,7 +2825,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Anwender formt einen Chakraball in der Hand Ignoriert 4 RK Chakra: 90 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender formt einen Chakraball in der Hand Ignoriert 4 RK Chakra: 90 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Rasengan.png"
+        imagePath: "assets/jutsu/neutralrasengan.png"
     },
     {
         id: "neutral_118",
@@ -2841,7 +2841,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: A-Rang Ein wesentlich größeres Rasengan Ignoriert 6 RK Chakra: 110 Reichweite: 5M Schaden: 7W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Ein wesentlich größeres Rasengan Ignoriert 6 RK Chakra: 110 Reichweite: 5M Schaden: 7W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Riesen_Rasengan.png"
+        imagePath: "assets/jutsu/neutralriesen_rasengan.png"
     },
     {
         id: "neutral_119",
@@ -2857,7 +2857,7 @@ const JUTSU_DATA = [
         effect: "Ninjutsu Stufe: D-Rang Anwender wirft einen riesigen Shuriken ´ Chakra: 10 Reichweite: 20M Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Ninjutsu Stufe: D-Rang Anwender wirft einen riesigen Shuriken ´ Chakra: 10 Reichweite: 20M Schaden: 1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Shuriken_Schattenwurf.png"
+        imagePath: "assets/jutsu/neutralshuriken_schattenwurf.png"
     },
     {
         id: "neutral_120",
@@ -2873,7 +2873,7 @@ const JUTSU_DATA = [
         effect: "R Reichweite: 5M Schaden: / Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Ninjutsu Stufe: A-Rang Anwender verwendet Chakra um Wunden zu heilen Heilt einen Verbündeten um 3W6 pro Runde Chakra: 40+20p",
-        imagePath: "jutsu-images/neutral/Technik_der_magischen_Handfl_che.png"
+        imagePath: "assets/jutsu/neutraltechnik_der_magischen_handfl_che.png"
     },
     {
         id: "neutral_121",
@@ -2889,7 +2889,7 @@ const JUTSU_DATA = [
         effect: "um kurzzeitig zu verschwinden Für die Runde nicht angreifbar ´ Chakra: 9 Reichweite: S Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Ninjutsu Stufe: D-Rang Anwender benutzt Blätter etc",
-        imagePath: "jutsu-images/neutral/Technik_des_K_rperflimmerns.png"
+        imagePath: "assets/jutsu/neutraltechnik_des_k_rperflimmerns.png"
     },
     {
         id: "neutral_122",
@@ -2905,7 +2905,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Rammt Knie in den Bauch des Gegners Ziel verliert Bonus Aktion Chakra: 18 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Rammt Knie in den Bauch des Gegners Ziel verliert Bonus Aktion Chakra: 18 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Aufsteigendes_Knie.png"
+        imagePath: "assets/jutsu/neutralaufsteigendes_knie.png"
     },
     {
         id: "neutral_123",
@@ -2921,7 +2921,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: D-Rang Anwender wirft Kunai für Ablenkung dann Tritt +1 Schaden bei Treffer Chakra: 10 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Taijutsu Stufe: D-Rang Anwender wirft Kunai für Ablenkung dann Tritt +1 Schaden bei Treffer Chakra: 10 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Dynamic_Entry.png"
+        imagePath: "assets/jutsu/neutraldynamic_entry.png"
     },
     {
         id: "neutral_124",
@@ -2937,7 +2937,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Gegner wird durch tritt in Luft geschleudert und anschließend auch wieder runter getreten Ziel liegt Chakra: 30 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Gegner wird durch tritt in Luft geschleudert und anschließend auch wieder runter getreten Ziel liegt Chakra: 30 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Jutsu_der_zusammen_spielenden_L_wen.png"
+        imagePath: "assets/jutsu/neutraljutsu_der_zusammen_spielenden_l_wen.png"
     },
     {
         id: "neutral_125",
@@ -2953,7 +2953,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Anwender sammelt Chakra in Faust Ignoriert 2 RK Chakra: 30 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Anwender sammelt Chakra in Faust Ignoriert 2 RK Chakra: 30 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Kirschbl_ten_Einschlag.png"
+        imagePath: "assets/jutsu/neutralkirschbl_ten_einschlag.png"
     },
     {
         id: "neutral_126",
@@ -2969,7 +2969,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Ein Tritt mit gestrecktem Bein Ziel wird hochgeschleudert Chakra: 20 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Ein Tritt mit gestrecktem Bein Ziel wird hochgeschleudert Chakra: 20 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Konoha_aufsteigender_Wind.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_127",
@@ -2985,7 +2985,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: D-Rang Ein Drehkick aus der Drehung Ziel liegt bei Treffer Chakra: 9 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Taijutsu Stufe: D-Rang Ein Drehkick aus der Drehung Ziel liegt bei Treffer Chakra: 9 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Konoha_Sturmwind.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_128",
@@ -3001,7 +3001,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: B-Rang Kraftvoller Kick im Sprung 10M Rückstoß Chakra: 50 Reichweite: 5M Schaden: 4W6 Aktuell Chakra: Schaden:",
         modifier: -3,
         description: "Taijutsu Stufe: B-Rang Kraftvoller Kick im Sprung 10M Rückstoß Chakra: 50 Reichweite: 5M Schaden: 4W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Konoha_super_Wirbelwind.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_129",
@@ -3017,7 +3017,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: D-Rang Mehrere Tritte aus einer schnellen Drehung Ruft Untoten Diener für 3 Runden Chakra: 8 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
         modifier: -1,
         description: "Taijutsu Stufe: D-Rang Mehrere Tritte aus einer schnellen Drehung Ruft Untoten Diener für 3 Runden Chakra: 8 Reichweite: 5M Schaden: 1W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Konoha_Wirbelwind.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_130",
@@ -3033,7 +3033,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Drehkick in der Luft gegen untere Region Ziel hat -2GSW für 1 Runde Chakra: 20 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Drehkick in der Luft gegen untere Region Ziel hat -2GSW für 1 Runde Chakra: 20 Reichweite: 5M Schaden: 2W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Konohas_Gro_er_Wirbelwind.png"
+        imagePath: "assets/jutsu/default.png"
     },
     {
         id: "neutral_131",
@@ -3049,7 +3049,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Tritt Gegner in die Luft, taucht hinter ihm auf Bonus Angriff in der Luft (DM Entscheid) Chakra: 28 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Tritt Gegner in die Luft, taucht hinter ihm auf Bonus Angriff in der Luft (DM Entscheid) Chakra: 28 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Laubschattentanz.png"
+        imagePath: "assets/jutsu/neutrallaubschattentanz.png"
     },
     {
         id: "neutral_132",
@@ -3065,7 +3065,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: A-Rang Erfordert das 7 Tor geöffnet, schneller Schlag auf einen Punkt dann Explosion Flächenschaden 10M Chakra: 100 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Taijutsu Stufe: A-Rang Erfordert das 7 Tor geöffnet, schneller Schlag auf einen Punkt dann Explosion Flächenschaden 10M Chakra: 100 Reichweite: 5M Schaden: 6W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Mittagstiger.png"
+        imagePath: "assets/jutsu/neutralmittagstiger.png"
     },
     {
         id: "neutral_133",
@@ -3081,7 +3081,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: A-Rang Erfordert 6 von 8 Tore, Gegner in Luft treten und dann mit hoher Geschwindigkeit zuschlagen Ignoriert 5 RK Chakra: 80 Reichweite: 5M Schaden: 5W8 Aktuell Chakra: Schaden:",
         modifier: -4,
         description: "Taijutsu Stufe: A-Rang Erfordert 6 von 8 Tore, Gegner in Luft treten und dann mit hoher Geschwindigkeit zuschlagen Ignoriert 5 RK Chakra: 80 Reichweite: 5M Schaden: 5W8 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Morgenpfau.png"
+        imagePath: "assets/jutsu/neutralmorgenpfau.png"
     },
     {
         id: "neutral_134",
@@ -3097,7 +3097,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Anwender schleudert Gegner mit einem Schlag weg 5M Rückstoß Chakra: 22 Reichweite: 5M Schaden: 2W6+2 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Anwender schleudert Gegner mit einem Schlag weg 5M Rückstoß Chakra: 22 Reichweite: 5M Schaden: 2W6+2 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Vernichtende_Handfl_che.png"
+        imagePath: "assets/jutsu/neutralvernichtende_handfl_che.png"
     },
     {
         id: "neutral_135",
@@ -3113,7 +3113,7 @@ const JUTSU_DATA = [
         effect: "Taijutsu Stufe: C-Rang Anwender rammt Gegner auf Boden mit Hand +1 Schaden bei Treffer Chakra: 25 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
         modifier: -2,
         description: "Taijutsu Stufe: C-Rang Anwender rammt Gegner auf Boden mit Hand +1 Schaden bei Treffer Chakra: 25 Reichweite: 5M Schaden: 3W6 Aktuell Chakra: Schaden:",
-        imagePath: "jutsu-images/neutral/Zerdr_ckende_Handfl_che.png"
+        imagePath: "assets/jutsu/neutralzerdr_ckende_handfl_che.png"
     },
 ];
 

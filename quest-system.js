@@ -127,6 +127,7 @@ const QuestSystem = {
      * @param {number} progress - Der Fortschritt (0-100)
      */
     updateQuestProgress(questId, progress) {
+    console.log("[QUEST PROGRESS] Quest:", questId, "Objective:", objectiveId);
         const quest = QuestEngine?.state?.activeQuests?.find(q => q.id === questId);
         if (quest) {
             quest.progress = progress;

@@ -3100,6 +3100,7 @@ const QuestEngine = {
      * @returns {Array} - Ergebnisse der Progress-Updates
      */
     simulateEvent(eventType, data) {
+    console.log("[EVENT] Trigger:", arguments[0]);
         // FLOW TRACE
         console.log('[FLOW] simulateEvent', eventType, data);
         
@@ -3802,6 +3803,7 @@ const QuestEngine = {
      * @returns {Object} - { success, quest, objectiveCompleted, questCompleted }
      */
     updateQuestProgress(questId, objectiveId, progress) {
+    console.log("[QUEST PROGRESS] Quest:", questId, "Objective:", objectiveId);
         // FLOW TRACE
         console.log('[FLOW] updateQuestProgress', questId, objectiveId, progress);
         
@@ -3895,6 +3897,7 @@ const QuestEngine = {
      * @param {Object} eventData - Event-Details
      */
     processGameEvent(eventType, eventData) {
+    console.log("[PROCESS EVENT] Event:", eventType);
         // FLOW TRACE
         console.log('[FLOW] processGameEvent', eventType, eventData);
         

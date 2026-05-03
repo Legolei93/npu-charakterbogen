@@ -444,6 +444,7 @@ const QuestEngine = {
      * @param {number} amount - Die Menge
      */
     updateQuestProgress(questId, objectiveType, target, amount = 1) {
+    console.log("[QUEST PROGRESS] Quest:", questId, "Objective:", objectiveId);
         const quest = this.state.activeQuests.find(q => q.id === questId);
         
         if (!quest) return;
