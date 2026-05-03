@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPU Charakterbogen - Interaktiv</title>
+    <link rel="stylesheet" href="styles.css?v=240">
+    <link rel="stylesheet" href="styles-login.css?v=130">
+    <link rel="stylesheet" href="src/dm/dm-panel-styles.css">
+    <link rel="stylesheet" href="src/quests/quest-system-v4.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <h1>🥷 NPU Charakterbogen</h1>
+            <div id="loginError" class="error-message"></div>
+            
+            <!-- Normaler Login -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Benutzername</label>
+                    <input type="text" id="loginUsername" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Passwort</label>
+                    <input type="password" id="loginPassword" required autocomplete="current-password">
+                </div>
+                <button type="submit">Anmelden</button>
+                
+                <!-- Passwort vergessen Link -->
+                <div class="forgot-password-link">
+                    <a href="#" onclick="showForgotPassword()">Passwort vergessen?</a>
+                </div>
+            </form>
+            
+            <!-- Passwort Reset Form (versteckt) -->
+            <div id="forgotPasswordForm" class="hidden">
+                <hr style="margin: 20px 0; border-color: rgba(139, 90, 43, 0.3);">
+                <h3>Passwort zurücksetzen</h3>
+                <p class="reset-info">Gib deine E-Mail-Adresse ein. Wir senden dir einen Reset-Link.</p>
+                <div class="form-group">
+                    <label>E-Mail</label>
+                    <input type="email" id="resetEmail" placeholder="deine@email.de">
+                </div>
+                <button type="button" onclick="requestPasswordReset()">Reset-Link senden</button>
+                <button type="button" class="btn-secondary" onclick="hideForgotPassword()">Abbrechen</button>
+                <div id="resetMessage" class="reset-message"></div>
+            </div>
+            
+            <!-- Reset Token Eingabe (versteckt) -->
+            <div id="resetTokenForm" class="hidden">
+                <hr style="margin: 20px 0; border-color: rgba(139, 90, 43, 0.3);">
+                <h3>Neues Passwort setzen</h3>
+                <div class="form-group">
+                    <label>Reset-Code</label>
+                    <input type="text" id="resetToken" placeholder="123456">
+                </div>
+                <div class="form-group">
+                    <label>Neues Passwort</label>
+                    <input type="password" id="newPassword" placeholder="Neues Passwort">
+                </div>
+                <div class="form-group">
+                    <label>Passwort bestätigen</label>
+                    <input type="password" id="confirmPassword" placeholder="Passwort wiederholen">
+                </div>
+                <button type="button" onclick="resetPassword()">Passwort ändern</button>
+                <button type="button" class="btn-secondary" onclick="hideResetTokenForm()">Abbrechen</button>
+                <div id="resetTokenMessage" class="reset-message"></div>
+            </div>
+            
+            <div class="test-accounts">
+                <h4>Test-Accounts</h4>
+                <p><strong>Alex</strong> / Alex-Osterhase-1993 (DM)</p>
+                <p><strong>Niklas</strong> / Naruto (Spieler)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hauptanwendung -->
+    <div id="appContainer" class="app-container hidden">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="user-info" style="padding:15px;border-bottom:1px solid rgba(255,255,255,0.2);margin-bottom:15px;">
+                <div style="font-weight:bold;">👤 <span id="currentUser">-</span></div>
+                <div style="font-size:12px;opacity:0.8;">🎭 <span id="currentRole">-</span></div>
+            </div>
+            
+            <!-- Globale Geld-Anzeige -->
+            <div class="global-money-display" id="globalMoneyDisplay" style="padding:10px;margin-bottom:15px;background:rgba(0,0,0,0.3);border-radius:4px;border:1px solid var(--gold);">
+                <div style="font-size:10px;color:var(--gold);text-align:center;margin-bottom:5px;">💰 VERMÖGEN</div>
+                <div style="display:flex;justify-content:center;gap:10px;font-size:12px;">
+                    <span>🥇 <span id="globalGold">0</span></span>
+                    <span>🥈 <span id="globalSilver">0</span></span>
+                    <span>🥉 <span id="globalCopper">0</span></span>
+                </div>
+            </div>
+            
+            <h2>🥷 Charaktere</h2>
+            <div class="character-list" id="characterList"></div>
+            
+            <button class="btn-primary" onclick="startCharacterCreation()">+ Neuer Charakter</button>
+            
+            <!-- DM-Panel Button -->
+            <button id="dmPanelBtn" class="btn-secondary hidden" onclick="showDMPanel()">⚙️ DM-Panel</button>
+            
+            <div class="import-export">
+                <button class="btn-secondary" onclick="exportCharacter()">📤 Export</button>
+                <label class="btn-secondary file-label">
+                    📥 Import
+                    <input type="file" id="importFile" accept=".json" onchange="importCharacter(event)">
+                </label>
+                <button class="btn-secondary" onclick="logout()">🚪 Logout</button>
+            </div>
+        </aside>
+
+        <!-- Hauptbereich -->
+        <main class="main-content">
+            <!-- Navigation -->
+            <nav class="page-nav">
+                <button id="btnPage1" class="active" onclick="showPage(1)">📋 Charakter</button>
+                <button id="btnPage2" onclick="showPage(2)">⚔️ Ausrüstung</button>
+                <button id="btnPage3" onclick="showPage(3)">✨ Jutsus</button>
+                <button id="btnPage4" onclick="showPage(4)">🃏 Jutsu-Karten</button>
+                <button id="btnPage5" onclick="GamePage.init(); showPage(5)">🎮 Spiel</button>
+                <button id="btnPage6" onclick="MerchantPage.init(); showPage(6)">🏪 Händler</button>
+                <button id="btnPage7" onclick="showQuestPage()">📜 Quests</button>
+            </nav>
+
+            <!-- SEITE 1: Charakter -->
+            <div id="page1" class="sheet-page active">
+                <div id="errorContainer" class="error-message" style="display:none;"></div>
+
+                <!-- AP-Anzeige (nur für eingeloggte Spieler) -->
+                <section class="card ap-display" id="apDisplaySection">
+                    <div class="ap-stat">
+                        <span class="ap-stat-value" id="apTotal">0</span>
+                        <span class="ap-stat-label">Gesamt AP</span>
+                    </div>
+                    <div class="ap-stat spent">
+                        <span class="ap-stat-value" id="apSpent">0</span>
+                        <span class="ap-stat-label">Ausgegeben</span>
+                    </div>
+                    <div class="ap-stat available">
+                        <span class="ap-stat-value" id="apAvailable">0</span>
+                        <span class="ap-stat-label">Verfügbar</span>
+                    </div>
+                    <div class="ap-actions" id="apActions" style="display: none;">
+                        <button class="btn-primary" onclick="showAPAwardModal()">+ AP vergeben</button>
+                    </div>
+                </section>
+
+                <!-- Charakterbogen nach Vorlage -->
+                <section class="character-sheet-v2">
+                    <!-- Obere Sektion: LVL, AP, Hauptwerte -->
+                    <div class="char-header-section">
+                        <div class="char-lvl-box">
+                            <span class="label">LVL:</span>
+                            <span class="value" id="charLevel">1</span>
+                        </div>
+                        <div class="char-ap-box">
+                            <span class="label">AP:</span>
+                            <span class="value" id="charAP">0</span>
+                            <button type="button" class="btn-convert-ap" onclick="buyTalentPointWithAP()" title="5 AP = 1 Talentpunkt">
+                                💎 Umwandeln
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mittlere Sektion: Persönliche Daten und Hauptwerte -->
+                    <div class="char-main-grid">
+                        <!-- Linke Spalte: Persönliche Daten -->
+                        <div class="char-personal-data">
+                            <div class="data-row">
+                                <span class="label">Name:</span>
+                                <input type="text" id="name" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            <div class="data-row">
+                                <span class="label">Alter:</span>
+                                <input type="number" id="age" class="underline-input" min="16" max="25" onchange="updateCharacter()">
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Geschlecht:</span>
+                                <select id="gender" class="underline-input" onchange="updateCharacter()">
+                                    <option value="">-</option>
+                                    <option value="männlich">Männlich</option>
+                                    <option value="weiblich">Weiblich</option>
+                                    <option value="divers">Divers</option>
+                                </select>
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Körpergröße:</span>
+                                <input type="text" id="height" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Gewicht:</span>
+                                <input type="text" id="weight" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Clan:</span>
+                                <select id="clan" class="underline-input" onchange="onClanChange()">
+                                    <option value="">Kein Clan</option>
+                                    <option value="aburame">Aburame</option>
+                                    <option value="akimichi">Akimichi</option>
+                                    <option value="hyuga">Hyuga</option>
+                                    <option value="inuzuka">Inuzuka</option>
+                                    <option value="nara">Nara</option>
+                                    <option value="senju">Senju</option>
+                                    <option value="uchiha">Uchiha</option>
+                                    <option value="yamanaka">Yamanaka</option>
+                                    <option value="chinoike">Chinoike</option>
+                                    <option value="yotsuki">Yotsuki</option>
+                                    <option value="hozuki">Hozuki</option>
+                                    <option value="hoshigaki">Hoshigaki</option>
+                                    <option value="yuki">Yuki</option>
+                                    <option value="guren">Guren</option>
+                                    <option value="kamizuru">Kamizuru</option>
+                                    <option value="kaguya">Kaguya</option>
+                                    <option value="iburi">Iburi</option>
+                                    <option value="kohaku">Kohaku</option>
+                                    <option value="kurama">Kurama</option>
+                                    <option value="tsuchigumo">Tsuchigumo</option>
+                                    <option value="uzumaki">Uzumaki</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Mittlere Spalte: Hauptwerte Tabelle -->
+                        <div class="char-core-stats">
+                            <div class="core-stats-table">
+                                <div class="stat-row">
+                                    <span class="stat-label">Lebenspunkte</span>
+                                    <span class="stat-value" id="hp">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Stamina</span>
+                                    <span class="stat-value" id="stamina">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Chakra</span>
+                                    <span class="stat-value" id="chakra">-</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="stat-label">Aufladungen</span>
+                                    <span class="stat-value" id="aufladungen">-</span>
+                                </div>
+                            </div>
+                            
+                            <!-- BUGFIX 14: Karma Feld sauber dargestellt -->
+                            <div class="karma-section">
+                                <div class="karma-header">
+                                    <span class="karma-title">KARMA</span>
+                                    <span id="karmaDisplay" class="karma-value">0</span>
+                                </div>
+                                <div class="karma-scale">
+                                    <div class="karma-scale-labels">
+                                        <span class="karma-neg">-50</span>
+                                        <span class="karma-zero">0</span>
+                                        <span class="karma-pos">+50</span>
+                                    </div>
+                                    <div class="karma-bar-container">
+                                        <div class="karma-bar-bg"></div>
+                                        <div id="karmaBarFill" class="karma-bar-fill"></div>
+                                        <div id="karmaMarker" class="karma-marker"></div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="karma" value="0">
+                                <p class="karma-hint">Karma wird durch Spielentscheidungen und Quests verändert</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Rechte Spalte: Rang, Herkunft, etc. -->
+                        <div class="char-rank-data">
+                            <div class="data-row">
+                                <span class="label">Rang:</span>
+                                <select id="rank" class="underline-input" onchange="updateCharacter()">
+                                    <option value="">-</option>
+                                    <option value="Academy">Academy</option>
+                                    <option value="Genin">Genin</option>
+                                    <option value="Chuunin">Chuunin</option>
+                                    <option value="Jounin">Jounin</option>
+                                    <option value="ANBU">ANBU</option>
+                                    <option value="Sannin">Sannin</option>
+                                    <option value="Kage">Kage</option>
+                                </select>
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Herkunftsland:</span>
+                                <input type="text" id="originCountry" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Heimatdorf:</span>
+                                <input type="text" id="homeVillage" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Familienstand:</span>
+                                <select id="maritalStatus" class="underline-input" onchange="updateCharacter()">
+                                    <option value="">-</option>
+                                    <option value="ledig">Ledig</option>
+                                    <option value="verheiratet">Verheiratet</option>
+                                    <option value="verwitwet">Verwitwet</option>
+                                    <option value="geschieden">Geschieden</option>
+                                </select>
+                            </div>
+                            
+                            <div class="data-row">
+                                <span class="label">Glaube:</span>
+                                <input type="text" id="religion" class="underline-input" onchange="updateCharacter()">
+                            </div>
+                            
+                            <!-- Lebenspunkte und Chakra Kreise -->
+                            <div class="char-circles">
+                                <div class="circle-box">
+                                    <span class="circle-label">Lebenspunkte</span>
+                                    <div class="stat-circle hp-circle">
+                                        <span class="circle-value" id="hpCircle">-</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="circle-box">
+                                    <span class="circle-label">Chakra</span>
+                                    <div class="stat-circle chakra-circle">
+                                        <span class="circle-value" id="chakraCircle">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hauptwerte -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Hauptwerte</h2>
+                    </div>
+                    
+                    <div class="grid grid-4">
+                        <div class="stat-box danger">
+                            <div class="stat-label">❤️ Lebenspunkte</div>
+                            <div class="stat-value" id="hpMain">-</div>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <div class="stat-label">⚡ Chakra</div>
+                            <div class="stat-value" id="chakraMain">-</div>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <div class="stat-label">🏃 Stamina</div>
+                            <div class="stat-value" id="staminaMain">-</div>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <div class="stat-label">⚔️ Angriff</div>
+                            <div class="stat-value" id="angriffMain">-</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Attribute -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Attribute</h2>
+                        <span class="badge">Punkte: <span id="attrPoints">26</span>/26</span>
+                    </div>
+                    
+                    <div class="attribute-grid">
+                        <div class="attribute-box kk">
+                            <div class="attr-name">KK</div>
+                            <input type="number" id="attr_kk" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('kk')">
+                            <div class="attr-mod" id="mod_kk">-</div>
+                        </div>
+                        
+                        <div class="attribute-box kon">
+                            <div class="attr-name">KON</div>
+                            <input type="number" id="attr_kon" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('kon')">
+                            <div class="attr-mod" id="mod_kon">-</div>
+                        </div>
+                        
+                        <div class="attribute-box ges">
+                            <div class="attr-name">GES</div>
+                            <input type="number" id="attr_ges" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('ges')">
+                            <div class="attr-mod" id="mod_ges">-</div>
+                        </div>
+                        
+                        <div class="attribute-box gsw">
+                            <div class="attr-name">GSW</div>
+                            <input type="number" id="attr_gsw" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('gsw')">
+                            <div class="attr-mod" id="mod_gsw">-</div>
+                        </div>
+                        
+                        <div class="attribute-box itu">
+                            <div class="attr-name">ITU</div>
+                            <input type="number" id="attr_itu" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('itu')">
+                            <div class="attr-mod" id="mod_itu">-</div>
+                        </div>
+                        
+                        <div class="attribute-box int">
+                            <div class="attr-name">INT</div>
+                            <input type="number" id="attr_int" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('int')">
+                            <div class="attr-mod" id="mod_int">-</div>
+                        </div>
+                        
+                        <div class="attribute-box cha">
+                            <div class="attr-name">CHA</div>
+                            <input type="number" id="attr_cha" class="attr-input" min="8" max="20" value="8" onchange="updateAttribute('cha')">
+                            <div class="attr-mod" id="mod_cha">-</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fertigkeiten -->
+                <section class="card skills-section">
+                    <div class="card-header">
+                        <h2 class="card-title">🎯 Fertigkeiten</h2>
+                        <span class="card-subtitle">Automatisch berechnet aus Attributen</span>
+                    </div>
+                    
+                    <div class="skills-container">
+                        <!-- Körperliche Fertigkeiten -->
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">💪 Körperlich</h3>
+                            <div class="skills-list">
+                                <div class="skill-row">
+                                    <span class="skill-name">Athletik</span>
+                                    <span class="skill-formula">(KK + KON + GES) / 3</span>
+                                    <span class="skill-value" id="skill_athletik">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Akrobatik</span>
+                                    <span class="skill-formula">(KK + KK + KON) / 3</span>
+                                    <span class="skill-value" id="skill_akrobatik">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Klettern</span>
+                                    <span class="skill-formula">(KON + KON + KK) / 3</span>
+                                    <span class="skill-value" id="skill_klettern">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Körperbeherrschung</span>
+                                    <span class="skill-formula">(KON + KK + GSW) / 3</span>
+                                    <span class="skill-value" id="skill_koerperbeherrschung">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Schleichen</span>
+                                    <span class="skill-formula">(GES + GES + ITU) / 3</span>
+                                    <span class="skill-value" id="skill_schleichen">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Verstecken / Tarnen</span>
+                                    <span class="skill-formula">(ITU + GES + GSW) / 3</span>
+                                    <span class="skill-value" id="skill_verstecken_tarnen">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Fingerfertigkeit</span>
+                                    <span class="skill-formula">(ITU + INT + GES) / 3</span>
+                                    <span class="skill-value" id="skill_fingerfertigkeit">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Waffentalent</span>
+                                    <span class="skill-formula">(KK + GES + GSW) / 3</span>
+                                    <span class="skill-value" id="skill_waffentalent">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Soziale Fertigkeiten -->
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">🗣️ Sozial</h3>
+                            <div class="skills-list">
+                                <div class="skill-row">
+                                    <span class="skill-name">Menschenkenntnis</span>
+                                    <span class="skill-formula">(CHA + ITU) / 2</span>
+                                    <span class="skill-value" id="skill_menschenkenntnis">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Redekunst / Verhandeln</span>
+                                    <span class="skill-formula">(CHA + INT) / 2</span>
+                                    <span class="skill-value" id="skill_redekunst_verhandeln">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Beruhigen</span>
+                                    <span class="skill-formula">(CHA + GES) / 2</span>
+                                    <span class="skill-value" id="skill_beruhigen">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Einschüchtern</span>
+                                    <span class="skill-formula">(CHA + KK) / 2</span>
+                                    <span class="skill-value" id="skill_einschuechtern">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Manipulieren</span>
+                                    <span class="skill-formula">(CHA + ITU) / 2</span>
+                                    <span class="skill-value" id="skill_manipulieren">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Alleinunterhalter</span>
+                                    <span class="skill-formula">(CHA + CHA) / 2</span>
+                                    <span class="skill-value" id="skill_alleinunterhalter">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Flirten / Verführen</span>
+                                    <span class="skill-formula">(CHA + INT) / 2</span>
+                                    <span class="skill-value" id="skill_flirten_verfuehren">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Wissen Fertigkeiten -->
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">📚 Wissen</h3>
+                            <div class="skills-list">
+                                <div class="skill-row">
+                                    <span class="skill-name">Naturwissenschaften</span>
+                                    <span class="skill-formula">(ITU + INT) / 2</span>
+                                    <span class="skill-value" id="skill_naturwissenschaften">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Überlebenstechniken</span>
+                                    <span class="skill-formula">(KK + KON) / 2</span>
+                                    <span class="skill-value" id="skill_ueberlebenstechniken">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Pflanzenkunde / Alchemie</span>
+                                    <span class="skill-formula">(ITU + INT) / 2</span>
+                                    <span class="skill-value" id="skill_pflanzenkunde_alchemie">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Tierkunde</span>
+                                    <span class="skill-formula">(INT + INT) / 2</span>
+                                    <span class="skill-value" id="skill_tierkunde">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Geschichte</span>
+                                    <span class="skill-formula">(INT + INT) / 2</span>
+                                    <span class="skill-value" id="skill_geschichte">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Kriegskunst</span>
+                                    <span class="skill-formula">(ITU + INT) / 2</span>
+                                    <span class="skill-value" id="skill_kriegskunst">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Handwerk / Technologie</span>
+                                    <span class="skill-formula">(KON + KK) / 2</span>
+                                    <span class="skill-value" id="skill_handwerk_technologie">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Jutsu</span>
+                                    <span class="skill-formula">(KON + INT) / 2</span>
+                                    <span class="skill-value" id="skill_jutsu_wissen">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Medizin / Heilkunst</span>
+                                    <span class="skill-formula">(GES + INT) / 2</span>
+                                    <span class="skill-value" id="skill_medizin_heilkunst">-</span>
+                                </div>
+                                <div class="skill-row">
+                                    <span class="skill-name">Chakrakontrolle</span>
+                                    <span class="skill-formula">(INT + INT + KON) / 3</span>
+                                    <span class="skill-value" id="skill_chakrakontrolle">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Talente -->
+                <section class="card talents-section">
+                    <div class="card-header">
+                        <h2 class="card-title">🌟 Talente</h2>
+                        <div class="talent-points-display">
+                            <span class="talent-points-label">Verfügbare Punkte:</span>
+                            <span class="talent-points-value" id="talentPointsAvailable">5</span>
+                            <span class="talent-points-separator">/</span>
+                            <span class="talent-points-total" id="talentPointsTotal">5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="talents-container">
+                        <div class="talent-selection">
+                            <div class="form-group">
+                                <label>Talent auswählen:</label>
+                                <select id="talentSelect" class="talent-select" onchange="onTalentSelect()">
+                                    <option value="">-- Talent wählen --</option>
+                                </select>
+                                <button class="btn-primary btn-add-talent" onclick="addSelectedTalent()" id="btnAddTalent" disabled>
+                                    + Hinzufügen
+                                </button>
+                            </div>
+                            
+                            <div class="talent-info" id="talentInfo" style="display: none;">
+                                <div class="talent-info-header">
+                                    <span class="talent-info-name" id="talentInfoName"></span>
+                                    <span class="talent-info-cost" id="talentInfoCost"></span>
+                                </div>
+                                <div class="talent-info-description" id="talentInfoDescription"></div>
+                                <div class="talent-info-effects" id="talentInfoEffects"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="talent-limits">
+                            <div class="talent-limit-item">
+                                <span class="limit-label">Max. Talente:</span>
+                                <span class="limit-value" id="talentCount">0 / 5</span>
+                            </div>
+                            <div class="talent-limit-item">
+                                <span class="limit-label">Teure Talente (≥7):</span>
+                                <span class="limit-value" id="highCostTalentCount">0 / 2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="selected-talents" id="selectedTalents">
+                            <h3>Gewählte Talente:</h3>
+                            <div class="talents-list" id="talentsList">
+                                <p class="hint">Noch keine Talente ausgewählt</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SEITE 2: Ausrüstung -->
+            <div id="page2" class="sheet-page">
+                
+                <!-- Ausrüstungs-Figur -->
+                <section class="card equipment-figure-card">
+                    <div class="card-header">
+                        <h2 class="card-title">⚔️ Ausrüstung</h2>
+                        <span class="card-subtitle">Klicke auf einen Slot um Ausrüstung auszuwählen</span>
+                    </div>
+                    
+                    <div class="equipment-figure-wrapper">
+                        <!-- Neue stilisierte Naruto-Figur -->
+                        <svg viewBox="0 0 300 450" class="equipment-figure-svg">
+                            <defs>
+                                <!-- Verlauf für die Kleidung -->
+                                <linearGradient id="jacketGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#d84315;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="pantsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2e3b4e;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#1a2332;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="skinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f5d0b0;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#e8b896;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#e8e8e8;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+                                </linearGradient>
+                                <!-- Schattenfilter -->
+                                <filter id="shadowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
+                                </filter>
+                                <!-- Glüheffekt für aktive Slots -->
+                                <filter id="glowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Hintergrund-Kreis -->
+                            <circle cx="150" cy="225" r="180" fill="url(#parchment)" opacity="0.3" stroke="#8b5a2b" stroke-width="2" stroke-dasharray="10,5"/>
+                            
+                            <!-- KOPF SLOT -->
+                            <g class="equip-slot" data-slot="head" onclick="openSlotDropdown('head')">
+                                <!-- Stirnband -->
+                                <rect x="105" y="55" width="90" height="25" rx="3" fill="url(#metalGradient)" stroke="#5a5a5a" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Konoha-Symbol -->
+                                <circle cx="150" cy="67" r="10" fill="#f5e6c8" stroke="#8b5a2b" stroke-width="1.5"/>
+                                <path d="M150 60 L153 70 L147 70 Z" fill="#1a1a1a"/>
+                                <!-- Kopf-Highlight wenn belegt -->
+                                <circle id="indicator-head" cx="150" cy="67" r="18" fill="none" stroke="#22c55e" stroke-width="3" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="120" y="25" width="60" height="20" rx="10" fill="rgba(139,90,43,0.9)"/>
+                                <text x="150" y="39" text-anchor="middle" fill="#f5e6c8" font-size="10" font-weight="bold">👤 Kopf</text>
+                            </g>
+                            
+                            <!-- BRUST SLOT -->
+                            <g class="equip-slot" data-slot="chest" onclick="openSlotDropdown('chest')">
+                                <!-- Oberkörper/Jacke -->
+                                <path d="M100 110 L200 110 L190 200 L110 200 Z" fill="url(#jacketGradient)" stroke="#bf360c" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Reißverschluss -->
+                                <line x1="150" y1="110" x2="150" y2="200" stroke="#1a1a1a" stroke-width="2" stroke-dasharray="4,2"/>
+                                <!-- Uzumaki-Wirbel -->
+                                <circle cx="150" cy="155" r="20" fill="#f5e6c8" opacity="0.9"/>
+                                <path d="M150 140 Q165 140 165 155 Q165 170 150 170 Q135 170 135 155 Q135 140 150 140" fill="none" stroke="#ff6b35" stroke-width="4"/>
+                                <circle cx="150" cy="155" r="5" fill="#ff6b35"/>
+                                <!-- Highlight -->
+                                <rect id="indicator-chest" x="105" y="115" width="90" height="80" fill="none" stroke="#22c55e" stroke-width="3" rx="5" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="205" y="140" width="70" height="22" rx="11" fill="rgba(139,90,43,0.9)"/>
+                                <text x="240" y="156" text-anchor="middle" fill="#f5e6c8" font-size="11" font-weight="bold">🛡️ Brust</text>
+                            </g>
+                            
+                            <!-- LINKER ARM SLOT -->
+                            <g class="equip-slot" data-slot="armLeft" onclick="openSlotDropdown('armLeft')">
+                                <!-- Arm -->
+                                <path d="M75 120 L95 120 L90 190 L70 185 Z" fill="url(#jacketGradient)" stroke="#bf360c" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Handschuh/Hand -->
+                                <ellipse cx="80" cy="200" rx="12" ry="15" fill="#2e3b4e" stroke="#1a2332" stroke-width="2"/>
+                                <!-- Highlight -->
+                                <ellipse id="indicator-armLeft" cx="80" cy="160" rx="18" ry="45" fill="none" stroke="#22c55e" stroke-width="3" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="20" y="145" width="50" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="45" y="158" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">💪 L.Arm</text>
+                            </g>
+                            
+                            <!-- RECHTER ARM SLOT -->
+                            <g class="equip-slot" data-slot="armRight" onclick="openSlotDropdown('armRight')">
+                                <!-- Arm -->
+                                <path d="M205 120 L225 120 L230 185 L210 190 Z" fill="url(#jacketGradient)" stroke="#bf360c" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Handschuh/Hand -->
+                                <ellipse cx="220" cy="200" rx="12" ry="15" fill="#2e3b4e" stroke="#1a2332" stroke-width="2"/>
+                                <!-- Highlight -->
+                                <ellipse id="indicator-armRight" cx="220" cy="160" rx="18" ry="45" fill="none" stroke="#22c55e" stroke-width="3" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="230" y="145" width="50" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="255" y="158" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">💪 R.Arm</text>
+                            </g>
+                            
+                            <!-- LINKES BEIN SLOT -->
+                            <g class="equip-slot" data-slot="legLeft" onclick="openSlotDropdown('legLeft')">
+                                <!-- Bein -->
+                                <path d="M115 210 L145 210 L140 350 L120 350 Z" fill="url(#pantsGradient)" stroke="#1a2332" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Schienbeinschutz -->
+                                <rect x="122" y="280" width="16" height="50" rx="3" fill="url(#metalGradient)" stroke="#5a5a5a" stroke-width="1"/>
+                                <!-- Highlight -->
+                                <rect id="indicator-legLeft" x="112" y="220" width="36" height="120" fill="none" stroke="#22c55e" stroke-width="3" rx="5" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="45" y="280" width="55" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="72" y="293" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">🦵 L.Bein</text>
+                            </g>
+                            
+                            <!-- RECHTES BEIN SLOT -->
+                            <g class="equip-slot" data-slot="legRight" onclick="openSlotDropdown('legRight')">
+                                <!-- Bein -->
+                                <path d="M155 210 L185 210 L180 350 L160 350 Z" fill="url(#pantsGradient)" stroke="#1a2332" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Schienbeinschutz -->
+                                <rect x="162" y="280" width="16" height="50" rx="3" fill="url(#metalGradient)" stroke="#5a5a5a" stroke-width="1"/>
+                                <!-- Highlight -->
+                                <rect id="indicator-legRight" x="152" y="220" width="36" height="120" fill="none" stroke="#22c55e" stroke-width="3" rx="5" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="200" y="280" width="55" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="227" y="293" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">🦵 R.Bein</text>
+                            </g>
+                            
+                            <!-- WAFFE 1 (Rechte Hand) -->
+                            <g class="equip-slot weapon-slot" data-slot="weapon1" onclick="openSlotDropdown('weapon1')">
+                                <!-- Kunai -->
+                                <g transform="translate(245, 180) rotate(-30)">
+                                    <path d="M0 0 L8 -30 L16 0 Z" fill="url(#metalGradient)" stroke="#4a4a4a" stroke-width="1.5"/>
+                                    <rect x="5" y="0" width="6" height="25" fill="#8b4513" stroke="#5c3a1e" stroke-width="1"/>
+                                    <circle cx="8" cy="28" r="5" fill="none" stroke="#d4af37" stroke-width="2"/>
+                                </g>
+                                <!-- Highlight -->
+                                <circle id="indicator-weapon1" cx="253" cy="190" r="20" fill="none" stroke="#22c55e" stroke-width="3" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="260" y="165" width="55" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="287" y="178" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">⚔️ Waffe 1</text>
+                            </g>
+                            
+                            <!-- WAFFE 2 (Linke Hand) -->
+                            <g class="equip-slot weapon-slot" data-slot="weapon2" onclick="openSlotDropdown('weapon2')">
+                                <!-- Kunai -->
+                                <g transform="translate(35, 180) rotate(30)">
+                                    <path d="M0 0 L8 -30 L16 0 Z" fill="url(#metalGradient)" stroke="#4a4a4a" stroke-width="1.5"/>
+                                    <rect x="5" y="0" width="6" height="25" fill="#8b4513" stroke="#5c3a1e" stroke-width="1"/>
+                                    <circle cx="8" cy="28" r="5" fill="none" stroke="#d4af37" stroke-width="2"/
+                                </g>
+                                <!-- Highlight -->
+                                <circle id="indicator-weapon2" cx="43" cy="190" r="20" fill="none" stroke="#22c55e" stroke-width="3" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="0" y="165" width="55" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="27" y="178" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">⚔️ Waffe 2</text>
+                            </g>
+                            
+                            <!-- ZUBEHÖR (Gürtel) -->
+                            <g class="equip-slot" data-slot="accessory" onclick="openSlotDropdown('accessory')">
+                                <!-- Gürtel -->
+                                <rect x="110" y="205" width="80" height="15" rx="3" fill="#5c3a1e" stroke="#3d2614" stroke-width="2" filter="url(#shadowFilter)"/>
+                                <!-- Schnalle -->
+                                <rect x="140" y="202" width="20" height="21" rx="2" fill="#d4af37" stroke="#8b6914" stroke-width="1.5"/>
+                                <text x="150" y="217" text-anchor="middle" fill="#5c3a1e" font-size="12">⛩</text>
+                                <!-- Taschen -->
+                                <rect x="115" y="208" width="18" height="12" rx="2" fill="#8b5a2b" stroke="#5c3a1e" stroke-width="1"/>
+                                <rect x="167" y="208" width="18" height="12" rx="2" fill="#8b5a2b" stroke="#5c3a1e" stroke-width="1"/>
+                                <!-- Highlight -->
+                                <rect id="indicator-accessory" x="105" y="200" width="90" height="25" fill="none" stroke="#22c55e" stroke-width="3" rx="5" opacity="0" class="slot-indicator"/>
+                                <!-- Label -->
+                                <rect x="125" y="225" width="60" height="18" rx="9" fill="rgba(139,90,43,0.9)"/>
+                                <text x="155" y="238" text-anchor="middle" fill="#f5e6c8" font-size="9" font-weight="bold">📿 Zubehör</text>
+                            </g>
+                        </svg>
+                        
+                        <!-- Slot Dropdown (wird dynamisch positioniert) -->
+                        <div id="slotDropdown" class="slot-dropdown hidden">
+                            <div class="slot-dropdown-header">
+                                <span id="slotDropdownTitle">Slot auswählen</span>
+                                <button class="close-dropdown" onclick="closeSlotDropdown()">×</button>
+                            </div>
+                            <div class="slot-dropdown-content">
+                                <div class="slot-filter-info">
+                                    <p class="hint">💡 Nur gekaufte Items oder DM-Items können ausgerüstet werden.</p>
+                                </div>
+                                <select id="slotItemSelect">
+                                    <option value="">-- Gegenstand auswählen --</option>
+                                </select>
+                                <div class="slot-dropdown-actions">
+                                    <button class="btn-primary" onclick="confirmSlotSelection()" style="width: 100%; margin-bottom: 8px;">✓ Auswählen</button>
+                                    <button class="btn-secondary" onclick="unequipSlot()" style="width: 100%;">🗑️ Entfernen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ausrüstungstabelle -->
+                <section class="card equipment-table-section">
+                    <div class="card-header">
+                        <h2 class="card-title">📋 Ausrüstungsübersicht</h2>
+                        <span class="card-subtitle">Nur gekaufte oder DM-vergebene Items</span>
+                    </div>
+                    
+                    <div class="equipment-table-wrapper">
+                        <table class="equipment-table" id="equipmentTable">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Typ</th>
+                                    <th>Slot</th>
+                                    <th>Seltenheit</th>
+                                    <th>Bonus</th>
+                                    <th>Wert</th>
+                                    <th>Händler</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="equipmentTableBody">
+                                <tr>
+                                    <td colspan="8" class="empty-message">Keine Ausrüstung vorhanden. Besuche einen Händler oder frage den DM.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="equipment-legend">
+                        <h4>📝 Legende:</h4>
+                        <div class="legend-items">
+                            <span class="legend-item"><span class="status-equipped">●</span> Ausgerüstet</span>
+                            <span class="legend-item"><span class="status-owned">●</span> Im Besitz</span>
+                            <span class="legend-item"><span class="status-dm">●</span> DM-Item</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charakterwerte mit Ausrüstungsboni -->
+                <section class="card equipment-stats-section">
+                    <h3>📊 Charakterwerte</h3>
+                    <div id="equipmentStatsTable">
+                        <p class="hint">Lade Charakterdaten...</p>
+                    </div>
+                </section>
+
+                <!-- Inventar -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🎒 Inventar</h2>
+                    </div>
+                    
+                    <div class="inventory-grid">
+                        <div class="inventory-section">
+                            <h4>🎒 Rucksack</h4>
+                            <textarea id="backpack" class="inventory-textarea" placeholder="Rucksack wird automatisch befüllt..." readonly title="Nur DM/Händler/Quest"></textarea>
+                        </div>
+                        
+                        <div class="inventory-section">
+                            <h4>👝 Gürteltasche</h4>
+                            <textarea id="beltPouch" class="inventory-textarea" placeholder="Gegenstände in der Gürteltasche..." onchange="updateInventory()"></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Geld -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">💰 Vermögen</h2>
+                    </div>
+                    
+                    <div class="money-grid">
+                        <div class="money-box gold">
+                            <div class="money-icon">🥇</div>
+                            <label>Gold</label>
+                            <input type="number" id="gold" min="0" value="0" readonly title="Nur DM/Quest/Haendler">
+                        </div>
+                        
+                        <div class="money-box silver">
+                            <div class="money-icon">🥈</div>
+                            <label>Silber</label>
+                            <input type="number" id="silver" min="0" value="0" readonly title="Nur DM/Quest/Haendler">
+                        </div>
+                        
+                        <div class="money-box copper">
+                            <div class="money-icon">🥉</div>
+                            <label>Kupfer</label>
+                            <input type="number" id="copper" min="0" value="0" readonly title="Nur DM/Quest/Haendler">
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SEITE 3: Jutsus -->
+            <div id="page3" class="sheet-page">
+                
+                <!-- Jutsu Lern-Regeln Info -->
+                <section class="card jutsu-rules-info">
+                    <div class="card-header">
+                        <h2 class="card-title">📜 Jutsu Lern-Regeln</h2>
+                    </div>
+                    <div class="jutsu-rules-content">
+                        <p><strong>Pro Level:</strong> Wähle <strong>1 Jutsu direkt lernen</strong> ODER <strong>2 Jutsus im Training</strong></p>
+                        <p class="hint">Filter: Element (gewählt), Clan, Rang-Grenze</p>
+                        <div id="jutsuLearningStatus" class="jutsu-learning-status">
+                            <span>Verfügbare Lern-Slots: <strong id="availableJutsuSlots">Berechnung...</strong></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Jutsu Auswahl mit Dropdown -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">✨ Jutsu Auswahl</h2>
+                        <span class="card-subtitle">Verfügbare Jutsus basierend auf Element, Clan und Rang</span>
+                    </div>
+                    
+                    <div class="jutsu-selection">
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 1;">
+                                <label>Lern-Modus</label>
+                                <select id="jutsuLearningMode" onchange="updateJutsuLearningOptions()">
+                                    <option value="">-- Wähle Modus --</option>
+                                    <option value="direct">Direkt lernen (1 Jutsu)</option>
+                                    <option value="training">Im Training (2 Jutsus)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="flex: 3;">
+                                <label>Verfügbare Jutsus</label>
+                                <select id="jutsuSelect" disabled>
+                                    <option value="">-- Wähle zuerst den Lern-Modus --</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="flex: 1; align-self: flex-end;">
+                                <button class="btn-primary" id="addJutsuBtn" onclick="addSelectedJutsu()" style="width: 100%;" disabled>
+                                    + Hinzufügen
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Info über Filter -->
+                        <div class="jutsu-filter-info" id="jutsuFilterInfo">
+                            <p>Aktive Filter: <span id="activeJutsuFilters">Keine</span></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Jutsu Tabelle -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📋 Meine Jutsu-Liste</h2>
+                    </div>
+                    
+                    <div class="jutsu-table-container">
+                        <table class="jutsu-table" id="jutsuTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Rang</th>
+                                    <th>Typ</th>
+                                    <th>Element</th>
+                                    <th>Chakra</th>
+                                    <th>Schaden</th>
+                                    <th>Status</th>
+                                    <th>Aktion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="jutsuTableBody">
+                                <!-- Dynamisch gefüllt -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- SEITE 4: Jutsu-Karten -->
+            <div id="page4" class="sheet-page">
+                
+                <!-- Jutsu-Karten Übersicht -->
+                <section class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">🃏 Meine Jutsu-Karten</h2>
+                        <span class="card-subtitle">Klicke auf eine Karte für Details • Hover für Info • Level-Up verfügbar</span>
+                    </div>
+                    
+                    <!-- Admin Override Panel (nur für DM/Admin sichtbar) -->
+                    <div id="adminJutsuOverride" class="admin-override-panel hidden">
+                        <h4>🔧 Admin: Manuelle Jutsu-Anpassung</h4>
+                        <p class="hint">Wähle ein Jutsu aus und passe Werte manuell an:</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Chakra-Kosten</label>
+                                <input type="number" id="adminJutsuChakra" placeholder="Chakra">
+                            </div>
+                            <div class="form-group">
+                                <label>Schaden</label>
+                                <input type="text" id="adminJutsuDamage" placeholder="z.B. 3W6">
+                            </div>
+                            <div class="form-group">
+                                <label>Reichweite</label>
+                                <input type="text" id="adminJutsuRange" placeholder="z.B. 10m">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Beschreibung</label>
+                            <textarea id="adminJutsuDesc" rows="2"></textarea>
+                        </div>
+                        
+                        <button class="override-btn" onclick="JutsuSystem.adminOverrideCurrentJutsu()">
+                            💾 Änderungen speichern
+                        </button>
+                        <button class="override-btn" onclick="JutsuSystem.adminResetJutsu()">
+                            🔄 Auf Standard zurücksetzen
+                        </button>
+                    </div>
+                    
+                    <div class="jutsu-cards-grid" id="jutsuCardsGrid">
+                        <p class="hint">Noch keine Jutsus ausgewählt. Wähle Jutsus auf der vorherigen Seite aus.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- SEITE 5: Spiel -->
+            <div id="page5" class="sheet-page">
+                <div id="gamePage">
+                    <!-- Wird dynamisch von GamePage.render() gefüllt -->
+                </div>
+            </div>
+            
+            <!-- SEITE 6: Händler -->
+            <div id="page6" class="sheet-page">
+                <div id="merchantPage">
+                    <!-- Wird dynamisch von MerchantPage.render() gefüllt -->
+                </div>
+            </div>
+            
+            <!-- SEITE 7: Quests -->
+            <div id="page7" class="sheet-page">
+                <div id="quest-page" class="quest-page-container">
+                    <div class="page-header">
+                        <h1>📜 Quest-Board</h1>
+                        <p class="subtitle">Wähle bis zu 3 Quests pro Tag</p>
+                    </div>
+                    <div id="quest-board-container">
+                        <!-- Wird dynamisch von QuestBoardUI gefüllt -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Ausrüstungs-Modal -->
+    <div id="equipmentModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Ausrüstung auswählen</h3>
+                <button class="close-btn" onclick="closeEquipmentModal()">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Gegenstand auswählen</label>
+                    <select id="itemSelect" onchange="onItemSelect()">
+                        <option value="">-- Freie Eingabe --</option>
+                        <!-- Wird dynamisch gefüllt -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="itemName" placeholder="Gegenstandsname">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Schaden/Rüstung</label>
+                        <input type="text" id="itemDamage" placeholder="z.B. 2W6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Modifikator</label>
+                        <input type="text" id="itemMod" placeholder="z.B. +2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>RK-Mod</label>
+                        <input type="text" id="itemRK" placeholder="z.B. +1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Beschreibung</label>
+                    <textarea id="itemDesc" rows="3" placeholder="Beschreibung des Gegenstands..."></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeEquipmentModal()">Abbrechen</button>
+                <button class="btn-primary" onclick="saveEquipment()">💾 Speichern</button>
+                <button class="btn-danger" onclick="removeEquipment()">🗑️ Entfernen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Würfel Modal für Startwerte -->
+    <div id="diceRollModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎲 Startwerte würfeln</h3>
+                <button class="close-btn" onclick="closeDiceRollModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="hint">Würfle für deine Startwerte und gib das Ergebnis ein:</p>
+                
+                <div class="dice-roll-grid">
+                    <div class="dice-roll-item">
+                        <label>Lebenspunkte (2W6 + KON)</label>
+                        <div class="dice-input-group">
+                            <input type="number" id="diceHp" min="2" max="12" placeholder="2W6">
+                            <span class="dice-plus">+</span>
+                            <span class="dice-attr" id="diceHpAttr">8</span>
+                            <span class="dice-equals">=</span>
+                            <span class="dice-result" id="diceHpResult">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dice-roll-item">
+                        <label>Chakra (2W6 + INT)</label>
+                        <div class="dice-input-group">
+                            <input type="number" id="diceChakra" min="2" max="12" placeholder="2W6">
+                            <span class="dice-plus">+</span>
+                            <span class="dice-attr" id="diceChakraAttr">8</span>
+                            <span class="dice-equals">=</span>
+                            <span class="dice-result" id="diceChakraResult">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="dice-roll-item">
+                        <label>Stamina (1W6 + KON-Mod)</label>
+                        <div class="dice-input-group">
+                            <input type="number" id="diceStamina" min="1" max="6" placeholder="1W6">
+                            <span class="dice-plus">+</span>
+                            <span class="dice-attr" id="diceStaminaAttr">-1</span>
+                            <span class="dice-equals">=</span>
+                            <span class="dice-result" id="diceStaminaResult">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="autoRollDice()">🎲 Automatisch würfeln</button>
+                <button class="btn-primary" onclick="confirmDiceRoll()">✅ Übernehmen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AP Vergabe Modal (nur DM) -->
+    <div id="apAwardModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏆 Abenteuerpunkte vergeben</h3>
+                <button class="close-btn" onclick="closeAPAwardModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Anzahl AP</label>
+                    <input type="number" id="apAwardAmount" min="1" value="1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Grund (optional)</label>
+                    <input type="text" id="apAwardReason" placeholder="z.B. Quest abgeschlossen, gutes Rollenspiel..." class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAPAwardModal()">Abbrechen</button>
+                <button class="btn-primary" onclick="confirmAPAward()">✅ AP vergeben</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jutsu-Karte Detail Modal -->
+    <div id="jutsuCardModal" class="modal hidden">
+        <div class="modal-content jutsu-card-modal">
+            <div class="modal-header">
+                <h3 id="jutsuCardModalTitle">Jutsu-Details</h3>
+                <button class="close-btn" onclick="closeJutsuCardModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="jutsuCardDetailContent">
+                    <!-- Wird dynamisch gefüllt -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeJutsuCardModal()">Schließen</button>
+                <button class="btn-danger" onclick="removeJutsuFromCard()">🗑️ Aus Liste entfernen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DM Panel Container - Eigene Vollbild-Seite (kein Modal!) -->
+    <div id="dmPanelContainer" class="dm-panel-container hidden">
+        <!-- DM Dashboard wird hier dynamisch gerendert -->
+    </div>
+
+    <!-- Charakter Erstellungs-Wizard Modal -->
+    <div id="characterCreationModal" class="modal hidden">
+        <div class="modal-content creation-wizard">
+            <div class="wizard-header">
+                <h2>🥷 Neuer Charakter</h2>
+                <div class="wizard-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="creationProgress"></div>
+                    </div>
+                    <span class="step-counter" id="creationStepCounter">Schritt 1 von 5</span>
+                </div>
+            </div>
+
+            <div class="wizard-body">
+                <!-- Schritt 1: Persönliche Daten -->
+                <div id="creationStep1" class="wizard-step">
+                    <h3>Persönliche Daten</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" id="charCreateName" placeholder="Name deines Charakters" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Alter</label>
+                            <input type="number" id="charCreateAge" min="16" max="25" value="16">
+                        </div>
+                        <div class="form-group">
+                            <label>Geschlecht</label>
+                            <select id="charCreateGender">
+                                <option value="">-</option>
+                                <option value="männlich">Männlich</option>
+                                <option value="weiblich">Weiblich</option>
+                                <option value="divers">Divers</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Größe (cm)</label>
+                            <input type="number" id="charCreateHeight" min="140" max="220" placeholder="170">
+                        </div>
+                        <div class="form-group">
+                            <label>Gewicht (kg)</label>
+                            <input type="number" id="charCreateWeight" min="40" max="150" placeholder="65">
+                        </div>
+                        <div class="form-group">
+                            <label>Herkunftsland</label>
+                            <select id="charCreateOriginCountry">
+                                <option value="">-</option>
+                                <option value="Feuer">Feuerreich (Hi no Kuni)</option>
+                                <option value="Wind">Windreich (Kaze no Kuni)</option>
+                                <option value="Erde">Erdreich (Tsuchi no Kuni)</option>
+                                <option value="Wasser">Wasserreich (Mizu no Kuni)</option>
+                                <option value="Blitz">Blitzreich (Kaminari no Kuni)</option>
+                                <option value="Schnee">Schneereich (Yuki no Kuni)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Heimatdorf</label>
+                            <select id="charCreateHomeVillage">
+                                <option value="">-</option>
+                                <option value="Konohagakure">Konohagakure (Verstecktes Blatt)</option>
+                                <option value="Sunagakure">Sunagakure (Versteckter Sand)</option>
+                                <option value="Iwagakure">Iwagakure (Versteckter Stein)</option>
+                                <option value="Kirigakure">Kirigakure (Versteckter Nebel)</option>
+                                <option value="Kumogakure">Kumogakure (Versteckte Wolke)</option>
+                                <option value="Amegakure">Amegakure (Versteckter Regen)</option>
+                                <option value="Otogakure">Otogakure (Versteckter Klang)</option>
+                                <option value="Kusagakure">Kusagakure (Verstecktes Gras)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rang</label>
+                            <select id="charCreateRank">
+                                <option value="Academy">Academy-Schüler</option>
+                                <option value="Genin" selected>Genin</option>
+                                <option value="Chuunin">Chuunin</option>
+                                <option value="Jounin">Jounin</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Familienstand</label>
+                            <select id="charCreateMaritalStatus">
+                                <option value="">-</option>
+                                <option value="ledig">Ledig</option>
+                                <option value="verheiratet">Verheiratet</option>
+                                <option value="verwitwet">Verwitwet</option>
+                                <option value="geschieden">Geschieden</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Glaube</label>
+                            <select id="charCreateReligion">
+                                <option value="">-</option>
+                                <option value="Jashin">Jashin</option>
+                                <option value="Shinbutsu">Shinbutsu</option>
+                                <option value="Shinto">Shinto</option>
+                                <option value="Buddhismus">Buddhismus</option>
+                                <option value="keiner">Keiner</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schritt 2: Clan und Element -->
+                <div id="creationStep2" class="wizard-step hidden">
+                    <h3>Clan und Element</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Clan *</label>
+                            <select id="charCreateClan" required>
+                                <option value="">Wähle einen Clan</option>
+                                <option value="aburame">Aburame</option>
+                                <option value="akimichi">Akimichi</option>
+                                <option value="hyuga">Hyuga</option>
+                                <option value="inuzuka">Inuzuka</option>
+                                <option value="nara">Nara</option>
+                                <option value="senju">Senju</option>
+                                <option value="uchiha">Uchiha</option>
+                                <option value="yamanaka">Yamanaka</option>
+                                <option value="chinoike">Chinoike</option>
+                                <option value="yotsuki">Yotsuki</option>
+                                <option value="hozuki">Hozuki</option>
+                                <option value="hoshigaki">Hoshigaki</option>
+                                <option value="yuki">Yuki</option>
+                                <option value="guren">Guren</option>
+                                <option value="kamizuru">Kamizuru</option>
+                                <option value="kaguya">Kaguya</option>
+                                <option value="iburi">Iburi</option>
+                                <option value="kohaku">Kohaku</option>
+                                <option value="kurama">Kurama</option>
+                                <option value="tsuchigumo">Tsuchigumo</option>
+                                <option value="uzumaki">Uzumaki</option>
+                                <option value="kein_clan">Kein Clan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Element</label>
+                            <div class="element-selector" id="charCreateElements">
+                                <div class="element-option" data-element="feuer" onclick="toggleCreationElement('feuer')">
+                                    <span class="element-icon">🔥</span>
+                                    <span>Feuer</span>
+                                </div>
+                                <div class="element-option" data-element="wasser" onclick="toggleCreationElement('wasser')">
+                                    <span class="element-icon">💧</span>
+                                    <span>Wasser</span>
+                                </div>
+                                <div class="element-option" data-element="erde" onclick="toggleCreationElement('erde')">
+                                    <span class="element-icon">🪨</span>
+                                    <span>Erde</span>
+                                </div>
+                                <div class="element-option" data-element="wind" onclick="toggleCreationElement('wind')">
+                                    <span class="element-icon">🌪️</span>
+                                    <span>Wind</span>
+                                </div>
+                                <div class="element-option" data-element="blitz" onclick="toggleCreationElement('blitz')">
+                                    <span class="element-icon">⚡</span>
+                                    <span>Blitz</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schritt 3: Attribute -->
+                <div id="creationStep3" class="wizard-step hidden">
+                    <h3>Attribute verteilen</h3>
+                    <p class="hint">Du hast 26 Punkte zu verteilen. Jedes Attribut startet bei 8.</p>
+                    <div class="attribute-allocation">
+                        <div class="attr-row">
+                            <label>Körperkraft (KK)</label>
+                            <input type="number" id="charCreateAttr_kk" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Konstitution (KON)</label>
+                            <input type="number" id="charCreateAttr_kon" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Geschicklichkeit (GES)</label>
+                            <input type="number" id="charCreateAttr_ges" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Geschwindigkeit (GSW)</label>
+                            <input type="number" id="charCreateAttr_gsw" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Intuition (ITU)</label>
+                            <input type="number" id="charCreateAttr_itu" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Intelligenz (INT)</label>
+                            <input type="number" id="charCreateAttr_int" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                        <div class="attr-row">
+                            <label>Charisma (CHA)</label>
+                            <input type="number" id="charCreateAttr_cha" min="8" max="20" value="8" onchange="updateAttrPoints()">
+                        </div>
+                    </div>
+                    <div class="points-remaining">
+                        Verbleibende Punkte: <span id="attrPointsRemaining">26</span>
+                    </div>
+                </div>
+
+                <!-- Schritt 4: Jutsus -->
+                <div id="creationStep4" class="wizard-step hidden">
+                    <h3>Jutsus wählen (1W6)</h3>
+                    <p class="hint">Wähle 1-6 Jutsus aus. Maximal 1 B-Rang, keine A/S-Rangs.</p>
+                    <div class="jutsu-selection" id="creationJutsuList">
+                        <!-- Wird dynamisch gefüllt -->
+                    </div>
+                </div>
+
+                <!-- Schritt 5: Talente -->
+                <div id="creationStep5" class="wizard-step hidden">
+                    <h3>Talente wählen</h3>
+                    <p class="hint">Du hast 5 Talentpunkte. Maximal 2 Talente mit Kosten ≥ 7.</p>
+                    <div class="talent-selection" id="creationTalentList">
+                        <!-- Wird dynamisch gefüllt -->
+                    </div>
+                    <div class="points-remaining">
+                        Verbleibende Punkte: <span id="talentPointsRemaining">5</span>
+                    </div>
+                </div>
+
+                <div id="creationError" class="wizard-error"></div>
+            </div>
+
+            <div class="wizard-footer">
+                <button type="button" class="btn-secondary" onclick="cancelCharacterCreation()">Abbrechen</button>
+                <button type="button" class="btn-secondary" id="creationPrevBtn" onclick="prevCreationStep()" disabled>Zurück</button>
+                <button type="button" class="btn-primary" id="creationNextBtn" onclick="nextCreationStep()">Weiter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DM Panel Container (nur für DM sichtbar) -->
+    <div id="dmPanelContainer" class="dm-panel-container hidden">
+        <!-- DM Panel wird hier dynamisch gerendert -->
+    </div>
+
+    <!-- REFACTORING: Neue modulare Struktur -->
+    <!-- Phase 1: Core Systeme -->
+    <script src="src/core/app-adapter.js"></script>
+    <script src="src/core/storage.js"></script>
+    <script src="src/core/calculations.js"></script>
+    <script src="src/core/rules.js"></script>
+    
+    <!-- Phase 1: Statische Daten -->
+    <script src="src/data/jutsu-data.js"></script>
+    <script src="src/data/items.js"></script>
+    <script src="src/data/talents.js"></script>
+    
+    <!-- REFACTORING: Neue Core Module (Phase 1-2) -->
+    <script src="src/core/event-bus.js"></script>
+    <script src="src/core/rules-engine.js"></script>
+    <script src="src/core/state-manager.js"></script>
+    <script src="src/core/storage-manager.js"></script>
+    
+    <!-- REFACTORING: Neue Data Module (Phase 4) -->
+    <script src="src/data/clan-data.js"></script>
+    
+    <!-- REFACTORING: Neue Character Module (Phase 4) -->
+    <script src="src/character/character-service.js"></script>
+    
+    <!-- REFACTORING: Neue UI Renderer (Phase 5) -->
+    <script src="src/ui/renderers/stats-renderer.js"></script>
+    <script src="src/ui/renderers/skills-renderer.js"></script>
+    
+    <!-- Bestehende Systeme (unverändert) -->
+    <script src="core-systems.js"></script>
+    <script src="npu-core.js"></script>
+    <script src="jutsu-learning.js"></script>
+    <script src="kekkei-genkai.js"></script>
+    <script src="combat-system.js"></script>
+    <script src="status-effects.js"></script>
+    <script src="advanced-combat.js"></script>
+    
+    <!-- REFACTORING: DM Panel (neue Pfade) -->
+    <script src="src/dm/dm-panel.js"></script>
+    <script src="src/dm/dm-merchant-admin.js"></script>
+    
+    <script src="dice-system.js"></script>
+    <script src="auth-api.js"></script>
+    <script src="game-log.js"></script>
+    <script src="game-page.js"></script>
+    <script src="merchant-page.js"></script>
+    <script src="merchant-ui.js"></script>
+    <script src="merchant-dialog-system.js"></script>
+    <script src="jutsu-system.js"></script>
+    <script src="clan-bonuses.js"></script>
+    <script src="equipment-system.js"></script>
+    <script src="auth-system.js"></script>
+    <script src="character-creation-wizard.js"></script>
+    <script src="liquid-orbs.js"></script>
+    <script src="session-system.js"></script>
+    <script src="death-save-system.js"></script>
+    
+    <!-- REFACTORING: Neue Quest Systeme (Phase 3) -->
+    <script src="src/core/debug-config.js"></script>
+    <script src="src/quests/quest-registry.js"></script>
+    <!-- quest-engine.js ENTFERNT: Verursachte const-Redeclaration mit quest-engine-v4.js -->
+    <!-- <script src="src/quests/quest-engine.js"></script> -->
+    
+    <!-- QUEST SYSTEM V4.0 - Studio Level Architecture -->
+    <!-- event-bus.js und state-manager.js bereits oben geladen (Zeile 1491-1493) -->
+    <script src="src/core/account-system.js"></script>
+    <script src="src/quests/quest-pool.js"></script>
+    <script src="src/quests/quest-registry-v4.js"></script>
+    <script src="src/quests/quest-engine-v4.js"></script>
+    <script src="src/quests/dialog-system.js"></script>
+    <script src="src/quests/fast-combat-system.js"></script>
+    <script src="src/quests/reward-system.js"></script>
+    <!-- Save System V2 - Production-Grade -->
+    <script src="src/core/save-system-v2.js"></script>
+    
+    <script src="src/quests/training-system-v4.js"></script>
+    <script src="src/core/karma-system.js"></script>
+    <script src="src/core/achievement-system.js"></script>
+    <script src="src/core/jutsu-security.js"></script>
+    <script src="src/core/jutsu-reward-engine.js"></script>
+    <script src="src/core/live-sync.js"></script>
+    <script src="src/ui/quest-board-ui.js"></script>
+    <script>
+    // Fallback: Falls QuestBoardUI nicht über externes Script registriert wurde
+    if (typeof window.QuestBoardUI === 'undefined' && typeof QuestBoardUI !== 'undefined') {
+        window.QuestBoardUI = QuestBoardUI;
+        console.log('[Fallback] QuestBoardUI manuell auf window gesetzt');
+    }
+    // NOTFALL: Falls Script gar nicht geladen wurde (file:// Blocking)
+    if (typeof window.QuestBoardUI === 'undefined') {
+        console.warn('[WARNUNG] QuestBoardUI Script NICHT geladen! Erstelle Minimal-Version.');
+        console.warn('[WARNUNG] Bitte App ueber http://localhost starten (start-server.ps1)');
+        window.QuestBoardUI = {
+            init: function() { this.render(); },
+            render: function() {
+                var c = document.getElementById('quest-board-container');
+                if (!c) return;
+                var qe = window.QuestEngine;
+                if (!qe) { c.innerHTML = '<p style="padding:20px;text-align:center;">Quest-Engine wird geladen...</p>'; return; }
+                var quests = qe.state.questBoard || [];
+                var html = '<div class="quest-board-v4"><h2 style="text-align:center;padding:20px;">Quest Board</h2>';
+                if (quests.length === 0) {
+                    html += '<p style="text-align:center;color:#888;">Keine Quests verfuegbar. Neuer Tag = neue Quests!</p>';
+                } else {
+                    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:16px;">';
+                    quests.forEach(function(q) {
+                        html += '<div style="background:rgba(0,0,0,0.3);border:1px solid #444;border-radius:8px;padding:16px;">' +
+                            '<h3 style="color:#d4af37;">' + (q.title || 'Quest') + '</h3>' +
+                            '<p style="color:#aaa;font-size:0.9em;">' + (q.description || '') + '</p>' +
+                            '<div style="margin-top:8px;color:#4ecca3;">XP: ' + (q.rewards && q.rewards.xp || 5) + '</div>' +
+                            '</div>';
+                    });
+                    html += '</div>';
+                }
+                html += '</div>';
+                c.innerHTML = html;
+            }
+        };
+    }
+    </script>
+    <script src="src/ui/quest-page-integration.js"></script>
+    <script src="src/dm/dm-quest-control.js"></script>
+    <script src="src/quests/quest-integration.js"></script>
+    <script src="src/quests/app-quest-integration.js"></script>
+    <!-- FIX 5: quest-system-tests.js entfernt (404 Not Found) -->
+    <!-- <script src="src/quests/quest-system-tests.js"></script> -->
+    
+    <!-- QuestSystem Proxy für Backward Compatibility -->
+    <script src="quest-system.js"></script>
+    <!-- Alte Quest Systeme (werden nach Migration entfernt) -->
+    <!-- <script src="frostfels-quest-engine.js"></script> -->
+    <!-- <script src="rpg-quest-system.js"></script> -->
+    <!-- <script src="professional-quest-system.js"></script> -->
+    <!-- <script src="true-rpg-quest-engine.js"></script> -->
+    <!-- <script src="frostfels-quest-engine-v2.js"></script> -->
+    
+    <script src="inventory-overlay.js"></script>
+    <script src="skill-modifier.service.js"></script>
+    <script src="system-tests.js"></script>
+    
+    <!-- Haupt-App (zuletzt laden) -->
+    <script src="app.js"></script>
+    
+    <!-- Jutsu Tooltip Container -->
+    <div id="jutsuTooltip" class="jutsu-tooltip"></div>
+</body>
+</html>
