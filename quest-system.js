@@ -29,7 +29,7 @@ const QuestSystem = {
      */
     save() {
         if (typeof QuestEngine !== 'undefined') {
-            QuestEngine.saveState();
+            QuestEngine.StateManager.saveState();
         }
     },
     
@@ -117,7 +117,7 @@ const QuestSystem = {
             QuestEngine.state.dailyQuests = QuestEngine.state.dailyQuests.filter(
                 q => q.id !== questId
             );
-            QuestEngine.saveState();
+            QuestEngine.StateManager.saveState();
         }
     },
     
@@ -131,7 +131,7 @@ const QuestSystem = {
         const quest = QuestEngine?.state?.activeQuests?.find(q => q.id === questId);
         if (quest) {
             quest.progress = progress;
-            QuestEngine.saveState();
+            QuestEngine.StateManager.saveState();
         }
     },
     
@@ -190,7 +190,7 @@ const QuestSystem = {
     changeReputation(npc, amount) {
         if (QuestEngine?.state?.reputation) {
             QuestEngine.state.reputation[npc] = (QuestEngine.state.reputation[npc] || 0) + amount;
-            QuestEngine.saveState();
+            QuestEngine.StateManager.saveState();
         }
     },
     
@@ -208,7 +208,7 @@ const QuestSystem = {
                     state,
                     activated: new Date().toISOString()
                 });
-                QuestEngine.saveState();
+                QuestEngine.StateManager.saveState();
             }
         }
     },

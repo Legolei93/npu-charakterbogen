@@ -1,3 +1,5 @@
+import { simulateEvent, processGameEvent, dispatchEvent } from "../core/event-system.js";
+
 /**
  * Kampflog und Verlaufssystem
  * Protokolliert alle wichtigen Aktionen im Spiel
@@ -19,7 +21,7 @@ const GameLog = {
      * Lädt gespeicherte Logs
      */
     loadLogs() {
-        const saved = localStorage.getItem('game_logs');
+        const saved = localStateManager.getItem('game_logs');
         if (saved) {
             this.logs = JSON.parse(saved);
         }
@@ -33,7 +35,7 @@ const GameLog = {
         if (this.logs.length > this.maxLogs) {
             this.logs = this.logs.slice(-this.maxLogs);
         }
-        localStorage.setItem('game_logs', JSON.stringify(this.logs));
+        localStateManager.setItem('game_logs', JSON.stringify(this.logs));
     },
     
     /**

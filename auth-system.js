@@ -30,7 +30,7 @@ const AuthSystem = {
      * Laedt aus dem Speicher
      */
     loadFromStorage() {
-        const saved = localStorage.getItem('npu_auth_system');
+        const saved = localStateManager.getItem('npu_auth_system');
         if (saved) {
             const data = JSON.parse(saved);
             this.resetTokens = data.resetTokens || {};
@@ -43,7 +43,7 @@ const AuthSystem = {
      */
     loadStoredUser() {
         try {
-            const data = localStorage.getItem('npu_current_user');
+            const data = localStateManager.getItem('npu_current_user');
             if (!data) return null;
             
             const user = JSON.parse(data);
@@ -62,7 +62,7 @@ const AuthSystem = {
      * Speichert in den Speicher
      */
     saveToStorage() {
-        localStorage.setItem('npu_auth_system', JSON.stringify({
+        localStateManager.setItem('npu_auth_system', JSON.stringify({
             resetTokens: this.resetTokens
         }));
     },
@@ -92,7 +92,7 @@ const AuthSystem = {
         // Speichere Benutzer
         const users = this.getAllUsers();
         users.push(user);
-        localStorage.setItem('npu_users', JSON.stringify(users));
+        localStateManager.setItem('npu_users', JSON.stringify(users));
         
         return { success: true, message: 'Registrierung erfolgreich', userId: user.id };
     },
@@ -123,7 +123,7 @@ const AuthSystem = {
         };
         
         // Speichere Session
-        localStorage.setItem('npu_current_user', JSON.stringify(this.currentUser));
+        localStateManager.setItem('npu_current_user', JSON.stringify(this.currentUser));
         
         // === STATE MANAGER SYNC ===
         if (window.StateManager && window.StateManager.onUserLogin) {
@@ -241,7 +241,7 @@ const AuthSystem = {
         
         // Setze neues Passwort
         users[userIndex].password = this.hashPassword(newPassword);
-        localStorage.setItem('npu_users', JSON.stringify(users));
+        localStateManager.setItem('npu_users', JSON.stringify(users));
         
         // Markiere Token als verwendet
         this.resetTokens[token].used = true;
@@ -276,7 +276,7 @@ const AuthSystem = {
         if (this.currentUser) return true;
         
         // Pruefe gespeicherte Session
-        const saved = localStorage.getItem('npu_current_user');
+        const saved = localStateManager.getItem('npu_current_user');
         if (saved) {
             this.currentUser = JSON.parse(saved);
             return true;
@@ -301,7 +301,7 @@ const AuthSystem = {
             const key = localStorage.key(i);
             if (key?.startsWith('npu_character_')) {
                 try {
-                    const char = JSON.parse(localStorage.getItem(key));
+                    const char = JSON.parse(localStateManager.getItem(key));
                     if (char.userId === userId) {
                         chars.push(char);
                     }
@@ -315,7 +315,7 @@ const AuthSystem = {
      * Hilfsfunktionen
      */
     getAllUsers() {
-        return JSON.parse(localStorage.getItem('npu_users') || '[]');
+        return JSON.parse(localStateManager.getItem('npu_users') || '[]');
     },
     
     getUser(username) {
@@ -331,7 +331,7 @@ const AuthSystem = {
         const index = users.findIndex(u => u.id === updatedUser.id);
         if (index !== -1) {
             users[index] = updatedUser;
-            localStorage.setItem('npu_users', JSON.stringify(users));
+            localStateManager.setItem('npu_users', JSON.stringify(users));
         }
     },
     

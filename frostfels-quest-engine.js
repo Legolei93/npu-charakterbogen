@@ -680,11 +680,11 @@ const FrostfelsQuestEngine = {
             rareEventCooldown: QuestSystem.rareEventCooldown
         };
         
-        localStorage.setItem('frostfels_quest_engine', JSON.stringify(data));
+        localStateManager.setItem('frostfels_quest_engine', JSON.stringify(data));
     },
     
     load() {
-        const saved = localStorage.getItem('frostfels_quest_engine');
+        const saved = localStateManager.getItem('frostfels_quest_engine');
         if (saved) {
             const data = JSON.parse(saved);
             QuestSystem.karma = data.karma || { value: 0, history: [] };

@@ -57,7 +57,7 @@ const StateManager = {
         if (typeof CharacterService !== 'undefined') {
             characters = CharacterService.loadAll(userId);
         } else if (typeof StorageManager !== 'undefined') {
-            characters = StorageManager.loadAllCharacters(userId);
+            characters = StateManager.loadAllCharacters(userId);
         } else if (typeof AccountSystem !== 'undefined') {
             // Fallback auf AccountSystem
             characters = AccountSystem.getCharactersForUser(userId);
@@ -118,7 +118,7 @@ const StateManager = {
         // Aus localStorage
         if (!userId) {
             try {
-                const stored = localStorage.getItem('npu_current_user');
+                const stored = localStateManager.getItem('npu_current_user');
                 if (stored) {
                     const user = JSON.parse(stored);
                     userId = user.username || user.id;
@@ -131,7 +131,7 @@ const StateManager = {
         // Aus SessionStorage
         if (!userId) {
             try {
-                const stored = sessionStorage.getItem('npu_current_user');
+                const stored = sessionStateManager.getItem('npu_current_user');
                 if (stored) {
                     const user = JSON.parse(stored);
                     userId = user.username || user.id;
@@ -160,7 +160,7 @@ const StateManager = {
         const storageKey = `npu_character_${this._userId}`;
         
         try {
-            const stored = localStorage.getItem(storageKey);
+            const stored = localStateManager.getItem(storageKey);
             if (stored) {
                 this._character = JSON.parse(stored);
                 console.log('[StateManager] Character geladen für', this._userId);
@@ -184,7 +184,7 @@ const StateManager = {
      * Speichert den Character
      * @private
      */
-    _saveCharacter() {
+    _StateManager.saveState() {
         if (!this._userId || !this._character) {
             console.warn('[StateManager] Kein User oder Character zum Speichern');
             return false;
@@ -193,7 +193,7 @@ const StateManager = {
         const storageKey = `npu_character_${this._userId}`;
         
         try {
-            localStorage.setItem(storageKey, JSON.stringify(this._character));
+            localStateManager.setItem(storageKey, JSON.stringify(this._character));
             console.log('[StateManager] Character gespeichert für', this._userId);
             return true;
         } catch (e) {
@@ -224,7 +224,7 @@ const StateManager = {
         window.currentCharacter = character;
         
         // Speichern für Persistenz
-        this._saveCharacter();
+        this._StateManager.saveState();
         
         this._emit('character:changed', character);
         console.log('[StateManager] Aktiver Character:', character.name);
@@ -247,7 +247,7 @@ const StateManager = {
         };
         
         window.currentCharacter = this._character;
-        this._saveCharacter();
+        this._StateManager.saveState();
         this._emit('character:updated', this._character);
         return { success: true };
     },
@@ -275,7 +275,7 @@ const StateManager = {
         
         current[keys[keys.length - 1]] = value;
         
-        this._saveCharacter();
+        this._StateManager.saveState();
         this._emit('character:updated', this._character);
     },
     
@@ -394,9 +394,9 @@ const StateManager = {
             const key = localStorage.key(i);
             if (key && key.startsWith('npu_')) {
                 try {
-                    data[key] = JSON.parse(localStorage.getItem(key));
+                    data[key] = JSON.parse(localStateManager.getItem(key));
                 } catch (e) {
-                    data[key] = localStorage.getItem(key);
+                    data[key] = localStateManager.getItem(key);
                 }
             }
         }
@@ -411,9 +411,9 @@ const StateManager = {
     importData(data) {
         Object.entries(data).forEach(([key, value]) => {
             try {
-                localStorage.setItem(key, JSON.stringify(value));
+                localStateManager.setItem(key, JSON.stringify(value));
             } catch (e) {
-                localStorage.setItem(key, value);
+                localStateManager.setItem(key, value);
             }
         });
         

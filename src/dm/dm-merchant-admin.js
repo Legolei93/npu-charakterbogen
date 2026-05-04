@@ -20,7 +20,7 @@ const DMMerchantAdmin = {
      */
     loadMerchants() {
         // Lade aus localStorage oder verwende Demo-Daten
-        const saved = localStorage.getItem('dm_merchants');
+        const saved = localStateManager.getItem('dm_merchants');
         if (saved) {
             this.merchants = JSON.parse(saved);
         } else {
@@ -34,7 +34,7 @@ const DMMerchantAdmin = {
      * Speichert alle Haendler
      */
     saveMerchants() {
-        localStorage.setItem('dm_merchants', JSON.stringify(this.merchants));
+        localStateManager.setItem('dm_merchants', JSON.stringify(this.merchants));
     },
     
     /**
@@ -472,8 +472,8 @@ const DMMerchantAdmin = {
         if (!merchant) return;
         
         // Lade aktuelle Werte aus dem Dialog-System
-        const relationship = localStorage.getItem(`merchant_${merchantId}_relationship`) || 0;
-        const trust = localStorage.getItem(`merchant_${merchantId}_trust`) || 50;
+        const relationship = localStateManager.getItem(`merchant_${merchantId}_relationship`) || 0;
+        const trust = localStateManager.getItem(`merchant_${merchantId}_trust`) || 50;
         
         const modal = document.createElement('div');
         modal.id = 'rpgControlModal';
@@ -606,10 +606,10 @@ const DMMerchantAdmin = {
         const randomMood = document.getElementById('rpgRandomMood').checked;
         
         // Speichere im localStorage (für Dialog-System)
-        localStorage.setItem(`merchant_${merchantId}_relationship`, relationship);
-        localStorage.setItem(`merchant_${merchantId}_trust`, trust);
-        localStorage.setItem(`merchant_${merchantId}_mood`, mood);
-        localStorage.setItem(`merchant_${merchantId}_randomMood`, randomMood);
+        localStateManager.setItem(`merchant_${merchantId}_relationship`, relationship);
+        localStateManager.setItem(`merchant_${merchantId}_trust`, trust);
+        localStateManager.setItem(`merchant_${merchantId}_mood`, mood);
+        localStateManager.setItem(`merchant_${merchantId}_randomMood`, randomMood);
         
         // Aktualisiere Merchant-Daten
         const merchant = this.merchants.find(m => m.id === merchantId);

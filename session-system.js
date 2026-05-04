@@ -27,7 +27,7 @@ const SessionSystem = {
      * Lädt aus dem Speicher
      */
     loadFromStorage() {
-        const saved = localStorage.getItem('npu_session_system');
+        const saved = localStateManager.getItem('npu_session_system');
         if (saved) {
             const data = JSON.parse(saved);
             this.currentSession = data.currentSession;
@@ -39,7 +39,7 @@ const SessionSystem = {
      * Speichert in den Speicher
      */
     saveToStorage() {
-        localStorage.setItem('npu_session_system', JSON.stringify({
+        localStateManager.setItem('npu_session_system', JSON.stringify({
             currentSession: this.currentSession,
             sessionHistory: this.sessionHistory
         }));

@@ -86,7 +86,7 @@ const LiveSync = {
         // Prüfe Character-Änderungen
         const character = this.getCurrentCharacter();
         if (character) {
-            const storedHash = localStorage.getItem(`char_hash_${character.id}`);
+            const storedHash = localStateManager.getItem(`char_hash_${character.id}`);
             const currentHash = this.hashObject(character);
             
             if (storedHash && storedHash !== currentHash) {
@@ -209,7 +209,7 @@ const LiveSync = {
         }
         
         // Storage Fallback
-        localStorage.setItem(this.CONFIG.STORAGE_KEY, JSON.stringify(message));
+        localStateManager.setItem(this.CONFIG.STORAGE_KEY, JSON.stringify(message));
     },
     
     handleBroadcastMessage(message) {
@@ -291,7 +291,7 @@ const LiveSync = {
     handleQuestAdded(quest) {
         if (typeof QuestEngine !== 'undefined') {
             QuestEngine.state.questBoard.unshift(quest);
-            QuestEngine.saveState();
+            QuestEngine.StateManager.saveState();
             this.updateQuestPage();
             
             // Benachrichtigung

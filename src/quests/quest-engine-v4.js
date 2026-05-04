@@ -1,3 +1,5 @@
+import { simulateEvent, processGameEvent, dispatchEvent } from "../core/event-system.js";
+
 /**
  * Quest Engine v4.0 - Studio-Level RPG Quest System
  * 
@@ -917,7 +919,7 @@ const QuestEngine = {
         if (!currentUser) return;
         
         const v3Key = `npu_quest_engine_v3_${currentUser.id}`;
-        const v3Data = localStorage.getItem(v3Key);
+        const v3Data = localStateManager.getItem(v3Key);
         
         if (!v3Data) return;
         
@@ -2124,7 +2126,7 @@ const QuestEngine = {
         
         // Charakter speichern
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         } else if (typeof StateManager !== 'undefined') {
             StateManager.updateCharacter(character);
         }
@@ -2465,7 +2467,7 @@ const QuestEngine = {
         }
         
         try {
-            const userData = localStorage.getItem('npu_current_user');
+            const userData = localStateManager.getItem('npu_current_user');
             if (userData) return JSON.parse(userData);
         } catch (e) {
             console.error('[QuestEngine] Fehler beim Lesen des Users:', e);
@@ -2494,7 +2496,7 @@ const QuestEngine = {
         }
         // Fallback 2: localStorage
         try {
-            const saved = localStorage.getItem('npu_current_character');
+            const saved = localStateManager.getItem('npu_current_character');
             if (saved) {
                 return JSON.parse(saved);
             }
@@ -2632,7 +2634,7 @@ const QuestEngine = {
             return AccountSystem.isDM();
         }
         try {
-            const user = JSON.parse(localStorage.getItem('npu_current_user') || '{}');
+            const user = JSON.parse(localStateManager.getItem('npu_current_user') || '{}');
             return user.role === 'dm';
         } catch (e) {
             return false;
@@ -2842,7 +2844,7 @@ const QuestEngine = {
         const storageKey = `npu_quest_engine_v4_${currentUser.id}`;
         
         try {
-            localStorage.setItem(storageKey, JSON.stringify(this.state));
+            localStateManager.setItem(storageKey, JSON.stringify(this.state));
         } catch (e) {
             console.error('[QuestEngine] Fehler beim Speichern:', e);
         }
@@ -2905,7 +2907,7 @@ const QuestEngine = {
         if (!currentUser) return;
         
         const storageKey = `npu_quest_engine_v4_${currentUser.id}`;
-        const saved = localStorage.getItem(storageKey);
+        const saved = localStateManager.getItem(storageKey);
         
         if (saved) {
             try {

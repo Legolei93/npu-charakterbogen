@@ -133,7 +133,7 @@ const QuestEngine = {
         ];
         
         for (const { key, system } of legacyKeys) {
-            const data = localStorage.getItem(key);
+            const data = localStateManager.getItem(key);
             if (data) {
                 try {
                     const parsed = JSON.parse(data);
@@ -190,7 +190,7 @@ const QuestEngine = {
         
         if (migrated) {
             console.log('QuestEngine: Migration abgeschlossen, speichere im neuen Format');
-            this.saveState();
+            this.StateManager.saveState();
         }
     },
     
@@ -213,7 +213,7 @@ const QuestEngine = {
     /**
      * Speichert den State
      */
-    saveState() {
+    StateManager.saveState() {
         const currentUser = this._getCurrentUser();
         if (!currentUser) {
             console.warn('QuestEngine: Kein User eingeloggt');
@@ -223,7 +223,7 @@ const QuestEngine = {
         const storageKey = `npu_quest_engine_v3_${currentUser.id}`;
         
         try {
-            localStorage.setItem(storageKey, JSON.stringify(this.state));
+            localStateManager.setItem(storageKey, JSON.stringify(this.state));
         } catch (e) {
             console.error('QuestEngine: Fehler beim Speichern:', e);
         }
@@ -240,7 +240,7 @@ const QuestEngine = {
         }
         
         const storageKey = `npu_quest_engine_v3_${currentUser.id}`;
-        const saved = localStorage.getItem(storageKey);
+        const saved = localStateManager.getItem(storageKey);
         
         if (saved) {
             try {
@@ -270,7 +270,7 @@ const QuestEngine = {
             console.log('QuestEngine: Generiere neue Daily Quests');
             this.generateDailyQuests();
             this.state.lastReset = now.toISOString();
-            this.saveState();
+            this.StateManager.saveState();
             
             // Event auslösen
             if (typeof EventBus !== 'undefined') {
@@ -386,7 +386,7 @@ const QuestEngine = {
         this.state.dailyQuests = this.state.dailyQuests.filter(q => q.id !== questId);
         
         // Speichern
-        this.saveState();
+        this.StateManager.saveState();
         
         // Event auslösen
         if (typeof EventBus !== 'undefined') {
@@ -425,7 +425,7 @@ const QuestEngine = {
         this.state.questCooldowns[questId] = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
         
         // Speichern
-        this.saveState();
+        this.StateManager.saveState();
         
         // Event auslösen
         if (typeof EventBus !== 'undefined') {
@@ -474,7 +474,7 @@ const QuestEngine = {
             quest.progress = Math.floor((completedObjectives / totalObjectives) * 100);
             
             // Speichern
-            this.saveState();
+            this.StateManager.saveState();
             
             // Event auslösen
             if (typeof EventBus !== 'undefined') {
@@ -556,7 +556,7 @@ const QuestEngine = {
         }
         
         try {
-            const userData = localStorage.getItem('npu_current_user');
+            const userData = localStateManager.getItem('npu_current_user');
             if (userData) {
                 return JSON.parse(userData);
             }
@@ -611,7 +611,7 @@ const QuestEngine = {
             reason: 'Manuelle Änderung',
             timestamp: new Date().toISOString()
         });
-        this.saveState();
+        this.StateManager.saveState();
     },
     
     /**

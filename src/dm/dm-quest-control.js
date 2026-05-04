@@ -296,7 +296,7 @@ const DMQuestControl = {
         questEngine.state.lastDailyReset = new Date().toISOString();
         
         questEngine.generateDailyQuests();
-        questEngine.saveState();
+        questEngine.StateManager.saveState();
         
         console.log('[DMQuestControl] Daily Quests resettet');
         this.renderPanel();
@@ -315,7 +315,7 @@ const DMQuestControl = {
         if (!questEngine) return;
         
         questEngine.generateDailyQuests();
-        questEngine.saveState();
+        questEngine.StateManager.saveState();
         
         console.log('[DMQuestControl] Neue Quests generiert');
         this.renderPanel();
@@ -368,7 +368,7 @@ const DMQuestControl = {
         const eliteQuest = window.QuestRegistryV4?.elite?.[0];
         if (eliteQuest) {
             questEngine.state.availableQuests.unshift(eliteQuest);
-            questEngine.saveState();
+            questEngine.StateManager.saveState();
             
             console.log('[DMQuestControl] Elite Quest getriggert');
             
@@ -389,7 +389,7 @@ const DMQuestControl = {
         if (storyQuests.length > 0) {
             const randomQuest = storyQuests[Math.floor(Math.random() * storyQuests.length)];
             questEngine.state.availableQuests.unshift(randomQuest);
-            questEngine.saveState();
+            questEngine.StateManager.saveState();
             
             console.log('[DMQuestControl] Story Quest getriggert:', randomQuest.title);
             
@@ -410,7 +410,7 @@ const DMQuestControl = {
         if (blackmarketQuests.length > 0) {
             const randomQuest = blackmarketQuests[Math.floor(Math.random() * blackmarketQuests.length)];
             questEngine.state.availableQuests.unshift(randomQuest);
-            questEngine.saveState();
+            questEngine.StateManager.saveState();
             
             console.log('[DMQuestControl] Schwarzmarkt Quest getriggert');
             

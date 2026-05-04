@@ -343,7 +343,7 @@ const RPGQuestSystem = {
         
         this.state.dailyQuests = quests;
         this.state.lastReset = Date.now();
-        this.saveState();
+        this.StateManager.saveState();
         
         return quests;
     },
@@ -434,7 +434,7 @@ const RPGQuestSystem = {
         // Entferne aus Daily Quests
         this.state.dailyQuests = this.state.dailyQuests.filter(q => q.instanceId !== instanceId);
         
-        this.saveState();
+        this.StateManager.saveState();
         
         // WICHTIG: Seite neu rendern
         this.renderQuestPage();
@@ -462,7 +462,7 @@ const RPGQuestSystem = {
         this.state.completedQuests.push(quest);
         this.state.activeQuests.splice(questIndex, 1);
         
-        this.saveState();
+        this.StateManager.saveState();
         
         // WICHTIG: Seite neu rendern
         this.renderQuestPage();
@@ -752,12 +752,12 @@ const RPGQuestSystem = {
     // SAVE / LOAD
     // ============================================
     
-    saveState() {
-        localStorage.setItem('rpg_quest_system', JSON.stringify(this.state));
+    StateManager.saveState() {
+        localStateManager.setItem('rpg_quest_system', JSON.stringify(this.state));
     },
     
     loadState() {
-        const saved = localStorage.getItem('rpg_quest_system');
+        const saved = localStateManager.getItem('rpg_quest_system');
         if (saved) {
             this.state = JSON.parse(saved);
         }

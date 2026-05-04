@@ -33,7 +33,7 @@ const DiceSystem = {
      * Lädt Verlauf aus dem Speicher
      */
     loadFromStorage() {
-        const saved = localStorage.getItem('npu_dice_history');
+        const saved = localStateManager.getItem('npu_dice_history');
         if (saved) {
             this.rollHistory = JSON.parse(saved);
         }
@@ -43,7 +43,7 @@ const DiceSystem = {
      * Speichert Verlauf
      */
     saveToStorage() {
-        localStorage.setItem('npu_dice_history', JSON.stringify(this.rollHistory));
+        localStateManager.setItem('npu_dice_history', JSON.stringify(this.rollHistory));
     },
     
     /**

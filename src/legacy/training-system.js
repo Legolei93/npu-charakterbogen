@@ -185,7 +185,7 @@ const TrainingSystem = {
             timestamp: new Date().toISOString()
         });
         
-        this._saveState();
+        this._StateManager.saveState();
         
         return {
             success: true,
@@ -491,7 +491,7 @@ const TrainingSystem = {
      * Speichert den State
      * @private
      */
-    _saveState() {
+    _StateManager.saveState() {
         const character = this._getCharacter();
         if (character) {
             character.trainingState = this.state;

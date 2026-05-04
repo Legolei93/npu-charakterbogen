@@ -51,7 +51,7 @@ const MerchantUI = {
      * Lädt den gespeicherten Händler-Zustand
      */
     loadMerchantState() {
-        const saved = localStorage.getItem(`merchant_state_${this.currentMerchant?.merchant?.id}`);
+        const saved = localStateManager.getItem(`merchant_state_${this.currentMerchant?.merchant?.id}`);
         if (saved) {
             this.merchantState = JSON.parse(saved);
         } else {
@@ -65,7 +65,7 @@ const MerchantUI = {
      */
     saveMerchantState() {
         if (this.currentMerchant?.merchant?.id) {
-            localStorage.setItem(
+            localStateManager.setItem(
                 `merchant_state_${this.currentMerchant.merchant.id}`,
                 JSON.stringify(this.merchantState)
             );

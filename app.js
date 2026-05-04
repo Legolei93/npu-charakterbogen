@@ -198,7 +198,7 @@ function checkIsDM() {
     
     // Prüfe localStorage
     try {
-        const stored = localStorage.getItem('npu_current_user');
+        const stored = localStateManager.getItem('npu_current_user');
         if (stored) {
             const user = JSON.parse(stored);
             return user?.role === 'dm' || user?.isDM === true;
@@ -285,7 +285,7 @@ function legacyDoLogin(username, password) {
                 email: username.toLowerCase() + '@frostfels.de',
                 role: 'player'
             };
-            localStorage.setItem('npu_current_user', JSON.stringify(AuthSystem.currentUser));
+            localStateManager.setItem('npu_current_user', JSON.stringify(AuthSystem.currentUser));
         }
         
         showApp();
@@ -712,7 +712,7 @@ function finishCharacterCreation() {
     renderCharacter();
     
     // Speichern
-    saveCharacter();
+    StateManager.saveState();
     
     // Erfolgsmeldung mit Geld-Info
     alert(`Charakter "${charData.name}" wurde erfolgreich erstellt!\n\nStartgeld: ${goldRoll} x 6 = ${startingCopper} Kupfer`);
@@ -915,7 +915,7 @@ function initApp() {
     localStorage.removeItem('npu_characters');
     
     // WICHTIG: Lade zuerst die Session
-    const savedUser = localStorage.getItem('npu_current_user');
+    const savedUser = localStateManager.getItem('npu_current_user');
     if (savedUser && typeof AuthSystem !== 'undefined') {
         AuthSystem.currentUser = JSON.parse(savedUser);
         console.log('Session wiederhergestellt für:', AuthSystem.currentUser.username);
@@ -3642,7 +3642,7 @@ function getValue(id) {
 function autoSave() {
     // Hier könnte automatische Speicherung implementiert werden
     console.log('Auto-save triggered');
-    saveCharacter();
+    StateManager.saveState();
     
     // BUGFIX 10: Broadcast Änderung an andere Tabs
     broadcastCharacterUpdate();
@@ -3666,7 +3666,7 @@ function broadcastCharacterUpdate() {
     }
     
     // Fallback: Storage Event
-    localStorage.setItem('npu_last_update', JSON.stringify({
+    localStateManager.setItem('npu_last_update', JSON.stringify({
         characterId: window.currentCharacter.id,
         timestamp: Date.now()
     }));
@@ -3708,7 +3708,7 @@ function handleExternalUpdate(characterId) {
         console.log('Externes Update empfangen für Charakter:', characterId);
         
         // Lade aktuelle Daten aus localStorage
-        const savedChars = localStorage.getItem('npu_characters');
+        const savedChars = localStateManager.getItem('npu_characters');
         if (savedChars) {
             const characters = JSON.parse(savedChars);
             const updatedChar = characters.find(c => c.id === characterId);
@@ -3765,7 +3765,7 @@ function showSyncNotification(message) {
  * Speichert den aktuellen Charakter im localStorage
  * BUGFIX 13: Account-gebundenes Speichern
  */
-function saveCharacter() {
+function StateManager.saveState() {
     if (!window.currentCharacter) return;
     
     // BUGFIX 13: Prüfe eingeloggten User
@@ -3781,7 +3781,7 @@ function saveCharacter() {
     
     // BUGFIX 13: User-spezifischer Speicher-Key
     const storageKey = `npu_characters_${currentUser.id}`;
-    const savedChars = localStorage.getItem(storageKey);
+    const savedChars = localStateManager.getItem(storageKey);
     let characters = savedChars ? JSON.parse(savedChars) : [];
     
     // Prüfe ob Charakter bereits existiert
@@ -3796,7 +3796,7 @@ function saveCharacter() {
     }
     
     // BUGFIX 13: Speichere im user-spezifischen localStorage
-    localStorage.setItem(storageKey, JSON.stringify(characters));
+    localStateManager.setItem(storageKey, JSON.stringify(characters));
     console.log('Charakter gespeichert:', window.currentCharacter.name, 'für User:', currentUser.username);
 }
 
@@ -3821,7 +3821,7 @@ function loadCharacters() {
     
     // BUGFIX 13: Lade nur Charaktere des aktuellen Users
     const storageKey = `npu_characters_${currentUser.id}`;
-    const savedChars = localStorage.getItem(storageKey);
+    const savedChars = localStateManager.getItem(storageKey);
     
     if (!savedChars) {
         // KEINE Migration mehr - jeder User startet mit leeren Charakteren
@@ -3848,7 +3848,7 @@ function loadCharacterById(characterId) {
     if (!currentUser) return null;
     
     const storageKey = `npu_characters_${currentUser.id}`;
-    const savedChars = localStorage.getItem(storageKey);
+    const savedChars = localStateManager.getItem(storageKey);
     
     if (!savedChars) return null;
     
@@ -4581,7 +4581,7 @@ function addSelectedJutsu() {
         renderJutsuCards();
         
         // Speichern
-        saveCharacter();
+        StateManager.saveState();
         
         // UI aktualisieren
         alert(`Jutsu "${jutsuData.name}" wurde ${mode === 'direct' ? 'direkt gelernt' : 'in Training gestellt'}!`);

@@ -98,15 +98,15 @@ const MerchantPage = {
      */
     isKiraAvailable() {
         const today = new Date().toDateString();
-        const savedDate = localStorage.getItem('kira_last_appearance');
-        const savedAvailable = localStorage.getItem('kira_available');
+        const savedDate = localStateManager.getItem('kira_last_appearance');
+        const savedAvailable = localStateManager.getItem('kira_available');
         
         // Wenn neuer Tag, wuerfeln
         if (savedDate !== today) {
             const roll = Math.floor(Math.random() * 100) + 1;
             const isAvailable = roll <= 15; // 15% Chance
-            localStorage.setItem('kira_last_appearance', today);
-            localStorage.setItem('kira_available', isAvailable ? 'true' : 'false');
+            localStateManager.setItem('kira_last_appearance', today);
+            localStateManager.setItem('kira_available', isAvailable ? 'true' : 'false');
             return isAvailable;
         }
         

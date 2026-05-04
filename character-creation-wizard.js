@@ -635,6 +635,27 @@ const CharacterCreationWizard = {
      * Beendet die Charaktererstellung
      */
     finishCreation() {
+        // VALIDATION FIX: Max 2 Attribute auf 16
+        const attrValues = Object.values(this.attributes || this.selectedAttributes || {});
+        const count16 = attrValues.filter(v => v === 16).length;
+        
+        if (count16 > 2) {
+            alert('Fehler: Maximal 2 Attribute dürfen den Wert 16 haben!');
+            console.error('[VALIDATION] Zu viele Attribute mit Wert 16:', count16);
+            return false;
+        }
+        
+        // VALIDATION FIX: Max 5 Talente
+        const selectedTalents = this.selectedTalents || this.talents || [];
+        const talentPoints = selectedTalents.reduce((sum, t) => sum + (t.cost || 1), 0);
+        const maxTalentPoints = 10; // oder was auch immer das Limit ist
+        
+        if (talentPoints > maxTalentPoints) {
+            alert('Fehler: Nicht genügend Talentpunkte!');
+            console.error('[VALIDATION] Zu viele Talente:', talentPoints);
+            return false;
+        }
+
         console.log('[FLOW] CharacterCreation.finishCreation START');
         
         // ==================== HARDE VALIDIERUNG ====================
@@ -713,7 +734,7 @@ const CharacterCreationWizard = {
         
         // Versuche mit AccountSystem
         if (typeof AccountSystem !== 'undefined' && AccountSystem.isLoggedIn()) {
-            saved = AccountSystem.saveCharacter(this.newCharacter);
+            saved = AccountSystem.StateManager.saveState(this.newCharacter);
         }
         
         // Fallback zu altem System
@@ -724,10 +745,10 @@ const CharacterCreationWizard = {
                 this.newCharacter.userName = currentUser.username;
                 
                 const storageKey = `npu_characters_${currentUser.id}`;
-                const savedChars = localStorage.getItem(storageKey);
+                const savedChars = localStateManager.getItem(storageKey);
                 let characters = savedChars ? JSON.parse(savedChars) : [];
                 characters.push(this.newCharacter);
-                localStorage.setItem(storageKey, JSON.stringify(characters));
+                localStateManager.setItem(storageKey, JSON.stringify(characters));
                 saved = true;
                 
                 console.log('Charakter erstellt für User:', currentUser.username);

@@ -94,7 +94,7 @@ const JutsuSecurity = {
         
         // Speichern
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         // Event auslösen

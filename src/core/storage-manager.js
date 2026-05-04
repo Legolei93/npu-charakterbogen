@@ -26,7 +26,7 @@ const StorageManager = {
      * @param {Object} character - Der zu speichernde Character
      * @returns {boolean} - Erfolg
      */
-    saveCharacter(character) {
+    StateManager.saveState(character) {
         try {
             if (!character || !character.id) {
                 console.error('StorageManager: Ungültiger Character');
@@ -60,7 +60,7 @@ const StorageManager = {
             
             // Speichern
             const storageKey = `${this.STORAGE_KEYS.CHARACTERS}_${userId}`;
-            localStorage.setItem(storageKey, JSON.stringify(characters));
+            localStateManager.setItem(storageKey, JSON.stringify(characters));
             
             // Event auslösen
             if (typeof EventBus !== 'undefined') {
@@ -87,7 +87,7 @@ const StorageManager = {
             }
             
             const storageKey = `${this.STORAGE_KEYS.CHARACTERS}_${userId}`;
-            const saved = localStorage.getItem(storageKey);
+            const saved = localStateManager.getItem(storageKey);
             
             if (!saved) {
                 // Migration: Prüfe alten globalen Speicher
@@ -128,7 +128,7 @@ const StorageManager = {
             const filtered = characters.filter(c => c.id !== characterId);
             
             const storageKey = `${this.STORAGE_KEYS.CHARACTERS}_${userId}`;
-            localStorage.setItem(storageKey, JSON.stringify(filtered));
+            localStateManager.setItem(storageKey, JSON.stringify(filtered));
             
             return true;
         } catch (error) {
@@ -245,7 +245,7 @@ const StorageManager = {
         try {
             // Prüfe alten globalen Key
             const oldKey = 'npu_characters';
-            const oldData = localStorage.getItem(oldKey);
+            const oldData = localStateManager.getItem(oldKey);
             
             if (!oldData) return [];
             
@@ -265,7 +265,7 @@ const StorageManager = {
             
             // Speichere im neuen Format
             const storageKey = `${this.STORAGE_KEYS.CHARACTERS}_${userId}`;
-            localStorage.setItem(storageKey, JSON.stringify(userCharacters));
+            localStateManager.setItem(storageKey, JSON.stringify(userCharacters));
             
             console.log(`StorageManager: ${userCharacters.length} Charaktere migriert`);
             
@@ -292,7 +292,7 @@ const StorageManager = {
         
         // Fallback: Aus localStorage
         try {
-            const userData = localStorage.getItem(this.STORAGE_KEYS.CURRENT_USER);
+            const userData = localStateManager.getItem(this.STORAGE_KEYS.CURRENT_USER);
             if (userData) {
                 const user = JSON.parse(userData);
                 return user.id;
@@ -335,7 +335,7 @@ const StorageManager = {
             const migrated = this._migrateIfNeeded(character);
             
             // Speichern
-            this.saveCharacter(migrated);
+            this.StateManager.saveState(migrated);
             
             return migrated;
         } catch (error) {
@@ -381,7 +381,7 @@ const StorageManager = {
             // Charaktere migrieren und speichern
             const storageKey = `${this.STORAGE_KEYS.CHARACTERS}_${userId}`;
             const migrated = backup.characters.map(c => this._migrateIfNeeded(c));
-            localStorage.setItem(storageKey, JSON.stringify(migrated));
+            localStateManager.setItem(storageKey, JSON.stringify(migrated));
             
             return true;
         } catch (error) {

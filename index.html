@@ -1491,6 +1491,8 @@
     <script src="src/core/event-bus.js"></script>
     <script src="src/core/rules-engine.js"></script>
     <script src="src/core/state-manager.js"></script>
+    <script type="module" src="src/core/event-system.js"></script>
+
     <script src="src/core/storage-manager.js"></script>
     
     <!-- REFACTORING: Neue Data Module (Phase 4) -->
@@ -1603,13 +1605,17 @@
     <!-- <script src="src/legacy/quest-system-tests.js"></script> -->
     
     <!-- QuestSystem Proxy für Backward Compatibility -->
-    <script src="quest-system.js"></script>
-    <!-- Alte Quest Systeme (werden nach Migration entfernt) -->
-    <!-- <script src="frostfels-quest-engine.js"></script> -->
-    <!-- <script src="rpg-quest-system.js"></script> -->
-    <!-- <script src="professional-quest-system.js"></script> -->
-    <!-- <script src="true-rpg-quest-engine.js"></script> -->
-    <!-- <script src="frostfels-quest-engine-v2.js"></script> -->
+<!-- Alte Quest Systeme (werden nach Migration entfernt) -->
+    <!--
+-->
+    <!--
+-->
+    <!--
+-->
+    <!--
+-->
+    <!--
+-->
     
     <script src="inventory-overlay.js"></script>
     <script src="skill-modifier.service.js"></script>
@@ -1620,5 +1626,9 @@
     
     <!-- Jutsu Tooltip Container -->
     <div id="jutsuTooltip" class="jutsu-tooltip"></div>
+
+    <!-- AUTO-FIX: Storage & Money System -->
+    <script src="src/core/storage-fix.js"></script>
+    <script src="src/core/money-fix.js"></script>
 </body>
 </html>

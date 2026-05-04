@@ -324,7 +324,7 @@ const ProfessionalQuestSystem = {
             this.state.availableQuests.push(trainingQuest);
         }
         
-        this.saveState();
+        this.StateManager.saveState();
     },
     
     createQuestFromTemplate(templateId) {
@@ -483,7 +483,7 @@ const ProfessionalQuestSystem = {
         this.state.activeQuests.push(quest);
         this.state.availableQuests.splice(questIndex, 1);
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -494,7 +494,7 @@ const ProfessionalQuestSystem = {
         if (questIndex === -1) return false;
         
         this.state.availableQuests.splice(questIndex, 1);
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -539,7 +539,7 @@ const ProfessionalQuestSystem = {
         // Wenn alle Ziele erfüllt, Status ändern
         if (allRequiredMet) {
             quest.state = this.QUEST_STATES.OBJECTIVES_MET;
-            this.saveState();
+            this.StateManager.saveState();
         }
         
         return allRequiredMet;
@@ -614,7 +614,7 @@ const ProfessionalQuestSystem = {
         this.state.completedQuests.push(quest);
         this.state.activeQuests.splice(questIndex, 1);
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -640,7 +640,7 @@ const ProfessionalQuestSystem = {
         
         quest.state = this.QUEST_STATES.OBJECTIVES_MET;
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -824,12 +824,12 @@ const ProfessionalQuestSystem = {
     // SAVE / LOAD
     // ============================================
     
-    saveState() {
-        localStorage.setItem('professional_quest_system', JSON.stringify(this.state));
+    StateManager.saveState() {
+        localStateManager.setItem('professional_quest_system', JSON.stringify(this.state));
     },
     
     loadState() {
-        const saved = localStorage.getItem('professional_quest_system');
+        const saved = localStateManager.getItem('professional_quest_system');
         if (saved) {
             this.state = JSON.parse(saved);
         }

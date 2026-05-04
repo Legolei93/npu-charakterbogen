@@ -326,7 +326,7 @@ const DialogSystem = {
         }
         
         // Speichern
-        questEngine.saveState();
+        questEngine.StateManager.saveState();
     },
     
     /**

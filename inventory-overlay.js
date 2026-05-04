@@ -26,7 +26,7 @@ const InventoryOverlay = {
                 `http://localhost:3001/api/inventory/${this.characterId}`,
                 {
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStateManager.getItem('token')}`
                     }
                 }
             );
@@ -242,7 +242,7 @@ const InventoryOverlay = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStateManager.getItem('token')}`
                     },
                     body: JSON.stringify({ item_id: itemId, slot })
                 }
@@ -274,7 +274,7 @@ const InventoryOverlay = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStateManager.getItem('token')}`
                     },
                     body: JSON.stringify({ slot })
                 }
@@ -306,7 +306,7 @@ const InventoryOverlay = {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStateManager.getItem('token')}`
                     },
                     body: JSON.stringify({ item_id: itemId })
                 }
@@ -341,7 +341,7 @@ const InventoryOverlay = {
                 {
                     method: 'DELETE',
                     headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStateManager.getItem('token')}`
                     }
                 }
             );

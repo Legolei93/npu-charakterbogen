@@ -119,7 +119,7 @@ const MerchantDialogSystem = {
      * Holt gespeicherte Beziehung aus localStorage
      */
     getSavedRelationship(merchantId) {
-        const saved = localStorage.getItem(`merchant_${merchantId}_relationship`);
+        const saved = localStateManager.getItem(`merchant_${merchantId}_relationship`);
         return saved ? parseInt(saved) : 0;
     },
     
@@ -127,7 +127,7 @@ const MerchantDialogSystem = {
      * Holt gespeichertes Vertrauen aus localStorage
      */
     getSavedTrust(merchantId) {
-        const saved = localStorage.getItem(`merchant_${merchantId}_trust`);
+        const saved = localStateManager.getItem(`merchant_${merchantId}_trust`);
         return saved ? parseInt(saved) : 50;
     },
     
@@ -135,14 +135,14 @@ const MerchantDialogSystem = {
      * Speichert Händler-Beziehung
      */
     saveRelationship(merchantId, value) {
-        localStorage.setItem(`merchant_${merchantId}_relationship`, value);
+        localStateManager.setItem(`merchant_${merchantId}_relationship`, value);
     },
     
     /**
      * Speichert Händler-Vertrauen
      */
     saveTrust(merchantId, value) {
-        localStorage.setItem(`merchant_${merchantId}_trust`, value);
+        localStateManager.setItem(`merchant_${merchantId}_trust`, value);
     },
     
     /**
@@ -721,7 +721,7 @@ const MerchantDialogSystem = {
      */
     doSmallTalk() {
         // Prüfe ob Small Talk heute schon gemacht wurde
-        const lastSmallTalk = localStorage.getItem(`merchant_${this.currentMerchant.id}_lastsmalltalk`);
+        const lastSmallTalk = localStateManager.getItem(`merchant_${this.currentMerchant.id}_lastsmalltalk`);
         const today = new Date().toDateString();
         
         if (lastSmallTalk === today) {
@@ -731,7 +731,7 @@ const MerchantDialogSystem = {
         }
         
         // Speichere Small Talk Datum
-        localStorage.setItem(`merchant_${this.currentMerchant.id}_lastsmalltalk`, today);
+        localStateManager.setItem(`merchant_${this.currentMerchant.id}_lastsmalltalk`, today);
         
         // Charisma-Check für Small Talk
         const charisma = window.currentCharacter?.attributes?.cha || 10;

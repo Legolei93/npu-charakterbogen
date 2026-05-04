@@ -401,7 +401,7 @@ const GamePage = {
         }
         
         // Speichern und neu rendern
-        saveCharacter();
+        StateManager.saveState();
         this.render();
     },
     

@@ -1,3 +1,5 @@
+import { simulateEvent, processGameEvent, dispatchEvent } from "../core/event-system.js";
+
 /**
  * DM Panel System - Verwaltungs-Dashboard
  * 
@@ -542,7 +544,7 @@ const DMPanel = {
     },
     
     renderMerchantCard(merchant) {
-        const mood = localStorage.getItem(`merchant_${merchant.id}_mood`) || 'neutral';
+        const mood = localStateManager.getItem(`merchant_${merchant.id}_mood`) || 'neutral';
         
         return `
             <div class="dm-merchant-card ${merchant.special ? 'special' : ''}">
@@ -918,7 +920,7 @@ const DMPanel = {
             spent: parseInt(document.getElementById('mgr-ap-spent')?.value) || char.ap?.spent
         };
         
-        this.saveCharacter(char);
+        this.StateManager.saveState(char);
         
         this.logActivity({
             type: 'edit',
@@ -956,7 +958,7 @@ const DMPanel = {
                 online: this.isPlayerOnline(p.id)
             }));
         }
-        const saved = localStorage.getItem('npu_players');
+        const saved = localStateManager.getItem('npu_players');
         if (saved) return JSON.parse(saved);
         return [
             { id: 'p1', username: 'Niklas', online: true },
@@ -968,7 +970,7 @@ const DMPanel = {
     },
     
     isPlayerOnline(playerId) {
-        const lastActive = localStorage.getItem(`player_last_active_${playerId}`);
+        const lastActive = localStateManager.getItem(`player_last_active_${playerId}`);
         if (!lastActive) return false;
         return (Date.now() - parseInt(lastActive)) < (5 * 60 * 1000);
     },
@@ -976,13 +978,13 @@ const DMPanel = {
     getAllCharacters() {
         const characters = [];
         
-        const savedAll = localStorage.getItem('npu_all_characters');
+        const savedAll = localStateManager.getItem('npu_all_characters');
         if (savedAll) {
             const allChars = JSON.parse(savedAll);
             characters.push(...allChars);
         }
         
-        const savedChars = localStorage.getItem('npu_characters');
+        const savedChars = localStateManager.getItem('npu_characters');
         if (savedChars) {
             const chars = JSON.parse(savedChars);
             chars.forEach(char => {
@@ -996,7 +998,7 @@ const DMPanel = {
             const key = localStorage.key(i);
             if (key && key.startsWith('npu_character_')) {
                 try {
-                    const char = JSON.parse(localStorage.getItem(key));
+                    const char = JSON.parse(localStateManager.getItem(key));
                     if (char && char.id && !characters.find(c => c.id === char.id)) {
                         characters.push(char);
                     }
@@ -1019,22 +1021,22 @@ const DMPanel = {
         return this.getAllCharacters().find(c => c.id === id);
     },
     
-    saveCharacter(char) {
+    StateManager.saveState(char) {
         if (!char || !char.id) return;
         
-        const allChars = JSON.parse(localStorage.getItem('npu_all_characters') || '[]');
+        const allChars = JSON.parse(localStateManager.getItem('npu_all_characters') || '[]');
         const allIndex = allChars.findIndex(c => c.id === char.id);
         if (allIndex >= 0) allChars[allIndex] = char;
         else allChars.push(char);
-        localStorage.setItem('npu_all_characters', JSON.stringify(allChars));
+        localStateManager.setItem('npu_all_characters', JSON.stringify(allChars));
         
-        const chars = JSON.parse(localStorage.getItem('npu_characters') || '[]');
+        const chars = JSON.parse(localStateManager.getItem('npu_characters') || '[]');
         const charIndex = chars.findIndex(c => c.id === char.id);
         if (charIndex >= 0) chars[charIndex] = char;
         else chars.push(char);
-        localStorage.setItem('npu_characters', JSON.stringify(chars));
+        localStateManager.setItem('npu_characters', JSON.stringify(chars));
         
-        localStorage.setItem(`npu_character_${char.id}`, JSON.stringify(char));
+        localStateManager.setItem(`npu_character_${char.id}`, JSON.stringify(char));
         
         if (typeof window !== 'undefined' && window.currentCharacter && window.currentCharacter.id === char.id) {
             window.currentCharacter = char;
@@ -1046,7 +1048,7 @@ const DMPanel = {
         if (typeof AuthAPI !== 'undefined' && AuthAPI.characterAssignments) {
             assignments = AuthAPI.characterAssignments;
         } else {
-            assignments = JSON.parse(localStorage.getItem('npu_character_assignments') || '{}');
+            assignments = JSON.parse(localStateManager.getItem('npu_character_assignments') || '{}');
         }
         const playerId = Object.entries(assignments).find(([pid, cid]) => cid === charId)?.[0];
         return playerId ? this.getAllPlayers().find(p => p.id === playerId) : null;
@@ -1059,7 +1061,7 @@ const DMPanel = {
         if (typeof AuthAPI !== 'undefined' && AuthAPI.characterAssignments) {
             assignments = AuthAPI.characterAssignments;
         } else {
-            assignments = JSON.parse(localStorage.getItem('npu_character_assignments') || '{}');
+            assignments = JSON.parse(localStateManager.getItem('npu_character_assignments') || '{}');
         }
         
         return players.map(p => {
@@ -1076,7 +1078,7 @@ const DMPanel = {
     },
     
     getAllQuests() {
-        const saved = localStorage.getItem('npu_quests');
+        const saved = localStateManager.getItem('npu_quests');
         return saved ? JSON.parse(saved) : [
             { id: 'q1', title: 'Erste Mission', rank: 'D', active: true, description: 'Test Quest', reward: { xp: 100, ryo: 50 } },
             { id: 'q2', title: 'Banditen jagen', rank: 'C', active: false, description: 'Test Quest 2', reward: { xp: 200, ryo: 100 } }
@@ -1085,12 +1087,12 @@ const DMPanel = {
     
     getPlayerMerchantTrust(playerId, merchantId) {
         const key = `trust_${playerId}_${merchantId}`;
-        return parseInt(localStorage.getItem(key) || '20');
+        return parseInt(localStateManager.getItem(key) || '20');
     },
     
     setPlayerMerchantTrust(playerId, merchantId, value) {
         const key = `trust_${playerId}_${merchantId}`;
-        localStorage.setItem(key, value);
+        localStateManager.setItem(key, value);
         this.logActivity({
             type: 'shop',
             playerId: playerId,
@@ -1104,12 +1106,12 @@ const DMPanel = {
     // ============================================
     
     loadActivityLog() {
-        const saved = localStorage.getItem('dm_activity_log');
+        const saved = localStateManager.getItem('dm_activity_log');
         this.activityLog = saved ? JSON.parse(saved) : [];
     },
     
     saveActivityLog() {
-        localStorage.setItem('dm_activity_log', JSON.stringify(this.activityLog));
+        localStateManager.setItem('dm_activity_log', JSON.stringify(this.activityLog));
     },
     
     logActivity(activity) {
@@ -1168,7 +1170,7 @@ const DMPanel = {
     
     toggleBlackMarket() {
         this.blackMarketVisible = !this.blackMarketVisible;
-        localStorage.setItem('dm_blackmarket_visible', this.blackMarketVisible);
+        localStateManager.setItem('dm_blackmarket_visible', this.blackMarketVisible);
         window.dispatchEvent(new CustomEvent('blackmarketVisibilityChanged', {
             detail: { visible: this.blackMarketVisible }
         }));
@@ -1176,7 +1178,7 @@ const DMPanel = {
     },
     
     initKiraRandomSystem() {
-        const saved = localStorage.getItem('kira_next_appearance');
+        const saved = localStateManager.getItem('kira_next_appearance');
         if (saved) {
             this.kiraNextAppearance = parseInt(saved);
         } else {
@@ -1188,13 +1190,13 @@ const DMPanel = {
     scheduleNextKiraAppearance() {
         const days = 3 + Math.random() * 4;
         this.kiraNextAppearance = Date.now() + (days * 24 * 60 * 60 * 1000);
-        localStorage.setItem('kira_next_appearance', this.kiraNextAppearance);
+        localStateManager.setItem('kira_next_appearance', this.kiraNextAppearance);
     },
     
     checkKiraAppearance() {
         if (this.kiraNextAppearance && Date.now() >= this.kiraNextAppearance) {
             this.blackMarketVisible = true;
-            localStorage.setItem('dm_blackmarket_visible', true);
+            localStateManager.setItem('dm_blackmarket_visible', true);
             this.logActivity({
                 type: 'shop',
                 text: 'Kira ist zufällig erschienen',
@@ -1207,7 +1209,7 @@ const DMPanel = {
     
     forceKiraAppearance() {
         this.blackMarketVisible = true;
-        localStorage.setItem('dm_blackmarket_visible', true);
+        localStateManager.setItem('dm_blackmarket_visible', true);
         this.logActivity({
             type: 'shop',
             text: 'Kira vom DM manuell erscheinen lassen',
@@ -1226,7 +1228,7 @@ const DMPanel = {
     },
     
     setMerchantMood(merchantId, mood) {
-        localStorage.setItem(`merchant_${merchantId}_mood`, mood);
+        localStateManager.setItem(`merchant_${merchantId}_mood`, mood);
         this.logActivity({
             type: 'shop',
             text: `Händler ${merchantId} Stimmung auf "${mood}" gesetzt`,
@@ -1305,7 +1307,7 @@ const DMPanel = {
     
     getMerchantInventory(merchantId) {
         // Lade gespeichertes Inventar oder erstelle Standard
-        const saved = localStorage.getItem(`merchant_inventory_${merchantId}`);
+        const saved = localStateManager.getItem(`merchant_inventory_${merchantId}`);
         if (saved) return JSON.parse(saved);
         
         // Standard-Inventare basierend auf Händlertyp
@@ -1409,7 +1411,7 @@ const DMPanel = {
                 break;
             }
         }
-        localStorage.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
+        localStateManager.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
     },
     
     toggleItemAvailability(merchantId, itemId, available) {
@@ -1421,7 +1423,7 @@ const DMPanel = {
                 break;
             }
         }
-        localStorage.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
+        localStateManager.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
     },
     
     saveMerchantInventory(merchantId) {
@@ -1537,7 +1539,7 @@ const DMPanel = {
         inventory[category].push(newItem);
         
         // Speichern
-        localStorage.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
+        localStateManager.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
         
         // Log
         this.logActivity({
@@ -1562,7 +1564,7 @@ const DMPanel = {
                 const itemName = inventory[category][index].name;
                 inventory[category].splice(index, 1);
                 
-                localStorage.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
+                localStateManager.setItem(`merchant_inventory_${merchantId}`, JSON.stringify(inventory));
                 
                 this.logActivity({
                     type: 'shop',

@@ -282,7 +282,7 @@ const CharacterService = {
         
         // Verwende StorageManager wenn verfügbar
         if (typeof StorageManager !== 'undefined') {
-            return StorageManager.saveCharacter(character);
+            return StateManager.saveCharacter(character);
         }
         
         // Fallback: Direkte localStorage Nutzung
@@ -305,7 +305,7 @@ const CharacterService = {
             character._savedAt = new Date().toISOString();
             
             const storageKey = `npu_characters_${currentUser.id}`;
-            const saved = localStorage.getItem(storageKey);
+            const saved = localStateManager.getItem(storageKey);
             let characters = saved ? JSON.parse(saved) : [];
             
             const index = characters.findIndex(c => c.id === character.id);
@@ -315,7 +315,7 @@ const CharacterService = {
                 characters.push(character);
             }
             
-            localStorage.setItem(storageKey, JSON.stringify(characters));
+            localStateManager.setItem(storageKey, JSON.stringify(characters));
             
             // Event auslösen
             if (typeof EventBus !== 'undefined') {
@@ -337,7 +337,7 @@ const CharacterService = {
     loadAll(userId) {
         // Verwende StorageManager wenn verfügbar
         if (typeof StorageManager !== 'undefined') {
-            return StorageManager.loadAllCharacters(userId || this._getCurrentUserId());
+            return StateManager.loadAllCharacters(userId || this._getCurrentUserId());
         }
         
         // Fallback
@@ -360,7 +360,7 @@ const CharacterService = {
             }
             
             const storageKey = `npu_characters_${userId}`;
-            const saved = localStorage.getItem(storageKey);
+            const saved = localStateManager.getItem(storageKey);
             
             if (!saved) return [];
             
@@ -391,7 +391,7 @@ const CharacterService = {
     delete(characterId, userId) {
         // Verwende StorageManager wenn verfügbar
         if (typeof StorageManager !== 'undefined') {
-            return StorageManager.deleteCharacter(characterId, userId || this._getCurrentUserId());
+            return StateManager.deleteCharacter(characterId, userId || this._getCurrentUserId());
         }
         
         // Fallback
@@ -400,7 +400,7 @@ const CharacterService = {
             const filtered = characters.filter(c => c.id !== characterId);
             
             const storageKey = `npu_characters_${userId || this._getCurrentUserId()}`;
-            localStorage.setItem(storageKey, JSON.stringify(filtered));
+            localStateManager.setItem(storageKey, JSON.stringify(filtered));
             
             return true;
         } catch (error) {
@@ -511,7 +511,7 @@ const CharacterService = {
         }
         
         try {
-            const userData = localStorage.getItem('npu_current_user');
+            const userData = localStateManager.getItem('npu_current_user');
             if (userData) return JSON.parse(userData);
         } catch (e) {
             console.error('CharacterService: Fehler beim Lesen des Users:', e);

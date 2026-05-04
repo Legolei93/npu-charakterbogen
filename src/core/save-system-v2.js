@@ -262,7 +262,7 @@ const SaveSystemV2 = {
             if (this.CONFIG.ATOMIC_COMMIT) {
                 await this._atomicWrite(storageKey, versionedData);
             } else {
-                localStorage.setItem(storageKey, JSON.stringify(versionedData));
+                localStateManager.setItem(storageKey, JSON.stringify(versionedData));
             }
             
             // Step 6: Version speichern
@@ -303,10 +303,10 @@ const SaveSystemV2 = {
         
         try {
             // Phase 1: Write to temp
-            localStorage.setItem(tempKey, JSON.stringify(data));
+            localStateManager.setItem(tempKey, JSON.stringify(data));
             
             // Phase 2: Validate temp
-            const tempData = localStorage.getItem(tempKey);
+            const tempData = localStateManager.getItem(tempKey);
             if (!tempData) {
                 throw new Error('Temp write failed - data not found');
             }
@@ -317,7 +317,7 @@ const SaveSystemV2 = {
             }
             
             // Phase 3: Commit (atomic swap)
-            localStorage.setItem(storageKey, tempData);
+            localStateManager.setItem(storageKey, tempData);
             
             // Phase 4: Cleanup temp
             localStorage.removeItem(tempKey);
@@ -364,7 +364,7 @@ const SaveSystemV2 = {
      */
     _acquireSaveLock(owner) {
         const lockKey = this.CONFIG.LOCK_KEY;
-        const existing = localStorage.getItem(lockKey);
+        const existing = localStateManager.getItem(lockKey);
         
         if (existing) {
             try {
@@ -393,7 +393,7 @@ const SaveSystemV2 = {
         }
         
         // FIX 1: Lock setzen
-        localStorage.setItem(lockKey, JSON.stringify({
+        localStateManager.setItem(lockKey, JSON.stringify({
             owner,
             tabId: this._tabId,
             timestamp: Date.now()
@@ -414,7 +414,7 @@ const SaveSystemV2 = {
      */
     _releaseSaveLock() {
         const lockKey = this.CONFIG.LOCK_KEY;
-        const existing = localStorage.getItem(lockKey);
+        const existing = localStateManager.getItem(lockKey);
         
         if (existing) {
             try {
@@ -443,7 +443,7 @@ const SaveSystemV2 = {
      * Prüft Version vor dem Write
      */
     _checkVersionConflict(storageKey, data) {
-        const currentRaw = localStorage.getItem(storageKey);
+        const currentRaw = localStateManager.getItem(storageKey);
         if (!currentRaw) return false; // Kein Konflikt (neuer Key)
         
         try {
@@ -470,7 +470,7 @@ const SaveSystemV2 = {
      */
     _calculateDiff(storageKey, newData) {
         try {
-            const currentData = localStorage.getItem(storageKey);
+            const currentData = localStateManager.getItem(storageKey);
             if (!currentData) {
                 return newData; // Kein Diff möglich
             }
@@ -531,7 +531,7 @@ const SaveSystemV2 = {
     
     _loadVersion() {
         try {
-            const stored = localStorage.getItem('npu_save_system_version');
+            const stored = localStateManager.getItem('npu_save_system_version');
             if (stored) {
                 this._lastSavedVersion = parseInt(stored) || 0;
                 this._currentVersion = this._lastSavedVersion;
@@ -542,8 +542,8 @@ const SaveSystemV2 = {
     },
     
     _saveVersion(storageKey, version) {
-        localStorage.setItem('npu_save_system_version', version.toString());
-        localStorage.setItem(`${storageKey}_version`, version.toString());
+        localStateManager.setItem('npu_save_system_version', version.toString());
+        localStateManager.setItem(`${storageKey}_version`, version.toString());
     },
     
     /**
@@ -589,10 +589,10 @@ const SaveSystemV2 = {
     
     _createBackup(storageKey) {
         try {
-            const current = localStorage.getItem(storageKey);
+            const current = localStateManager.getItem(storageKey);
             if (current) {
                 const backupKey = storageKey + this.CONFIG.BACKUP_SUFFIX;
-                localStorage.setItem(backupKey, current);
+                localStateManager.setItem(backupKey, current);
             }
         } catch (e) {
             console.warn('[SaveSystemV2] Could not create backup');
@@ -613,10 +613,10 @@ const SaveSystemV2 = {
         
         try {
             const backupKey = storageKey + this.CONFIG.BACKUP_SUFFIX;
-            const backup = localStorage.getItem(backupKey);
+            const backup = localStateManager.getItem(backupKey);
             
             if (backup) {
-                localStorage.setItem(storageKey, backup);
+                localStateManager.setItem(storageKey, backup);
                 localStorage.removeItem(backupKey);
                 console.log('[SaveSystemV2] Rollback successful');
                 return true;
@@ -651,7 +651,7 @@ const SaveSystemV2 = {
      */
     detectCorruption(storageKey) {
         try {
-            const data = localStorage.getItem(storageKey);
+            const data = localStateManager.getItem(storageKey);
             if (!data) return { corrupted: false }; // Leer ist OK
             
             const parsed = JSON.parse(data);
@@ -689,12 +689,12 @@ const SaveSystemV2 = {
         
         // Versuche Backup
         const backupKey = storageKey + this.CONFIG.BACKUP_SUFFIX;
-        const backup = localStorage.getItem(backupKey);
+        const backup = localStateManager.getItem(backupKey);
         
         if (backup) {
             try {
                 JSON.parse(backup); // Validate
-                localStorage.setItem(storageKey, backup);
+                localStateManager.setItem(storageKey, backup);
                 return { success: true, source: 'backup' };
             } catch (e) {
                 // Backup auch korrupt
@@ -703,12 +703,12 @@ const SaveSystemV2 = {
         
         // Versuche Temp
         const tempKey = storageKey + this.CONFIG.TEMP_SUFFIX;
-        const temp = localStorage.getItem(tempKey);
+        const temp = localStateManager.getItem(tempKey);
         
         if (temp) {
             try {
                 JSON.parse(temp); // Validate
-                localStorage.setItem(storageKey, temp);
+                localStateManager.setItem(storageKey, temp);
                 return { success: true, source: 'temp' };
             } catch (e) {
                 // Temp auch korrupt
@@ -740,7 +740,7 @@ const SaveSystemV2 = {
             }
         }
         
-        const data = localStorage.getItem(storageKey);
+        const data = localStateManager.getItem(storageKey);
         return data ? JSON.parse(data) : null;
     },
     

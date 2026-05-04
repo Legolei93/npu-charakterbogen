@@ -20,8 +20,8 @@ const SystemTests = {
         
         // Test 1: Speichern und Laden
         const testData = { test: 'data', number: 42 };
-        Storage.set('test_key', testData);
-        const loaded = Storage.get('test_key');
+        StateManager.set('test_key', testData);
+        const loaded = StateManager.get('test_key');
         
         if (JSON.stringify(loaded) === JSON.stringify(testData)) {
             this.log('Storage: Save/Load', true, 'Daten korrekt gespeichert und geladen');
@@ -31,7 +31,7 @@ const SystemTests = {
         
         // Test 2: Loeschen
         Storage.remove('test_key');
-        const afterRemove = Storage.get('test_key');
+        const afterRemove = StateManager.get('test_key');
         
         if (afterRemove === null) {
             this.log('Storage: Remove', true, 'Daten korrekt entfernt');

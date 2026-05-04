@@ -33,7 +33,7 @@ const Storage = {
      * @param {Object} character - Der zu speichernde Charakter
      * @returns {boolean} - true bei Erfolg, false bei Fehler
      */
-    saveCharacter(character) {
+    StateManager.saveState(character) {
         try {
             if (!character || !character.id) {
                 console.error('Storage: Ungültiger Charakter');
@@ -58,10 +58,10 @@ const Storage = {
             }
             
             // Speichere im localStorage
-            localStorage.setItem(this.KEYS.CHARACTERS, JSON.stringify(characters));
+            localStateManager.setItem(this.KEYS.CHARACTERS, JSON.stringify(characters));
             
             // Speichere auch als Einzeldatei (für schnelleren Zugriff)
-            localStorage.setItem(`npu_character_${character.id}`, JSON.stringify(character));
+            localStateManager.setItem(`npu_character_${character.id}`, JSON.stringify(character));
             
             console.log('Storage: Charakter gespeichert:', character.name);
             return true;
@@ -80,7 +80,7 @@ const Storage = {
     getCharacterById(id) {
         try {
             // Versuche zuerst Einzeldatei (schneller)
-            const single = localStorage.getItem(`npu_character_${id}`);
+            const single = localStateManager.getItem(`npu_character_${id}`);
             if (single) {
                 return JSON.parse(single);
             }
@@ -102,13 +102,13 @@ const Storage = {
     getAllCharacters() {
         try {
             // Versuche zuerst die neue Struktur
-            const saved = localStorage.getItem(this.KEYS.CHARACTERS);
+            const saved = localStateManager.getItem(this.KEYS.CHARACTERS);
             if (saved) {
                 return JSON.parse(saved);
             }
             
             // Fallback: Alte Struktur
-            const oldSaved = localStorage.getItem('npu_characters');
+            const oldSaved = localStateManager.getItem('npu_characters');
             if (oldSaved) {
                 return JSON.parse(oldSaved);
             }
@@ -130,7 +130,7 @@ const Storage = {
         try {
             // Entferne aus der Liste
             const characters = this.getAllCharacters().filter(c => c.id !== id);
-            localStorage.setItem(this.KEYS.CHARACTERS, JSON.stringify(characters));
+            localStateManager.setItem(this.KEYS.CHARACTERS, JSON.stringify(characters));
             
             // Entferne Einzeldatei
             localStorage.removeItem(`npu_character_${id}`);
@@ -155,7 +155,7 @@ const Storage = {
     setCurrentCharacter(character) {
         try {
             if (character) {
-                localStorage.setItem(this.KEYS.CURRENT_CHARACTER, JSON.stringify(character));
+                localStateManager.setItem(this.KEYS.CURRENT_CHARACTER, JSON.stringify(character));
             } else {
                 localStorage.removeItem(this.KEYS.CURRENT_CHARACTER);
             }
@@ -170,7 +170,7 @@ const Storage = {
      */
     getCurrentCharacter() {
         try {
-            const saved = localStorage.getItem(this.KEYS.CURRENT_CHARACTER);
+            const saved = localStateManager.getItem(this.KEYS.CURRENT_CHARACTER);
             return saved ? JSON.parse(saved) : null;
         } catch (error) {
             console.error('Storage: Fehler beim Laden des aktuellen Charakters:', error);
@@ -188,7 +188,7 @@ const Storage = {
      */
     saveActivityLog(log) {
         try {
-            localStorage.setItem(this.KEYS.ACTIVITY_LOG, JSON.stringify(log));
+            localStateManager.setItem(this.KEYS.ACTIVITY_LOG, JSON.stringify(log));
         } catch (error) {
             console.error('Storage: Fehler beim Speichern des Logs:', error);
         }
@@ -200,7 +200,7 @@ const Storage = {
      */
     getActivityLog() {
         try {
-            const saved = localStorage.getItem(this.KEYS.ACTIVITY_LOG);
+            const saved = localStateManager.getItem(this.KEYS.ACTIVITY_LOG);
             return saved ? JSON.parse(saved) : [];
         } catch (error) {
             console.error('Storage: Fehler beim Laden des Logs:', error);
@@ -215,7 +215,7 @@ const Storage = {
      */
     saveMerchantInventory(merchantId, inventory) {
         try {
-            localStorage.setItem(
+            localStateManager.setItem(
                 this.KEYS.MERCHANT_INVENTORY + merchantId,
                 JSON.stringify(inventory)
             );
@@ -231,7 +231,7 @@ const Storage = {
      */
     getMerchantInventory(merchantId) {
         try {
-            const saved = localStorage.getItem(this.KEYS.MERCHANT_INVENTORY + merchantId);
+            const saved = localStateManager.getItem(this.KEYS.MERCHANT_INVENTORY + merchantId);
             return saved ? JSON.parse(saved) : null;
         } catch (error) {
             console.error('Storage: Fehler beim Laden des Inventars:', error);
@@ -248,7 +248,7 @@ const Storage = {
     setPlayerMerchantTrust(playerId, merchantId, value) {
         try {
             const key = `${this.KEYS.PLAYER_TRUST}${playerId}_${merchantId}`;
-            localStorage.setItem(key, value.toString());
+            localStateManager.setItem(key, value.toString());
         } catch (error) {
             console.error('Storage: Fehler beim Speichern des Vertrauens:', error);
         }
@@ -264,7 +264,7 @@ const Storage = {
     getPlayerMerchantTrust(playerId, merchantId, defaultValue = 20) {
         try {
             const key = `${this.KEYS.PLAYER_TRUST}${playerId}_${merchantId}`;
-            const saved = localStorage.getItem(key);
+            const saved = localStateManager.getItem(key);
             return saved ? parseInt(saved) : defaultValue;
         } catch (error) {
             console.error('Storage: Fehler beim Laden des Vertrauens:', error);
@@ -282,7 +282,7 @@ const Storage = {
      */
     saveSettings(settings) {
         try {
-            localStorage.setItem(this.KEYS.SETTINGS, JSON.stringify(settings));
+            localStateManager.setItem(this.KEYS.SETTINGS, JSON.stringify(settings));
         } catch (error) {
             console.error('Storage: Fehler beim Speichern der Einstellungen:', error);
         }
@@ -294,7 +294,7 @@ const Storage = {
      */
     getSettings() {
         try {
-            const saved = localStorage.getItem(this.KEYS.SETTINGS);
+            const saved = localStateManager.getItem(this.KEYS.SETTINGS);
             return saved ? JSON.parse(saved) : {};
         } catch (error) {
             console.error('Storage: Fehler beim Laden der Einstellungen:', error);
@@ -328,7 +328,7 @@ const Storage = {
     restoreBackup(backup) {
         try {
             if (backup.characters) {
-                localStorage.setItem(this.KEYS.CHARACTERS, JSON.stringify(backup.characters));
+                localStateManager.setItem(this.KEYS.CHARACTERS, JSON.stringify(backup.characters));
             }
             if (backup.activityLog) {
                 this.saveActivityLog(backup.activityLog);

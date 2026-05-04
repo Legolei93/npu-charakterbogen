@@ -299,7 +299,7 @@ const JutsuRewardEngine = {
         
         // Speichern
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         // Event

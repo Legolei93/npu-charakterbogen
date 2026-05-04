@@ -352,7 +352,7 @@ const TrainingSystemV3 = {
         
         // Speichern
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         return result;
@@ -438,7 +438,7 @@ const TrainingSystemV3 = {
         character.training[type] = value;
         
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         return { success: true };
@@ -506,7 +506,7 @@ const TrainingSystemV3 = {
         if (!userId) return;
         
         const key = `${this.CONFIG.STORAGE_KEY}_${userId}`;
-        localStorage.setItem(key, JSON.stringify(this.state));
+        localStateManager.setItem(key, JSON.stringify(this.state));
     },
     
     loadState() {
@@ -514,7 +514,7 @@ const TrainingSystemV3 = {
         if (!userId) return;
         
         const key = `${this.CONFIG.STORAGE_KEY}_${userId}`;
-        const saved = localStorage.getItem(key);
+        const saved = localStateManager.getItem(key);
         
         if (saved) {
             try {

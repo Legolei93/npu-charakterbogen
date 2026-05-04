@@ -24,10 +24,10 @@ const DM_ACCOUNT = {
 let currentUser = null;
 
 // Alle Charaktere (DM verwaltet diese)
-let allCharacters = JSON.parse(localStorage.getItem('npu_all_characters') || '[]');
+let allCharacters = JSON.parse(localStateManager.getItem('npu_all_characters') || '[]');
 
 // Spieler-Charakter-Zuweisungen
-let characterAssignments = JSON.parse(localStorage.getItem('npu_character_assignments') || '{}');
+let characterAssignments = JSON.parse(localStateManager.getItem('npu_character_assignments') || '{}');
 
 /**
  * Login-Funktion
@@ -36,7 +36,7 @@ function login(username, password) {
     // DM Login
     if (username === DM_ACCOUNT.username && password === DM_ACCOUNT.password) {
         currentUser = { ...DM_ACCOUNT, isDM: true };
-        localStorage.setItem('npu_current_user', JSON.stringify(currentUser));
+        localStateManager.setItem('npu_current_user', JSON.stringify(currentUser));
         return { success: true, user: currentUser };
     }
     
@@ -50,7 +50,7 @@ function login(username, password) {
             isPlayer: true,
             assignedCharacterId: assignedCharacterId
         };
-        localStorage.setItem('npu_current_user', JSON.stringify(currentUser));
+        localStateManager.setItem('npu_current_user', JSON.stringify(currentUser));
         return { success: true, user: currentUser };
     }
     
@@ -70,7 +70,7 @@ function logout() {
  */
 function getCurrentUser() {
     if (!currentUser) {
-        const saved = localStorage.getItem('npu_current_user');
+        const saved = localStateManager.getItem('npu_current_user');
         if (saved) {
             currentUser = JSON.parse(saved);
         }
@@ -120,7 +120,7 @@ function assignCharacterToPlayer(playerId, characterId) {
     if (!isDM()) return false;
     
     characterAssignments[playerId] = characterId;
-    localStorage.setItem('npu_character_assignments', JSON.stringify(characterAssignments));
+    localStateManager.setItem('npu_character_assignments', JSON.stringify(characterAssignments));
     
     // Spieler-Account aktualisieren
     const player = PLAYERS_DB.find(p => p.id === playerId);
@@ -138,7 +138,7 @@ function removeCharacterAssignment(playerId) {
     if (!isDM()) return false;
     
     delete characterAssignments[playerId];
-    localStorage.setItem('npu_character_assignments', JSON.stringify(characterAssignments));
+    localStateManager.setItem('npu_character_assignments', JSON.stringify(characterAssignments));
     
     const player = PLAYERS_DB.find(p => p.id === playerId);
     if (player) {
@@ -197,7 +197,7 @@ function getPlayerByCharacterId(characterId) {
 /**
  * Charakter speichern
  */
-function saveCharacter(character) {
+function StateManager.saveState(character) {
     if (!character || !character.id) return false;
     
     const user = getCurrentUser();
@@ -221,7 +221,7 @@ function saveCharacter(character) {
         });
     }
     
-    localStorage.setItem('npu_all_characters', JSON.stringify(allCharacters));
+    localStateManager.setItem('npu_all_characters', JSON.stringify(allCharacters));
     return true;
 }
 
@@ -232,7 +232,7 @@ function deleteCharacter(characterId) {
     if (!isDM()) return false;
     
     allCharacters = allCharacters.filter(c => c.id !== characterId);
-    localStorage.setItem('npu_all_characters', JSON.stringify(allCharacters));
+    localStateManager.setItem('npu_all_characters', JSON.stringify(allCharacters));
     
     // Zuweisung entfernen falls vorhanden
     const assignment = Object.entries(characterAssignments).find(([_, charId]) => charId === characterId);
@@ -259,7 +259,7 @@ function createCharacter(characterData) {
     };
     
     allCharacters.push(newCharacter);
-    localStorage.setItem('npu_all_characters', JSON.stringify(allCharacters));
+    localStateManager.setItem('npu_all_characters', JSON.stringify(allCharacters));
     
     return newCharacter;
 }

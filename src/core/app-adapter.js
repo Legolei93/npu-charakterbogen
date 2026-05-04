@@ -38,8 +38,8 @@ const AppStateAdapter = {
 const StorageAdapter = {
     saveCharacter(char) {
         // Wenn neues Storage-System verfügbar, verwende es
-        if (typeof Storage !== 'undefined' && Storage.saveCharacter) {
-            return Storage.saveCharacter(char);
+        if (typeof Storage !== 'undefined' && StateManager.saveCharacter) {
+            return StateManager.saveCharacter(char);
         }
         // Fallback: alte globale Funktion
         if (typeof saveCharacter === 'function') {
@@ -50,8 +50,8 @@ const StorageAdapter = {
     },
     
     loadCharacters() {
-        if (typeof Storage !== 'undefined' && Storage.getAllCharacters) {
-            return Storage.getAllCharacters();
+        if (typeof Storage !== 'undefined' && StateManager.getAllCharacters) {
+            return StateManager.getAllCharacters();
         }
         if (typeof loadCharacters === 'function') {
             return loadCharacters();
@@ -60,18 +60,18 @@ const StorageAdapter = {
     },
     
     getCharacterById(id) {
-        if (typeof Storage !== 'undefined' && Storage.getCharacterById) {
-            return Storage.getCharacterById(id);
+        if (typeof Storage !== 'undefined' && StateManager.getCharacterById) {
+            return StateManager.getCharacterById(id);
         }
         const chars = this.getAllCharacters();
         return chars.find(c => c.id === id);
     },
     
     getAllCharacters() {
-        if (typeof Storage !== 'undefined' && Storage.getAllCharacters) {
-            return Storage.getAllCharacters();
+        if (typeof Storage !== 'undefined' && StateManager.getAllCharacters) {
+            return StateManager.getAllCharacters();
         }
-        const saved = localStorage.getItem('npu_characters');
+        const saved = localStateManager.getItem('npu_characters');
         return saved ? JSON.parse(saved) : [];
     }
 };

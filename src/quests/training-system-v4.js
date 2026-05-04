@@ -537,7 +537,7 @@ const TrainingSystemV4 = {
      * Verwendet neuen Integrity-Proof-Mechanismus mit sessionSecret
      */
     _validateStateIntegrity() {
-        const saved = localStorage.getItem(this._getStorageKey());
+        const saved = localStateManager.getItem(this._getStorageKey());
         if (!saved) return true;
         
         try {
@@ -890,7 +890,7 @@ const TrainingSystemV4 = {
             SaveSystemV2.saveImmediate(charKey, character, { useDiff: false })
                 .catch(e => console.error('[TrainingSystemV4] Character save failed:', e));
         } else if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         return {
@@ -1058,7 +1058,7 @@ const TrainingSystemV4 = {
      */
     _saveStateFallback(storageKey, stateToSave, options) {
         try {
-            localStorage.setItem(storageKey, JSON.stringify(stateToSave));
+            localStateManager.setItem(storageKey, JSON.stringify(stateToSave));
             if (!options.skipBroadcast) {
                 this._broadcast('STATE_UPDATED', { savedAt: Date.now() });
             }
@@ -1080,7 +1080,7 @@ const TrainingSystemV4 = {
                 parsed = SaveSystemV2.load(storageKey);
             } else {
                 // Fallback: Direktes localStorage
-                const raw = localStorage.getItem(storageKey);
+                const raw = localStateManager.getItem(storageKey);
                 if (raw) parsed = JSON.parse(raw);
             }
             
@@ -1192,7 +1192,7 @@ const TrainingSystemV4 = {
                 .then(() => console.log('[TrainingSystemV4] Character saved via SaveSystemV2'))
                 .catch(e => console.error('[TrainingSystemV4] Character save failed:', e));
         } else if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
         
         return result;

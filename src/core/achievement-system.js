@@ -315,7 +315,7 @@ const AchievementSystem = {
         
         // Speichern
         if (typeof AccountSystem !== 'undefined') {
-            AccountSystem.saveCharacter(character);
+            AccountSystem.StateManager.saveState(character);
         }
     },
     
@@ -419,7 +419,7 @@ const AchievementSystem = {
         if (!userId) return;
         
         const key = `${this.CONFIG.STORAGE_KEY}_${userId}`;
-        localStorage.setItem(key, JSON.stringify(this.state));
+        localStateManager.setItem(key, JSON.stringify(this.state));
     },
     
     loadState() {
@@ -427,7 +427,7 @@ const AchievementSystem = {
         if (!userId) return;
         
         const key = `${this.CONFIG.STORAGE_KEY}_${userId}`;
-        const saved = localStorage.getItem(key);
+        const saved = localStateManager.getItem(key);
         
         if (saved) {
             try {

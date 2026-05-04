@@ -396,7 +396,7 @@ const FrostfelsQuestEngine = {
             
             this.generateDailyQuests();
             this.state.lastReset = now.toISOString();
-            this.saveState();
+            this.StateManager.saveState();
             
             console.log('Daily Quests zurückgesetzt');
         }
@@ -508,7 +508,7 @@ const FrostfelsQuestEngine = {
         this.state.activeQuests.push(quest);
         this.state.dailyQuests = this.state.dailyQuests.filter(q => q.instanceId !== instanceId);
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         console.log('Quest angenommen:', quest.title);
@@ -568,12 +568,12 @@ const FrostfelsQuestEngine = {
             if (quest.currentPhase < quest.phases.length - 1) {
                 setTimeout(() => {
                     this.startPhase(quest, quest.currentPhase + 1);
-                    this.saveState();
+                    this.StateManager.saveState();
                     this.renderQuestPage();
                 }, 500);
             } else {
                 quest.state = this.STATES.RETURN_REQUIRED;
-                this.saveState();
+                this.StateManager.saveState();
                 this.renderQuestPage();
             }
         }
@@ -626,7 +626,7 @@ const FrostfelsQuestEngine = {
         }
         
         quest.state = this.STATES.READY_FOR_TURN_IN;
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -657,7 +657,7 @@ const FrostfelsQuestEngine = {
         this.state.completedQuests.push(quest);
         this.state.activeQuests.splice(questIndex, 1);
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         // Erfolgsbenachrichtigung
@@ -713,7 +713,7 @@ const FrostfelsQuestEngine = {
         this.state.trainingQuest.selected = true;
         this.state.trainingQuest.trainingData = training;
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -732,7 +732,7 @@ const FrostfelsQuestEngine = {
         this.state.trainingQuest.completed = true;
         this.state.trainingQuest.completionTime = Date.now();
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         // Benachrichtigung
@@ -787,7 +787,7 @@ const FrostfelsQuestEngine = {
         objective.progress = objective.count || 1;
         
         this.checkObjectives(instanceId);
-        this.saveState();
+        this.StateManager.saveState();
         
         return true;
     },
@@ -808,7 +808,7 @@ const FrostfelsQuestEngine = {
         
         quest.state = this.STATES.RETURN_REQUIRED;
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -1010,7 +1010,7 @@ const FrostfelsQuestEngine = {
     // SAVE / LOAD
     // ============================================
     
-    saveState() {
+    StateManager.saveState() {
         // BUGFIX 13: Account-gebundenes Speichern
         const currentUser = (typeof AuthSystem !== 'undefined') ? AuthSystem.getCurrentUser() : null;
         if (!currentUser) {
@@ -1019,7 +1019,7 @@ const FrostfelsQuestEngine = {
         }
         
         const storageKey = `frostfels_quest_engine_v2_${currentUser.id}`;
-        localStorage.setItem(storageKey, JSON.stringify(this.state));
+        localStateManager.setItem(storageKey, JSON.stringify(this.state));
     },
     
     loadState() {
@@ -1039,17 +1039,17 @@ const FrostfelsQuestEngine = {
         }
         
         const storageKey = `frostfels_quest_engine_v2_${currentUser.id}`;
-        const saved = localStorage.getItem(storageKey);
+        const saved = localStateManager.getItem(storageKey);
         
         if (saved) {
             this.state = JSON.parse(saved);
         } else {
             // Migration: Prüfe alten Speicher
-            const oldSaved = localStorage.getItem('frostfels_quest_engine_v2');
+            const oldSaved = localStateManager.getItem('frostfels_quest_engine_v2');
             if (oldSaved) {
                 this.state = JSON.parse(oldSaved);
                 // Speichere in neuem Format
-                localStorage.setItem(storageKey, oldSaved);
+                localStateManager.setItem(storageKey, oldSaved);
             }
         }
     }

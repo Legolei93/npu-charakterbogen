@@ -17,7 +17,7 @@ const DeathSaveSystem = {
      * Laedt den aktuellen Todeskampf aus dem Speicher
      */
     loadFromStorage() {
-        const saved = localStorage.getItem('npu_death_save');
+        const saved = localStateManager.getItem('npu_death_save');
         if (saved) {
             this.currentSave = JSON.parse(saved);
         }
@@ -28,7 +28,7 @@ const DeathSaveSystem = {
      */
     saveToStorage() {
         if (this.currentSave) {
-            localStorage.setItem('npu_death_save', JSON.stringify(this.currentSave));
+            localStateManager.setItem('npu_death_save', JSON.stringify(this.currentSave));
         } else {
             localStorage.removeItem('npu_death_save');
         }
@@ -314,7 +314,7 @@ const DeathSaveSystem = {
     adminSetDeathSaveStatus(characterId, successes, failures) {
         if (!this.currentSave || this.currentSave.characterId !== characterId) {
             // Suche Charakter
-            const char = JSON.parse(localStorage.getItem(`npu_character_${characterId}`));
+            const char = JSON.parse(localStateManager.getItem(`npu_character_${characterId}`));
             if (!char) return { success: false, message: 'Charakter nicht gefunden' };
             
             this.currentSave = {

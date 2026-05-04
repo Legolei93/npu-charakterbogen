@@ -1,3 +1,5 @@
+import { simulateEvent, processGameEvent, dispatchEvent } from "../core/event-system.js";
+
 console.log('[QuestBoardUI] Script wird geladen...');
 
 /**
@@ -868,7 +870,7 @@ const QuestBoardUI = {
             EventBus.emit('training:completed', { type: trainingQuest.templateId });
         }
         
-        window.QuestEngine.saveState();
+        window.QuestEngine.StateManager.saveState();
         
         this._showRewardNotification(trainingQuest.rewards || { xp: 10 });
         this.render();

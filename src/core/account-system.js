@@ -161,7 +161,7 @@ const AccountSystem = {
      * @param {Object} character
      * @returns {boolean}
      */
-    saveCharacter(character) {
+    StateManager.saveState(character) {
         if (!this.currentUser) {
             console.error('[AccountSystem] Kein User eingeloggt');
             return false;
@@ -179,7 +179,7 @@ const AccountSystem = {
         // Speichern
         const key = this._getCharacterKey(character.id);
         try {
-            localStorage.setItem(key, JSON.stringify(character));
+            localStateManager.setItem(key, JSON.stringify(character));
             
             // Zur Charakter-Liste hinzufügen
             this._addToCharacterList(character.id, character.name);
@@ -209,7 +209,7 @@ const AccountSystem = {
         const key = this._getCharacterKey(characterId);
         
         try {
-            const stored = localStorage.getItem(key);
+            const stored = localStateManager.getItem(key);
             if (!stored) {
                 console.warn('[AccountSystem] Charakter nicht gefunden:', characterId);
                 return null;
@@ -254,7 +254,7 @@ const AccountSystem = {
             const key = localStorage.key(i);
             if (key && key.startsWith(prefix)) {
                 try {
-                    const char = JSON.parse(localStorage.getItem(key));
+                    const char = JSON.parse(localStateManager.getItem(key));
                     if (char._userId === this.currentUser.id) {
                         characters.push({
                             id: char.id,
@@ -284,7 +284,7 @@ const AccountSystem = {
         
         try {
             // Prüfe vorher ob Charakter existiert und zum User gehört
-            const stored = localStorage.getItem(key);
+            const stored = localStateManager.getItem(key);
             if (stored) {
                 const char = JSON.parse(stored);
                 if (char._userId !== this.currentUser.id) {
@@ -323,8 +323,8 @@ const AccountSystem = {
             timestamp: new Date().toISOString()
         };
         
-        localStorage.setItem(this._getKey('session'), JSON.stringify(sessionData));
-        sessionStorage.setItem(this._getKey('session'), JSON.stringify(sessionData));
+        localStateManager.setItem(this._getKey('session'), JSON.stringify(sessionData));
+        sessionStateManager.setItem(this._getKey('session'), JSON.stringify(sessionData));
     },
     
     /**
@@ -336,7 +336,7 @@ const AccountSystem = {
         let sessionData = null;
         
         try {
-            const sessionStr = sessionStorage.getItem(this._getKey('session'));
+            const sessionStr = sessionStateManager.getItem(this._getKey('session'));
             if (sessionStr) {
                 sessionData = JSON.parse(sessionStr);
             }
@@ -347,7 +347,7 @@ const AccountSystem = {
         // Fallback zu localStorage
         if (!sessionData) {
             try {
-                const localStr = localStorage.getItem(this._getKey('session'));
+                const localStr = localStateManager.getItem(this._getKey('session'));
                 if (localStr) {
                     sessionData = JSON.parse(localStr);
                 }
@@ -440,7 +440,7 @@ const AccountSystem = {
         let list = [];
         
         try {
-            const stored = localStorage.getItem(listKey);
+            const stored = localStateManager.getItem(listKey);
             if (stored) {
                 list = JSON.parse(stored);
             }
@@ -458,7 +458,7 @@ const AccountSystem = {
             userId: this.currentUser.id
         });
         
-        localStorage.setItem(listKey, JSON.stringify(list));
+        localStateManager.setItem(listKey, JSON.stringify(list));
     },
     
     /**
@@ -469,11 +469,11 @@ const AccountSystem = {
         const listKey = this._getKey('character_list');
         
         try {
-            const stored = localStorage.getItem(listKey);
+            const stored = localStateManager.getItem(listKey);
             if (stored) {
                 const list = JSON.parse(stored);
                 const filtered = list.filter(c => c.id !== characterId);
-                localStorage.setItem(listKey, JSON.stringify(filtered));
+                localStateManager.setItem(listKey, JSON.stringify(filtered));
             }
         } catch (e) {
             console.warn('[AccountSystem] Fehler beim Aktualisieren der Charakter-Liste');

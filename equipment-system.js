@@ -53,7 +53,7 @@ const EquipmentSystem = {
      * Laedt das Inventar
      */
     loadInventory() {
-        const saved = localStorage.getItem('player_inventory');
+        const saved = localStateManager.getItem('player_inventory');
         this.inventory = saved ? JSON.parse(saved) : [];
     },
     
@@ -61,14 +61,14 @@ const EquipmentSystem = {
      * Speichert das Inventar
      */
     saveInventory() {
-        localStorage.setItem('player_inventory', JSON.stringify(this.inventory));
+        localStateManager.setItem('player_inventory', JSON.stringify(this.inventory));
     },
     
     /**
      * Laedt verfuegbare Items (gekauft/erhalten)
      */
     loadAvailableItems() {
-        const saved = localStorage.getItem('available_equipment');
+        const saved = localStateManager.getItem('available_equipment');
         this.availableItems = saved ? JSON.parse(saved) : [];
     },
     
@@ -76,7 +76,7 @@ const EquipmentSystem = {
      * Speichert verfuegbare Items
      */
     saveAvailableItems() {
-        localStorage.setItem('available_equipment', JSON.stringify(this.availableItems));
+        localStateManager.setItem('available_equipment', JSON.stringify(this.availableItems));
     },
     
     /**

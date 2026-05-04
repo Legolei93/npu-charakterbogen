@@ -163,7 +163,7 @@ const QuestSystemIntegration = {
             
             // Reset durchführen
             questEngine.generateDailyQuests();
-            questEngine.saveState();
+            questEngine.StateManager.saveState();
             
             // UI aktualisieren
             if (typeof QuestBoardUI !== 'undefined') {

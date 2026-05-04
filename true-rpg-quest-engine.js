@@ -344,7 +344,7 @@ const TrueRPGQuestEngine = {
             
             this.generateDailyQuests();
             this.lastReset = now.toISOString();
-            this.saveState();
+            this.StateManager.saveState();
         }
     },
     
@@ -431,7 +431,7 @@ const TrueRPGQuestEngine = {
         this.activeQuests.push(quest);
         this.dailyQuests = this.dailyQuests.filter(q => q.instanceId !== instanceId);
         
-        this.saveState();
+        this.StateManager.saveState();
         
         // WICHTIG: Seite neu rendern
         this.renderQuestPage();
@@ -492,7 +492,7 @@ const TrueRPGQuestEngine = {
                 quest.state = this.STATES.RETURN_REQUIRED;
             }
             
-            this.saveState();
+            this.StateManager.saveState();
             this.renderQuestPage();
         }
     },
@@ -548,7 +548,7 @@ const TrueRPGQuestEngine = {
         }
         
         quest.state = this.STATES.READY_FOR_TURN_IN;
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -582,7 +582,7 @@ const TrueRPGQuestEngine = {
         this.completedQuests.push(quest);
         this.activeQuests.splice(questIndex, 1);
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -601,7 +601,7 @@ const TrueRPGQuestEngine = {
         this.trainingQuest.selected = true;
         this.trainingQuest.state = this.STATES.ACTIVE;
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -624,7 +624,7 @@ const TrueRPGQuestEngine = {
         this.trainingQuest.completed = true;
         this.trainingQuest.state = this.STATES.COMPLETED;
         
-        this.saveState();
+        this.StateManager.saveState();
         this.renderQuestPage();
         
         return true;
@@ -900,7 +900,7 @@ const TrueRPGQuestEngine = {
     // SAVE / LOAD
     // ============================================
     
-    saveState() {
+    StateManager.saveState() {
         const data = {
             activeQuests: this.activeQuests,
             completedQuests: this.completedQuests,
@@ -908,11 +908,11 @@ const TrueRPGQuestEngine = {
             trainingQuest: this.trainingQuest,
             lastReset: this.lastReset
         };
-        localStorage.setItem('true_rpg_quest_engine', JSON.stringify(data));
+        localStateManager.setItem('true_rpg_quest_engine', JSON.stringify(data));
     },
     
     loadState() {
-        const saved = localStorage.getItem('true_rpg_quest_engine');
+        const saved = localStateManager.getItem('true_rpg_quest_engine');
         if (saved) {
             const data = JSON.parse(saved);
             this.activeQuests = data.activeQuests || [];
